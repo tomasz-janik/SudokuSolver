@@ -7,7 +7,7 @@ namespace SudokuSolver.Logger
         private AbstractLogger _logger;
         private Logger()
         {
-            //todo - should be inverted or it doesnt matter - check how to properly implement (from higher to lower, or otherwise)
+            //todo - can chain of responsibility work like that (even if it's handled go to next one) or should we change it?
             _logger = new InfoConsoleLogger(LogLevel.Info)
                 .SetNext(new DebugConsoleLogger(LogLevel.Debug))
                 .SetNext(new ErrorConsoleLogger(LogLevel.Warning | LogLevel.Error))
