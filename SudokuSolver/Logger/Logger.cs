@@ -1,20 +1,29 @@
-﻿using SudokuSolver.Logger.ConsoleLogger;
-
-namespace SudokuSolver.Logger
+﻿namespace SudokuSolver.Logger
 {
     public sealed class Logger
     {
         private AbstractLogger _logger;
+
         private Logger()
         {
-            //todo - can chain of responsibility work like that (even if it's handled go to next one) or should we change it?
-            _logger = new InfoConsoleLogger(LogLevel.Info)
-                .SetNext(new DebugConsoleLogger(LogLevel.Debug))
-                .SetNext(new ErrorConsoleLogger(LogLevel.Warning | LogLevel.Error))
-                .SetNext(new FileLogger(LogLevel.All));
         }
 
-        //todo - ask if this does what i think it does? xD
+        public void AddLogger(AbstractLogger logger)
+        {
+            if (_logger == null)
+            {
+                _logger = logger;
+                return;
+            }
+            _logger.SetNext(logger);
+        }
+        
+        public void Message(string message, LogLevel severity)
+        {
+            _logger.Message(message, severity);
+        }
+        
+        //todo - ask if this does what i think it does? (is this singleton?) xD
         public static Logger Instance { get; } = new Logger();
     }
 }

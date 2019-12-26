@@ -2,16 +2,16 @@
 
 namespace SudokuSolver.Logger.ConsoleLogger
 {
-    public class DebugConsoleLogger : ConsoleAbstractLogger
+    internal class ConsoleInfoLogger : ConsoleAbstractLogger
     {
-        public DebugConsoleLogger(LogLevel mask) : base(mask)
+        public ConsoleInfoLogger(LogLevel mask) : base(mask)
         {
         }
         
         protected override void WriteMessage(string msg)
         {
-            Console.ForegroundColor = ConsoleColor.Yellow;
-            Console.Write("DEBUG:");
+            Console.ForegroundColor = ConsoleColor.White;
+            Console.Write("INFO:");
             base.WriteMessage(msg);
             Console.ResetColor();
         }

@@ -2,16 +2,16 @@
 
 namespace SudokuSolver.Logger.ConsoleLogger
 {
-    public class InfoConsoleLogger : ConsoleAbstractLogger
+    internal class ConsoleErrorLogger : ConsoleAbstractLogger
     {
-        public InfoConsoleLogger(LogLevel mask) : base(mask)
+        public ConsoleErrorLogger(LogLevel mask) : base(mask)
         {
         }
         
         protected override void WriteMessage(string msg)
         {
-            Console.ForegroundColor = ConsoleColor.White;
-            Console.Write("INFO:");
+            Console.ForegroundColor = ConsoleColor.Red;
+            Console.Write("ERROR:");
             base.WriteMessage(msg);
             Console.ResetColor();
         }

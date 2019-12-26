@@ -23,6 +23,7 @@
             return this;
         }
  
+        //todo - can chain of responsibility work like that (even if it's handled go to next one) or should we change it?
         public void Message(string msg, LogLevel severity)
         {
             if ((severity & _logMask) != 0) 
