@@ -1,0 +1,33 @@
+﻿<Window x:Class="SudokuSolver.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:SudokuSolver"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800">
+        <DockPanel>
+                <StackPanel DockPanel.Dock ="Left">
+                        <Expander IsExpanded ="True" Header ="Main Menu">
+                                <StackPanel>
+                                        <Button>New Game</Button>
+                                        <Button>Load Game</Button>
+                                        <Button>Save Game</Button>
+                                        <Button>Quit</Button>
+                                </StackPanel>
+                        </Expander>
+                        <Expander IsExpanded ="True" Header ="New Game Settings">
+                                <StackPanel>
+                                        <TextBlock>Board Size:</TextBlock>
+                                        <ComboBox IsEditable ="False">
+                                                <ComboBoxItem IsSelected ="True">9x9</ComboBoxItem>
+                                                <ComboBoxItem>16x16</ComboBoxItem>
+                                                <ComboBoxItem>25x25</ComboBoxItem>
+                                                <ComboBoxItem>36x36</ComboBoxItem>
+                                        </ComboBox>
+                                </StackPanel>
+                        </Expander>
+                </StackPanel>
+        </DockPanel>
+        
+</Window>
