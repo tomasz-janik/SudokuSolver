@@ -8,7 +8,7 @@
 #### Add database connection (to show we know how) - e.g. solving best time or sth like that
 
 ## Used design patterns
-![Used design patterns](SudokuSolver.png "Title")
+![Used design patterns](SudokuSolver.png "Patterns")
 
 #### Command
 #### Flyweight
@@ -18,16 +18,19 @@
 #### Singleton
 #### TemplateMethod
 #### Strategy
+#### Memento
+
+## Must have design patterns to use
+
+#### Dependency Injection
+#### MVVM
+#### Builder
+#### Iterator
 
 ## Possible design patterns that could be used
 
 #### AbstractFactory
-#### Dependency Injection
 #### Observer
-#### Memento - to give user undo 
-#### Builder
-#### Iterator
-#### MVC
 #### Composite ?
 #### Prototype ?
 #### State ?

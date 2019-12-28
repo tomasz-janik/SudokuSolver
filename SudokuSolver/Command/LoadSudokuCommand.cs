@@ -2,7 +2,7 @@
 {
     public class LoadSudokuCommand : ICommand
     {
-        public void Execute()
+        public void Execute(string filename)
         {
             throw new System.NotImplementedException();
         }

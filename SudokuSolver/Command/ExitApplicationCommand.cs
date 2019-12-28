@@ -11,7 +11,7 @@ namespace SudokuSolver.Command
             _window = window;
         }
 
-        public void Execute()
+        public void Execute(string _)
         {
             _window.Close();
         }

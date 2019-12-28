@@ -3,6 +3,7 @@ using SudokuSolver.Logger.ConsoleLogger;
 
 namespace SudokuSolver.Logger.Factory
 {
+    //todo this factory can be replaced with abstractfactory - consoleLoggerFactory, fileLoggerFactory
     public class LoggerFactory : ILoggerFactory
     {
         //todo - can be done with reflection (https://code-maze.com/factory-method/) if we want to show we know it - imo stupid af

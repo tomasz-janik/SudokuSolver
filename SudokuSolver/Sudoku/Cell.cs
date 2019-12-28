@@ -5,38 +5,35 @@ namespace SudokuSolver.Sudoku
     public abstract class Cell
     {
         private Digit Digit { get ; set; }
-        private State State;
+        private State _state;
         
-        public int Row { get; set; }
-
-        public int Column { get; set; }
-
         protected Cell()
         {
-            
+            _state = State.Unset;
         }
 
         protected Cell(Digit digit)
         {
             Digit = digit;
+            _state = State.InitialSet;
         }
 
         public void UserSet(int value)
         {
             Digit.Value = value;
-            State = State.UserSet;            
+            _state = State.UserSet;            
         }
 
         public void SolverSet(int value)
         {
             Digit.Value = value;
-            State = State.SolverSet;            
+            _state = State.SolverSet;            
         }
         
         public void Clear()
         {
             Digit.Value = 0;
-            State = State.Unset;
+            _state = State.Unset;
         }
         
     }

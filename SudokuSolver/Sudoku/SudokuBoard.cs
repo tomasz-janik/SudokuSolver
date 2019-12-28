@@ -1,13 +1,18 @@
 ﻿namespace SudokuSolver.Sudoku
 {
+    //todo - can this be Originator in Memento pattern? - imo yes
     public class SudokuBoard
     {
-        private Cell[,] _cells;
+        public Cell[,] Cells { get; set; }
 
-        public Cell[,] Cells
+        public Memento CreateMemento(int row, int column)
         {
-            get => _cells;
-            set => _cells = value;
+            return new Memento(Cells[row, column], row, column);
+        }
+
+        public void SetMemento(Memento memento)
+        {
+            Cells[memento.Row, memento.Column] = memento.State;
         }
     }
 }

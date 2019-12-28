@@ -11,7 +11,7 @@ namespace SudokuSolver.Command
             _sudokuBoard = sudokuBoard;
         }
         
-        public void Execute()
+        public void Execute(string _)
         {
             foreach (var sudokuBoardCell in _sudokuBoard.Cells)
             {
