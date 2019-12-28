@@ -6,19 +6,20 @@ namespace SudokuSolver.Logger
     public class LoggingFacade
     {
         private Logger _logger;
-        private readonly LoggerFactory _loggerFactory;
+        private readonly LoggerFactoryProvider _loggerFactoryProvider;
 
-        public LoggingFacade(LoggerFactory loggerFactory)
+        public LoggingFacade(LoggerFactoryProvider loggerFactoryProvider)
         {
-            _loggerFactory = loggerFactory;
+            _loggerFactoryProvider = loggerFactoryProvider;
         }
 
         public void Init()
         { 
             _logger = Logger.Instance;
-            foreach (LoggerType loggerType in Enum.GetValues(typeof(LoggerType)))
+            foreach (LoggerFactoryType loggerFactoryType in Enum.GetValues(typeof(LoggerFactoryType)))
             {
-                _logger.AddLogger(_loggerFactory.GetLogger(loggerType));
+                var loggingFactory = _loggerFactoryProvider.GetFactory(loggerFactoryType);
+                _logger.AddLoggers(loggingFactory.GetLoggers());
             }
         }
 
@@ -45,7 +46,8 @@ namespace SudokuSolver.Logger
         //todo - check if this will change filepath xD (it will, i'm just not thinking anymore, so not sure)
         public void SetLogFile(string filename)
         {
-            var logger = (FileLogger) _loggerFactory.GetLogger(LoggerType.File);
+            var logger = (FileLogger) _loggerFactoryProvider.GetFactory(LoggerFactoryType.File)
+                .GetLogger(LoggerType.File);
             logger.Filepath = filename;
         }
     }

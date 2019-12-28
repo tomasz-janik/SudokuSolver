@@ -1,24 +1,28 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using SudokuSolver.Logger.ConsoleLogger;
 
 namespace SudokuSolver.Logger.Factory
 {
-    //todo this factory can be replaced with abstractfactory - consoleLoggerFactory, fileLoggerFactory
-    public class LoggerFactory : ILoggerFactory
+    public class ConsoleLoggerFactory : ILoggerFactory
     {
         //todo - can be done with reflection (https://code-maze.com/factory-method/) if we want to show we know it - imo stupid af
-        private static readonly Dictionary<LoggerType, AbstractLogger> Loggers =
-            new Dictionary<LoggerType, AbstractLogger>()
+        private readonly Dictionary<LoggerType, AbstractLogger> _loggers =
+            new Dictionary<LoggerType, AbstractLogger>
             {
                 {LoggerType.ConsoleInfo, new ConsoleInfoLogger(LogLevel.Info)},
                 {LoggerType.ConsoleDebug, new ConsoleDebugLogger(LogLevel.Debug)},
-                {LoggerType.ConsoleError, new ConsoleErrorLogger(LogLevel.Error)},
-                {LoggerType.File, new FileLogger(LogLevel.All)},
+                {LoggerType.ConsoleError, new ConsoleErrorLogger(LogLevel.Error)}
             };
+
+        public List<AbstractLogger> GetLoggers()
+        {
+            return _loggers.Select((pair => pair.Value)).ToList();
+        }
 
         public AbstractLogger GetLogger(LoggerType loggerType)
         {
-            return Loggers[loggerType];
+            return _loggers[loggerType];
         }
     }
 }

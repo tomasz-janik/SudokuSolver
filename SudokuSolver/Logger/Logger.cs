@@ -1,4 +1,7 @@
-﻿namespace SudokuSolver.Logger
+﻿using System.Collections.Generic;
+using SudokuSolver.Utils;
+
+namespace SudokuSolver.Logger
 {
     public sealed class Logger
     {
@@ -8,14 +11,19 @@
         {
         }
 
-        public void AddLogger(AbstractLogger logger)
+
+        public void AddLoggers(List<AbstractLogger> loggers)
         {
             if (_logger == null)
             {
-                _logger = logger;
+                _logger = loggers.Pop();
                 return;
             }
-            _logger.SetNext(logger);
+
+            foreach (var logger in loggers)
+            {
+                _logger.SetNext(logger);
+            }
         }
         
         public void Message(string message, LogLevel severity)

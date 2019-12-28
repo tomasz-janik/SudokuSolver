@@ -19,17 +19,17 @@
 #### TemplateMethod
 #### Strategy
 #### Memento
+#### AbstractFactory
+#### Dependency Injection
 
 ## Must have design patterns to use
 
-#### Dependency Injection
 #### MVVM
 #### Builder
 #### Iterator
 
 ## Possible design patterns that could be used
 
-#### AbstractFactory
 #### Observer
 #### Composite ?
 #### Prototype ?
