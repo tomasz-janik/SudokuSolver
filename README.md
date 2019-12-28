@@ -17,12 +17,12 @@
 #### Facade
 #### Singleton
 #### TemplateMethod
+#### Strategy
 
 ## Possible design patterns that could be used
 
 #### AbstractFactory
 #### Dependency Injection
-#### Strategy (to solve sudoku)
 #### Observer
 #### Memento - to give user undo 
 #### Builder
