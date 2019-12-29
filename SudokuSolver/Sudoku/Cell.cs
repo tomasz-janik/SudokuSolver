@@ -4,36 +4,42 @@ namespace SudokuSolver.Sudoku
 {
     public abstract class Cell
     {
-        private Digit Digit { get ; set; }
-        private State _state;
+        public Digit Digit { get ; set; }
+        public State State;
         
         protected Cell()
         {
-            _state = State.Unset;
+            State = State.Unset;
         }
 
         protected Cell(Digit digit)
         {
             Digit = digit;
-            _state = State.InitialSet;
+            State = State.InitialSet;
         }
 
         public void UserSet(int value)
         {
             Digit.Value = value;
-            _state = State.UserSet;            
+            State = State.UserSet;            
         }
 
-        public void SolverSet(int value)
+        public void SolverSet(Digit digit)
         {
-            Digit.Value = value;
-            _state = State.SolverSet;            
+            Digit = digit;
+            State = State.SolverSet;            
+        }
+
+        public void Unset()
+        {
+            Digit = null;
+            State = State.Unset;            
         }
         
         public void Clear()
         {
             Digit.Value = 0;
-            _state = State.Unset;
+            State = State.Unset;
         }
         
     }

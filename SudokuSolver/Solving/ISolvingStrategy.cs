@@ -1,9 +1,10 @@
-﻿using SudokuSolver.Sudoku;
+﻿using SudokuSolver.Digits;
+using SudokuSolver.Sudoku;
 
 namespace SudokuSolver.Solving
 {
     public interface ISolvingStrategy
     {
-        Cell[,] Solve(Cell[,] cells);
+        bool Solve(Cell[,] cells);
     }
 }

@@ -4,7 +4,7 @@ namespace SudokuSolver.Solving
 {
     public class DancingLinesStrategy : ISolvingStrategy
     {
-        public Cell[,] Solve(Cell[,] cells)
+        public bool Solve(Cell[,] cells)
         {
             throw new System.NotImplementedException();
         }

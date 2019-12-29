@@ -4,8 +4,9 @@
 
 #### WPF application
 #### Reading and parsing image
-#### Algorithms to solve
+#### Implement DancingLines solving strategy
 #### Add database connection (to show we know how) - e.g. solving best time or sth like that
+#### Unit/Integration tests
 
 ## Used design patterns
 ![Used design patterns](SudokuSolver.png "Patterns")

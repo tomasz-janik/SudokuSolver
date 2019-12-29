@@ -9,7 +9,8 @@ namespace SudokuSolver.Solving.Factory
         private static readonly Dictionary<string, ISolvingStrategy> SolvingStrategies =
             new Dictionary<string, ISolvingStrategy>()
             {
-                {"backtracking", new BacktrackingStrategy()},
+                //todo - pass digitfactory there
+                {"backtracking", new BacktrackingStrategy(null)},
                 {"dancing_lines", new DancingLinesStrategy()}
             };
         
