@@ -1,8 +1,8 @@
 ﻿using NUnit.Framework;
-using SudokuSolver.Digits;
-using SudokuSolver.Parsing;
-using SudokuSolver.Solving;
-using SudokuSolver.Validation;
+using SudokuSolver.Model.Digits;
+using SudokuSolver.ViewModel.Parsing;
+using SudokuSolver.ViewModel.Solving;
+using SudokuSolver.ViewModel.Validation;
 
 namespace Tests
 {

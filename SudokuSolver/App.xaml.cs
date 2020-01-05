@@ -1,17 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Configuration;
-using System.Data;
-using System.Linq;
-using System.Threading.Tasks;
-using System.Windows;
+﻿using System.Windows;
+using SudokuSolver.ViewModel;
 
 namespace SudokuSolver
 {
-    /// <summary>
-    /// Interaction logic for App.xaml
-    /// </summary>
     public partial class App : Application
     {
+        public void ApplicationStartup(object sender, StartupEventArgs args)
+        {
+            var mainWindow = new MainWindow(); 
+            mainWindow.ViewModel = ViewModelClass.GetInstance(mainWindow);
+            mainWindow.Show();
+        }
     }
 }

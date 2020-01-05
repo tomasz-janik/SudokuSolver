@@ -21,11 +21,11 @@
 #### Memento
 #### AbstractFactory
 #### Dependency Injection
+#### MVVM
+#### Builder
 
 ## Must have design patterns to use
 
-#### MVVM - model WPF and logic - the internet says it should be used over MVC
-#### Builder - can be used to build sudoku in integration tests 
 #### Iterator - connection to database ?
 
 ## Possible design patterns that could be used
