@@ -3,7 +3,7 @@ using SudokuSolver.Sudoku;
 
 namespace SudokuSolver.Solving
 {
-    public class SudokuValidator
+    public static class SudokuValidator
     {
         private static bool IsInRow(Cell[,] cells, Digit digit, int row) {
             for (var i = 0; i < 9; i++)

@@ -38,6 +38,11 @@
         {
             return Value;
         }
+
+        public static Digit Empty()
+        {
+            return new Digit(0);
+        }
         
         public string Display()
         {

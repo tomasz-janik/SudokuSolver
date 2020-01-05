@@ -4,7 +4,6 @@
 
 #### WPF application
 #### Reading and parsing image
-#### Implement DancingLines solving strategy
 #### Add database connection (to show we know how) - e.g. solving best time or sth like that
 #### Unit/Integration tests
 

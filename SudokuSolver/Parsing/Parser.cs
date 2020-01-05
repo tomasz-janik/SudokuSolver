@@ -1,14 +1,13 @@
-﻿using System.Collections.Generic;
-using SudokuSolver.Sudoku;
+﻿using SudokuSolver.Sudoku;
 
 namespace SudokuSolver.Parsing
 {
     public abstract class Parser<T>
     {
         protected abstract bool ValidateContent(T content);
-        protected abstract List<Cell> ParseContent(T content);
+        protected abstract Cell[,] ParseContent(T content);
 
-        public List<Cell> Parse(T content)
+        public Cell[,] Parse(T content)
         {
             if (ValidateContent(content))
             {
@@ -16,7 +15,7 @@ namespace SudokuSolver.Parsing
             }
             
             //todo - logger.log
-            return new List<Cell>();
+            return new Cell[9,9];
         }
     }
 }

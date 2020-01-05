@@ -2,9 +2,9 @@
 
 namespace SudokuSolver.Sudoku
 {
-    public abstract class Cell
+    public class Cell
     {
-        public Digit Digit { get ; set; }
+        public Digit Digit { get ; private set; }
         public State State;
         
         protected Cell()
@@ -16,6 +16,12 @@ namespace SudokuSolver.Sudoku
         {
             Digit = digit;
             State = State.InitialSet;
+        }
+
+        public Cell(Digit digit, State state)
+        {
+            Digit = digit;
+            State = state;
         }
 
         public void UserSet(int value)

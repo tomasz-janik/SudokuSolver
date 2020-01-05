@@ -8,7 +8,17 @@ namespace SudokuSolver.Validation
 
         public bool Validate(string filename)
         {
-            return filename.All(c => Allowed.Contains(c));
+            return ValidateLength(filename) && ValidateCharacters(filename);
+        }
+
+        private static bool ValidateLength(string filename)
+        {
+            return filename.Length == 81;
+        }
+
+        private static bool ValidateCharacters(string filename)
+        {
+            return filename.All(letter => Allowed.Contains(letter));
         }
     }
 }

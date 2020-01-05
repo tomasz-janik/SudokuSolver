@@ -20,7 +20,7 @@ namespace SudokuSolver.Parsing
             return _validator.Validate(content);
         }
 
-        protected override List<Cell> ParseContent(string content)
+        protected override Cell[,] ParseContent(string content)
         {
             return _parser.Parse(content);
         }

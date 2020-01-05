@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using SudokuSolver.Digits;
 
 namespace SudokuSolver.Solving.Factory
 {
@@ -10,8 +11,8 @@ namespace SudokuSolver.Solving.Factory
             new Dictionary<string, ISolvingStrategy>()
             {
                 //todo - pass digitfactory there
-                {"backtracking", new BacktrackingStrategy(null)},
-                {"dancing_lines", new DancingLinesStrategy()}
+                {"backtracking", new BacktrackingStrategy(new DigitFactory())},
+                {"pre_solving", new PreSolvingStrategy(new DigitFactory())}
             };
         
         public ISolvingStrategy GetSolvingStrategy(string strategy)
