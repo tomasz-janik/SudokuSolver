@@ -3,9 +3,10 @@
 ## Todo
 
 #### WPF application
-#### Reading and parsing image
+#### Add undo implementation
 #### Add database connection (to show we know how) - e.g. solving best time or sth like that
 #### Unit/Integration tests
+#### Reading and parsing image
 
 ## Used design patterns
 ![Used design patterns](SudokuSolver.png "Patterns")
