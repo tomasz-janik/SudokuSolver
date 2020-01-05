@@ -2,7 +2,7 @@
 
 namespace SudokuSolver.Model.Logger.Factory
 {
-    public class LoggerFactoryProvider
+    public abstract class LoggerFactoryProvider
     {
         private readonly Dictionary<LoggerFactoryType, ILoggerFactory> _factories =
             new Dictionary<LoggerFactoryType, ILoggerFactory>()

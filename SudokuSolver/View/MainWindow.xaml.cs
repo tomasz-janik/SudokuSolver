@@ -1,17 +1,10 @@
-﻿using System.Windows;
-using SudokuSolver.ViewModel;
+﻿using SudokuSolver.ViewModel;
 
-namespace SudokuSolver
+namespace SudokuSolver.View
 {
 
-    public partial class MainWindow : Window
+    public partial class MainWindow
     {
-        private ViewModelClass _viewModel;
-        public MainWindow()
-        {
-            InitializeComponent();
-        }
-        
         internal ViewModelClass ViewModel
         {
             set
@@ -19,6 +12,12 @@ namespace SudokuSolver
                 _viewModel = value;
                 DataContext = value;
             }
+        }
+        private ViewModelClass _viewModel;
+        
+        public MainWindow()
+        {
+            InitializeComponent();
         }
     }
 }

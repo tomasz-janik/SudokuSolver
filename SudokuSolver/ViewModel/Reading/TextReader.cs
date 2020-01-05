@@ -1,4 +1,5 @@
-﻿using SudokuSolver.ViewModel.Validation;
+﻿using Ninject;
+using SudokuSolver.ViewModel.Validation;
 
 namespace SudokuSolver.ViewModel.Reading
 {
@@ -7,7 +8,7 @@ namespace SudokuSolver.ViewModel.Reading
         private readonly IValidator _validator;
         private readonly IReader<string> _reader;
 
-        public TextReader(IValidator validator, IReader<string> reader)
+        public TextReader([Named("text_file_validator")] IValidator validator, IReader<string> reader)
         {
             _validator = validator;
             _reader = reader;

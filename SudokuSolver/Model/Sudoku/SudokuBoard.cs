@@ -10,7 +10,7 @@ namespace SudokuSolver.Model.Sudoku
 
         public SudokuBoard()
         {
-            Cells = new Cell[9,9];    
+            Cells = new Cell[9,9];
         }
 
         public SudokuBoard(Cell[,] cells)

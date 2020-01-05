@@ -9,6 +9,7 @@ namespace SudokuSolver.Model.Sudoku
         
         protected Cell()
         {
+            Digit = Digit.Empty();
             State = State.Unset;
         }
 

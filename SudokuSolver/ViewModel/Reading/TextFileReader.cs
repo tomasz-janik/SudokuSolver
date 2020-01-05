@@ -2,7 +2,7 @@
 
 namespace SudokuSolver.ViewModel.Reading
 {
-    public class FileReader : IReader<string>
+    public class TextFileReader : IReader<string>
     {
         public string Read(string filename)
         {
