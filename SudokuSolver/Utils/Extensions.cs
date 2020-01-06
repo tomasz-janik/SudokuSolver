@@ -28,19 +28,10 @@ namespace SudokuSolver.Utils
                 .GroupBy(group => group.index / length)
                 .Select(g => g.Select(a => a.cell));
         }
-        
-        public static T[,] ToRectangularArray<T>(this IEnumerable<IEnumerable<T>> arrays, int length)
+
+        public static List<List<T>> ToDoubleList<T>(this IEnumerable<IEnumerable<T>> arrays, int length)
         {
-            var ret = new T[length,  length];
-            for (var i = 0; i < length; i++)
-            {
-                var array = arrays.ElementAt(i);
-                for (var j = 0; j <  length; j++)
-                {
-                    ret[i, j] = array.ElementAt(j);
-                }
-            }
-            return ret;
+            return arrays.Select(array => array.ToList()).ToList();
         }
         
         public static string DelimitWith<T>(this IEnumerable<T> source, string separator) => string.Join(separator, source);

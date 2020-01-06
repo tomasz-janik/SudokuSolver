@@ -1,9 +1,10 @@
-﻿using SudokuSolver.Model.Sudoku;
+﻿using System.Collections.Generic;
+using SudokuSolver.Model.Sudoku;
 
 namespace SudokuSolver.ViewModel.Solving
 {
     public interface ISolvingStrategy
     {
-        bool Solve(Cell[,] cells);
+        bool Solve(List<List<Cell>> cells);
     }
 }

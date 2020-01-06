@@ -4,21 +4,15 @@ namespace SudokuSolver.Model.Sudoku
 {
     public class Cell
     {
-        public Digit Digit { get ; private set; }
-        public State State;
+        public Digit Digit { get ; set; }
+        public State State { get ; private set; }
         
-        protected Cell()
+        public Cell()
         {
             Digit = Digit.Empty();
             State = State.Unset;
         }
-
-        protected Cell(Digit digit)
-        {
-            Digit = digit;
-            State = State.InitialSet;
-        }
-
+        
         public Cell(Digit digit, State state)
         {
             Digit = digit;

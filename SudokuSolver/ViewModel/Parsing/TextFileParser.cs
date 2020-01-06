@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System.Collections.Generic;
+using System.Linq;
 using SudokuSolver.Model.Digits;
 using SudokuSolver.Model.Sudoku;
 using SudokuSolver.Utils;
@@ -14,7 +15,7 @@ namespace SudokuSolver.ViewModel.Parsing
             _digitFactory = digitFactory;
         }
 
-        public Cell[,] Parse(string content)
+        public List<List<Cell>> Parse(string content)
         {
             return content.Select(letter =>
                 {
@@ -24,7 +25,7 @@ namespace SudokuSolver.ViewModel.Parsing
                 //todo refactor this select
                 .Select(digit => digit == _digitFactory.Default ? new Cell(digit, State.Unset) : new Cell(digit, State.InitialSet))
                 .ToGroup(9)
-                .ToRectangularArray(9);
+                .ToDoubleList(9);
         }
     }
 }

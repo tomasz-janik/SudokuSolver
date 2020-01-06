@@ -1,4 +1,5 @@
-﻿using Ninject;
+﻿using System.Collections.Generic;
+using Ninject;
 using SudokuSolver.Model.Sudoku;
 using SudokuSolver.ViewModel.Validation;
 
@@ -20,7 +21,7 @@ namespace SudokuSolver.ViewModel.Parsing
             return _validator.Validate(content);
         }
 
-        protected override Cell[,] ParseContent(string content)
+        protected override List<List<Cell>> ParseContent(string content)
         {
             return _parser.Parse(content);
         }

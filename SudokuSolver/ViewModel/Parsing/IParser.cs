@@ -1,9 +1,10 @@
-﻿using SudokuSolver.Model.Sudoku;
+﻿using System.Collections.Generic;
+using SudokuSolver.Model.Sudoku;
 
 namespace SudokuSolver.ViewModel.Parsing
 {
     public interface IParser<in T>
     {
-        Cell[,] Parse(T content);
+        List<List<Cell>> Parse(T content);
     }
 }

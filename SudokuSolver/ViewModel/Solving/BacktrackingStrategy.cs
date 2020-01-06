@@ -1,4 +1,5 @@
-﻿using SudokuSolver.Model.Digits;
+﻿using System.Collections.Generic;
+using SudokuSolver.Model.Digits;
 using SudokuSolver.Model.Sudoku;
 
 namespace SudokuSolver.ViewModel.Solving
@@ -12,29 +13,31 @@ namespace SudokuSolver.ViewModel.Solving
             _digitFactory = digitFactory;
         }
 
-        public bool Solve(Cell[,] cells)
+        public bool Solve(List<List<Cell>> cells)
         {
-            for (var row = 0; row < cells.GetLength(0); row++) {
-                for (var col = 0; col < cells.GetLength(1); col++) {
-                    if (cells[row, col].State != State.Unset) continue;
+            for (var row = 0; row < cells.Count; row++)
+            {
+                for (var col = 0; col < cells[row].Count; col++)
+                {
+                    if (cells[row][col].State != State.Unset) continue;
                     for (var number = 1; number <= 9; number++)
                     {
                         var digit = _digitFactory[number];
                         if (!SudokuValidator.IsValid(cells, digit, row, col)) continue;
-                        
-                        cells[row, col].SolverSet(digit);
+
+                        cells[row][col].SolverSet(digit);
           
                         if (Solve(cells)) {
                             return true;
                         }
 
-                        cells[row, col].Unset();
+                        cells[row][col].Unset();
                     }
-		
+                    
                     return false;
                 }
             }
-  
+            
             return true;
         }
     }

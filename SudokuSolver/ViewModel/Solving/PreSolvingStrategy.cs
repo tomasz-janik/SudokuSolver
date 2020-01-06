@@ -14,35 +14,32 @@ namespace SudokuSolver.ViewModel.Solving
             _digitFactory = digitFactory;
         }
 
-        public bool Solve(Cell[,] cells)
+        public bool Solve(List<List<Cell>> cells)
         {
-            var possibilities = new List<Digit>[cells.GetLength(0), cells.GetLength(1)];
+            var possibilities = new List<Digit>[cells.Count, cells[0].Count];
 
-            var a = PreSolve(cells, possibilities);
-            var b = Solve(cells, possibilities);
-            return a && b;
+            return PreSolve(cells, possibilities) && Solve(cells, possibilities);
         }
 
-        private bool Solve(Cell[,] cells, List<Digit>[,] possibilities)
+        private static bool Solve(List<List<Cell>> cells, List<Digit>[,] possibilities)
         {
-            for (var row = 0; row < cells.GetLength(0); row++)
+            for (var row = 0; row < cells.Count; row++)
             {
-                for (var col = 0; col < cells.GetLength(1); col++)
+                for (var col = 0; col < cells[row].Count; col++)
                 {
-                    if (cells[row, col].State != State.Unset) continue;
+                    if (cells[row][col].State != State.Unset) continue;
 
-                    foreach (var digit in possibilities[row, col])
+                    foreach (var digit in possibilities[row, col]
+                        .Where(digit => SudokuValidator.IsValid(cells, digit, row, col)))
                     {
-                        if (!SudokuValidator.IsValid(cells, digit, row, col)) continue;
-
-                        cells[row, col].SolverSet(digit);
+                        cells[row][col].SolverSet(digit);
 
                         if (Solve(cells, possibilities))
                         {
                             return true;
                         }
 
-                        cells[row, col].Unset();
+                        cells[row][col].Unset();
                     }
 
                     return false;
@@ -52,30 +49,30 @@ namespace SudokuSolver.ViewModel.Solving
             return true;
         }
 
-        private bool PreSolve(Cell[,] cells, List<Digit>[,] canPlace)
+        private bool PreSolve(List<List<Cell>> cells, List<Digit>[,] canPlace)
         {
-            for (var i = 0; i < cells.GetLength(0); i++)
+            for (var row = 0; row < cells.Count; row++)
             {
-                for (var j = 0; j < cells.GetLength(1); j++)
+                for (var col = 0; col < cells[row].Count; col++)
                 {
-                    if (cells[i, j].State != State.Unset) continue;
+                    if (cells[row][col].State != State.Unset) continue;
 
-                    canPlace[i, j] = new List<Digit>();
-                    for (var number = 1; number <= cells.GetLength(0); number++)
+                    canPlace[row, col] = new List<Digit>();
+                    for (var number = 1; number <= cells.Count; number++)
                     {
                         var digit = _digitFactory[number];
-                        if (SudokuValidator.IsValid(cells, digit, i, j))
+                        if (SudokuValidator.IsValid(cells, digit, row, col))
                         {
-                            canPlace[i, j].Add(digit);
+                            canPlace[row, col].Add(digit);
                         }
                     }
 
-                    switch (canPlace[i, j].Count)
+                    switch (canPlace[row, col].Count)
                     {
                         case 0:
                             return false;
                         case 1:
-                            cells[i, j].SolverSet(canPlace[i, j].First());
+                            cells[row][col].SolverSet(canPlace[row, col].First());
                             break;
                     }
                 }

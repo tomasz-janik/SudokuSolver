@@ -1,36 +1,39 @@
 ﻿using System.Collections.Generic;
-using SudokuSolver.Utils;
+using System.ComponentModel;
+using SudokuSolver.Model.Digits;
 
 namespace SudokuSolver.Model.Sudoku
 {
     //todo - can this be Originator in Memento pattern? - imo yes
-    public class SudokuBoard
+    public class SudokuBoard : INotifyPropertyChanged
     {
-        public Cell[,] Cells { get; set; }
-
-        public SudokuBoard()
-        {
-            Cells = new Cell[9,9];
-        }
-
-        public SudokuBoard(Cell[,] cells)
-        {
-            Cells = cells;
-        }
-
-        public SudokuBoard(IEnumerable<Cell> cells)
-        {
-            Cells = cells.ToGroup(9).ToRectangularArray(9);
-        }
+        public event PropertyChangedEventHandler PropertyChanged;
+    
+        public List<List<Cell>> Cells {get; set;}
         
+        public SudokuBoard(int width, int height)
+        {
+            Cells = new List<List<Cell>>(width);
+            for (var i = 0; i < width; i++)
+            {
+                var row = new List<Cell>(height);
+                for (var j = 0; j < height; j++)
+                {
+                    row.Add(new Cell());
+                }
+                Cells.Add(row);
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("SudokuBoard"));
+            }
+        }
+
         public Memento CreateMemento(int row, int column)
         {
-            return new Memento(Cells[row, column], row, column);
+            return null; //new Memento(Cells[row][column], row, column);
         }
 
         public void SetMemento(Memento memento)
         {
-            Cells[memento.Row, memento.Column] = memento.State;
+            //Cells[memento.Row][memento.Column] = memento.State;
         }
     }
 }
