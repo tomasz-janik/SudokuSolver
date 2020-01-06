@@ -10,7 +10,7 @@ namespace SudokuSolver.ViewModel.Converting
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
             var status = value is Digit digit ? digit : Digit.Empty();
-            return status.Value != 0 ? status.Value.ToString() : "      ";
+            return status.Value != 0 ? status.Value.ToString() : "";
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)

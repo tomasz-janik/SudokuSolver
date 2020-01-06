@@ -8,17 +8,17 @@
         Title="Sudoku Solver"
         WindowStartupLocation="CenterScreen"
         SizeToContent="WidthAndHeight"
-        MinHeight="450" MinWidth="800">
+        MinHeight="400" MinWidth="800">
     <Window.Resources>
         <converting:IsInitialConverter x:Key="IsInitialConverter" />
         <converting:DigitConverter x:Key="DigitConverter" />
         <DataTemplate x:Key="TextBoxTemplate">
             <TextBox Background="Chartreuse"
-                     Padding="10"
+                     Width="50" Height="50"
                      Text="{Binding Digit, Converter={StaticResource DigitConverter}}"
                      IsReadOnly="{Binding State, Converter={StaticResource IsInitialConverter}}"
                      FontWeight="Bold"
-                     TextAlignment="Center" d:DataContext="{d:DesignInstance}" />
+                     TextAlignment="Justify" d:DataContext="{d:DesignInstance}" />
         </DataTemplate>
 
         <DataTemplate x:Key="GridTemplate">
@@ -38,11 +38,12 @@
             <ColumnDefinition Width="*" />
         </Grid.ColumnDefinitions>
 
-        <ItemsControl Grid.Column="0" 
-                      VerticalAlignment="Stretch" HorizontalAlignment="Stretch"
-                      ItemsSource="{Binding SudokuBoard.Cells}"
-                      ItemTemplate="{DynamicResource GridTemplate}"
-                      d:DataContext="{d:DesignInstance }" />
+        <Viewbox Grid.Column="0" VerticalAlignment="Center">
+            <ItemsControl 
+                          ItemsSource="{Binding SudokuBoard.Cells}"
+                          ItemTemplate="{DynamicResource GridTemplate}"
+                          d:DataContext="{d:DesignInstance }" />
+        </Viewbox>
 
         <Viewbox Grid.Column="1" VerticalAlignment="Center">
             <StackPanel Orientation="Vertical">
