@@ -8,17 +8,30 @@
         Title="Sudoku Solver"
         WindowStartupLocation="CenterScreen"
         SizeToContent="WidthAndHeight"
-        MinHeight="400" MinWidth="800">
+        MinHeight="400" MinWidth="800"
+        Height="400" Width="800">
     <Window.Resources>
         <converting:IsInitialConverter x:Key="IsInitialConverter" />
         <converting:DigitConverter x:Key="DigitConverter" />
+        
         <DataTemplate x:Key="TextBoxTemplate">
-            <TextBox Background="Chartreuse"
-                     Width="50" Height="50"
-                     Text="{Binding Digit, Converter={StaticResource DigitConverter}}"
+            <TextBox Background="Purple"
+                     Width="25" Height="25"
+                     VerticalContentAlignment="Center"
                      IsReadOnly="{Binding State, Converter={StaticResource IsInitialConverter}}"
                      FontWeight="Bold"
-                     TextAlignment="Justify" d:DataContext="{d:DesignInstance}" />
+                     MaxLength="1"
+                     PreviewTextInput="Cell_OnPreviewTextInput"
+                     PreviewKeyDown="Cell_OnKeyDown"
+                     TextAlignment="Center" d:DataContext="{d:DesignInstance}">
+                <Validation.ErrorTemplate>
+                    <ControlTemplate />
+                </Validation.ErrorTemplate>
+                <TextBox.Text>
+                    <Binding Path="Value" Mode="TwoWay" UpdateSourceTrigger="PropertyChanged"
+                             Converter="{StaticResource DigitConverter}" />
+                </TextBox.Text>
+            </TextBox>
         </DataTemplate>
 
         <DataTemplate x:Key="GridTemplate">
@@ -39,10 +52,10 @@
         </Grid.ColumnDefinitions>
 
         <Viewbox Grid.Column="0" VerticalAlignment="Center">
-            <ItemsControl 
-                          ItemsSource="{Binding SudokuBoard.Cells}"
-                          ItemTemplate="{DynamicResource GridTemplate}"
-                          d:DataContext="{d:DesignInstance }" />
+            <ItemsControl
+                ItemsSource="{Binding SudokuBoard.Cells}"
+                ItemTemplate="{DynamicResource GridTemplate}"
+                d:DataContext="{d:DesignInstance }" />
         </Viewbox>
 
         <Viewbox Grid.Column="1" VerticalAlignment="Center">
@@ -51,19 +64,31 @@
                 <TextBlock Margin="15,5,15,0" Padding="5" HorizontalAlignment="Center" TextAlignment="Center">
                     Sudoku Solver
                 </TextBlock>
-                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                <StackPanel HorizontalAlignment="Center">
                     <Button
-                        x:Name="Clear"
                         Margin="5"
                         Padding="10,5,10,5"
                         HorizontalAlignment="Center"
-                        Content="Clear" />
+                        Content="Clear"
+                        Command="{Binding Command}"
+                        CommandParameter="clear"
+                        d:DataContext="{d:DesignInstance }" />
                     <Button
-                        x:Name="Load"
                         Margin="5"
                         Padding="10,5,10,5"
                         HorizontalAlignment="Center"
-                        Content="Load" />
+                        Content="Load"
+                        Command="{Binding Command}"
+                        CommandParameter="load"
+                        d:DataContext="{d:DesignInstance }" />
+                    <Button
+                        Margin="5"
+                        Padding="10,5,10,5"
+                        HorizontalAlignment="Center"
+                        Content="Solve"
+                        Command="{Binding Command}"
+                        CommandParameter="solve"
+                        d:DataContext="{d:DesignInstance }" />
                 </StackPanel>
             </StackPanel>
         </Viewbox>

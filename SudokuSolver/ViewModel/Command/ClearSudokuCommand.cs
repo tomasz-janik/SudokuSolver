@@ -1,4 +1,5 @@
-﻿using SudokuSolver.Model.Sudoku;
+﻿using System.Linq;
+using SudokuSolver.Model.Sudoku;
 
 namespace SudokuSolver.ViewModel.Command
 {
@@ -6,16 +7,16 @@ namespace SudokuSolver.ViewModel.Command
     {
         private readonly SudokuBoard _sudokuBoard;
         
-        ClearSudokuCommand(SudokuBoard sudokuBoard)
+        public ClearSudokuCommand(SudokuBoard sudokuBoard)
         {
             _sudokuBoard = sudokuBoard;
         }
         
         public void Execute(string _)
         {
-            foreach (var sudokuBoardCell in _sudokuBoard.Cells)
+            foreach (var cell in _sudokuBoard.Cells.SelectMany(row => row))
             {
-                sudokuBoardCell.Clear();
+                cell.Unset();
             }
         }
     }

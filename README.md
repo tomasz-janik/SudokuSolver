@@ -12,7 +12,6 @@
 ![Used design patterns](SudokuSolver.png "Patterns")
 
 #### Command
-#### Flyweight
 #### Factory
 #### Chain of responsibility
 #### Facade
@@ -36,3 +35,4 @@
 #### Composite ?
 #### Prototype ?
 #### Visitor ?
+#### Flyweight :(

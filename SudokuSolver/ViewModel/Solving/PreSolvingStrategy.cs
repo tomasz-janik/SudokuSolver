@@ -7,21 +7,14 @@ namespace SudokuSolver.ViewModel.Solving
 {
     public class PreSolvingStrategy : ISolvingStrategy
     {
-        private readonly DigitFactory _digitFactory;
-
-        public PreSolvingStrategy(DigitFactory digitFactory)
-        {
-            _digitFactory = digitFactory;
-        }
-
         public bool Solve(List<List<Cell>> cells)
         {
-            var possibilities = new List<Digit>[cells.Count, cells[0].Count];
+            var possibilities = new List<int>[cells.Count, cells[0].Count];
 
             return PreSolve(cells, possibilities) && Solve(cells, possibilities);
         }
 
-        private static bool Solve(List<List<Cell>> cells, List<Digit>[,] possibilities)
+        private static bool Solve(List<List<Cell>> cells, List<int>[,] possibilities)
         {
             for (var row = 0; row < cells.Count; row++)
             {
@@ -49,7 +42,7 @@ namespace SudokuSolver.ViewModel.Solving
             return true;
         }
 
-        private bool PreSolve(List<List<Cell>> cells, List<Digit>[,] canPlace)
+        private bool PreSolve(List<List<Cell>> cells, List<int>[,] canPlace)
         {
             for (var row = 0; row < cells.Count; row++)
             {
@@ -57,13 +50,12 @@ namespace SudokuSolver.ViewModel.Solving
                 {
                     if (cells[row][col].State != State.Unset) continue;
 
-                    canPlace[row, col] = new List<Digit>();
+                    canPlace[row, col] = new List<int>();
                     for (var number = 1; number <= cells.Count; number++)
                     {
-                        var digit = _digitFactory[number];
-                        if (SudokuValidator.IsValid(cells, digit, row, col))
+                        if (SudokuValidator.IsValid(cells, number, row, col))
                         {
-                            canPlace[row, col].Add(digit);
+                            canPlace[row, col].Add(number);
                         }
                     }
 

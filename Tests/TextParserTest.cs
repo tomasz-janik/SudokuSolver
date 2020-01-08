@@ -1,5 +1,4 @@
 using NUnit.Framework;
-using SudokuSolver.Model.Digits;
 using SudokuSolver.ViewModel.Parsing;
 using SudokuSolver.ViewModel.Validation;
 
@@ -11,7 +10,7 @@ namespace Tests
         [SetUp]
         public void Setup()
         {
-            _textParser = new TextParser(new StringValidator(), new TextFileParser(new DigitFactory()));
+            _textParser = new TextParser(new StringValidator(), new TextFileParser());
         }
 
         [Test]

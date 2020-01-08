@@ -6,13 +6,6 @@ namespace SudokuSolver.ViewModel.Solving
 {
     public class BacktrackingStrategy : ISolvingStrategy
     {
-        private readonly DigitFactory _digitFactory;
-
-        public BacktrackingStrategy(DigitFactory digitFactory)
-        {
-            _digitFactory = digitFactory;
-        }
-
         public bool Solve(List<List<Cell>> cells)
         {
             for (var row = 0; row < cells.Count; row++)
@@ -22,10 +15,9 @@ namespace SudokuSolver.ViewModel.Solving
                     if (cells[row][col].State != State.Unset) continue;
                     for (var number = 1; number <= 9; number++)
                     {
-                        var digit = _digitFactory[number];
-                        if (!SudokuValidator.IsValid(cells, digit, row, col)) continue;
+                        if (!SudokuValidator.IsValid(cells, number, row, col)) continue;
 
-                        cells[row][col].SolverSet(digit);
+                        cells[row][col].SolverSet(number);
           
                         if (Solve(cells)) {
                             return true;

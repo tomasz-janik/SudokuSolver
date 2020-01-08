@@ -8,7 +8,7 @@ namespace SudokuSolver.ViewModel.Command
         private readonly SudokuBoard _sudokuBoard;
         private readonly ISolvingStrategyFactory _solvingStrategyFactory;
         
-        SolveSudokuCommand(SudokuBoard sudokuBoard, ISolvingStrategyFactory solvingStrategyFactory)
+        public SolveSudokuCommand(SudokuBoard sudokuBoard, ISolvingStrategyFactory solvingStrategyFactory)
         {
             _sudokuBoard = sudokuBoard;
             _solvingStrategyFactory = solvingStrategyFactory;

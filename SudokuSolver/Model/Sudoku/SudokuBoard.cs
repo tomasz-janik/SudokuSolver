@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel;
-using SudokuSolver.Model.Digits;
 
 namespace SudokuSolver.Model.Sudoku
 {
@@ -10,8 +9,12 @@ namespace SudokuSolver.Model.Sudoku
         public event PropertyChangedEventHandler PropertyChanged;
     
         public List<List<Cell>> Cells {get; set;}
-        
-        public SudokuBoard(int width, int height)
+
+        public SudokuBoard() : this(9, 9)
+        {
+        }
+
+        private SudokuBoard(int width, int height)
         {
             Cells = new List<List<Cell>>(width);
             for (var i = 0; i < width; i++)

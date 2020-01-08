@@ -1,46 +1,64 @@
-﻿using SudokuSolver.Model.Digits;
+﻿using System.ComponentModel;
+using SudokuSolver.Model.Digits;
 
 namespace SudokuSolver.Model.Sudoku
 {
-    public class Cell
+    public class Cell : INotifyPropertyChanged
     {
-        public Digit Digit { get ; set; }
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        private int? _value;
+
+        public int? Value
+        {
+            get => _value;
+            set
+            {
+                _value = value;
+                State = State.UserSet;
+                IndicateChange();
+            }
+        }
+
         public State State { get ; private set; }
         
         public Cell()
         {
-            Digit = Digit.Empty();
             State = State.Unset;
         }
         
-        public Cell(Digit digit, State state)
+        public Cell(int value, State state)
         {
-            Digit = digit;
+            Value = value;
             State = state;
+            IndicateChange();
         }
 
         public void UserSet(int value)
         {
-            Digit.Value = value;
-            State = State.UserSet;            
+            Value = value;
+            State = State.UserSet; 
+            IndicateChange();
         }
 
-        public void SolverSet(Digit digit)
+        public void SolverSet(int value)
         {
-            Digit = digit;
-            State = State.SolverSet;            
+            Value = value;
+            State = State.SolverSet;
+            IndicateChange();
         }
 
         public void Unset()
         {
-            Digit = null;
-            State = State.Unset;            
-        }
-        
-        public void Clear()
-        {
-            Digit.Value = 0;
+            Value = null;
             State = State.Unset;
+            IndicateChange();
+        }
+
+        private void IndicateChange()
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("State"));
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Value"));
         }
         
     }

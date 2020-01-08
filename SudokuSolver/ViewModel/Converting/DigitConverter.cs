@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Globalization;
 using System.Windows.Data;
-using SudokuSolver.Model.Digits;
 
 namespace SudokuSolver.ViewModel.Converting
 {
@@ -9,15 +8,15 @@ namespace SudokuSolver.ViewModel.Converting
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            var status = value is Digit digit ? digit : Digit.Empty();
-            return status.Value != 0 ? status.Value.ToString() : "";
+            return value?.ToString();
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            var status = value is string str ? str : "";
-            int.TryParse(status, out var output);
-            return output;
+            if (int.TryParse(value as string, out var result)) return result;
+            return null;
         }
+
+
     }
 }

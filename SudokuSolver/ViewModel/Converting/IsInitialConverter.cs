@@ -2,6 +2,7 @@
 using System.Globalization;
 using System.Windows.Data;
 using SudokuSolver.Model.Digits;
+using SudokuSolver.Model.Sudoku;
 
 namespace SudokuSolver.ViewModel.Converting
 {
