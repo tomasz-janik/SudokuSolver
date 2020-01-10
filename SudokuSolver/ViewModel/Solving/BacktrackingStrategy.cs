@@ -8,6 +8,11 @@ namespace SudokuSolver.ViewModel.Solving
     {
         public bool Solve(List<List<Cell>> cells)
         {
+            return SudokuValidator.IsValid(cells) && Resolve(cells);
+        }
+
+        private static bool Resolve(List<List<Cell>> cells)
+        {
             for (var row = 0; row < cells.Count; row++)
             {
                 for (var col = 0; col < cells[row].Count; col++)
@@ -19,7 +24,7 @@ namespace SudokuSolver.ViewModel.Solving
 
                         cells[row][col].SolverSet(number);
           
-                        if (Solve(cells)) {
+                        if (Resolve(cells)) {
                             return true;
                         }
 

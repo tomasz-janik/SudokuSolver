@@ -9,12 +9,14 @@ namespace SudokuSolver.ViewModel.Solving
     {
         public bool Solve(List<List<Cell>> cells)
         {
+            if (!SudokuValidator.IsValid(cells)) return false;
+            
             var possibilities = new List<int>[cells.Count, cells[0].Count];
 
-            return PreSolve(cells, possibilities) && Solve(cells, possibilities);
+            return PreSolve(cells, possibilities) && Resolve(cells, possibilities);
         }
 
-        private static bool Solve(List<List<Cell>> cells, List<int>[,] possibilities)
+        private static bool Resolve(List<List<Cell>> cells, List<int>[,] possibilities)
         {
             for (var row = 0; row < cells.Count; row++)
             {
@@ -27,7 +29,7 @@ namespace SudokuSolver.ViewModel.Solving
                     {
                         cells[row][col].SolverSet(digit);
 
-                        if (Solve(cells, possibilities))
+                        if (Resolve(cells, possibilities))
                         {
                             return true;
                         }
@@ -42,7 +44,7 @@ namespace SudokuSolver.ViewModel.Solving
             return true;
         }
 
-        private bool PreSolve(List<List<Cell>> cells, List<int>[,] canPlace)
+        private static bool PreSolve(List<List<Cell>> cells, List<int>[,] canPlace)
         {
             for (var row = 0; row < cells.Count; row++)
             {

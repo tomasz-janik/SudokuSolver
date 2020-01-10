@@ -56,8 +56,7 @@ namespace SudokuSolver
 
             _container.Bind<ICommandFactory>().To<CommandFactory>().InSingletonScope();
 
-            _container.Bind<System.Windows.Input.ICommand>().To<FactoryCommand>().InSingletonScope();
-
+            
             _container.Bind<MainViewModel>().ToSelf().InSingletonScope();
         }
 

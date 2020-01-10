@@ -9,11 +9,12 @@
         WindowStartupLocation="CenterScreen"
         SizeToContent="WidthAndHeight"
         MinHeight="400" MinWidth="800"
-        Height="400" Width="800">
+        Height="400" Width="800"
+        MaxHeight="800" MaxWidth="1600">
     <Window.Resources>
         <converting:IsInitialConverter x:Key="IsInitialConverter" />
         <converting:DigitConverter x:Key="DigitConverter" />
-        
+
         <DataTemplate x:Key="TextBoxTemplate">
             <TextBox Background="Purple"
                      Width="25" Height="25"
@@ -70,25 +71,29 @@
                         Padding="10,5,10,5"
                         HorizontalAlignment="Center"
                         Content="Clear"
-                        Command="{Binding Command}"
-                        CommandParameter="clear"
+                        Command="{Binding ClearCommand}"
                         d:DataContext="{d:DesignInstance }" />
                     <Button
                         Margin="5"
                         Padding="10,5,10,5"
                         HorizontalAlignment="Center"
                         Content="Load"
-                        Command="{Binding Command}"
-                        CommandParameter="load"
+                        Command="{Binding LoadCommand}"
                         d:DataContext="{d:DesignInstance }" />
                     <Button
                         Margin="5"
                         Padding="10,5,10,5"
                         HorizontalAlignment="Center"
                         Content="Solve"
-                        Command="{Binding Command}"
-                        CommandParameter="solve"
+                        Command="{Binding SolveCommand}"
                         d:DataContext="{d:DesignInstance }" />
+                    <ComboBox
+                        Width="120"
+                        ItemsSource="{Binding Path=SolvingStrategies}"
+                        SelectedItem="{Binding Path=SolvingStrategy}"
+                        Text="{Binding Path=SolvingStrategy, Mode=OneWay}"
+                        d:DataContext="{d:DesignInstance }">
+                    </ComboBox>
                 </StackPanel>
             </StackPanel>
         </Viewbox>

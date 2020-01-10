@@ -1,47 +1,54 @@
-﻿﻿using System;
- using System.ComponentModel;
- using SudokuSolver.Model.Sudoku;
- using SudokuSolver.ViewModel.Command;
- using ICommand = System.Windows.Input.ICommand;
+﻿using System.ComponentModel;
+using SudokuSolver.Model.Sudoku;
+using SudokuSolver.View;
+using SudokuSolver.ViewModel.Command;
+using SudokuSolver.ViewModel.WpfCommand;
+using ICommand = System.Windows.Input.ICommand;
 
- namespace SudokuSolver.ViewModel
+namespace SudokuSolver.ViewModel
 {
     public class MainViewModel : INotifyPropertyChanged
     {
         public event PropertyChangedEventHandler PropertyChanged;
-        
+
+        public string[] SolvingStrategies { get; } = {"backtracking", "pre_solving"};
         public string SolvingStrategy { get; set; } = "backtracking";
-        public string Filename { get; set; } = "temp";
-        public ICommand Command { get; }
-        public SudokuBoard SudokuBoard {get; }
         
-        public MainViewModel(SudokuBoard sudokuBoard, ICommand command)
+        public ICommand LoadCommand { get; }
+        public ICommand ClearCommand { get; }
+        public ICommand SolveCommand { get; }
+
+        public SudokuBoard SudokuBoard { get; }
+
+        private readonly CommandFactory _commandFactory;
+
+        public MainViewModel(SudokuBoard sudokuBoard, CommandFactory commandFactory)
         {
             SudokuBoard = sudokuBoard;
-            Command = command;
+            _commandFactory = commandFactory;
+            
+            ClearCommand = new RelayCommand(e => ClearSudoku());
+            LoadCommand = new RelayCommand(e => LoadFile());
+            SolveCommand = new RelayCommand(e => SolveSudoku());
         }
-    }
 
-    internal class FactoryCommand : ICommand
-    {
-        private readonly CommandFactory _commands;
-
-        public FactoryCommand(CommandFactory commands)
+        private void LoadFile()
         {
-            _commands = commands;
+            var fileNames = new OpenFileDialog().ExecuteFileDialog(this, "PNG Files (*.png)|*.png|JPG Files (*.jpg)|*.jpg|Text Files (*.txt)|*.txt", "*.png");
+            if (fileNames != null)
+            {
+                _commandFactory.GetCommand("load").Execute(fileNames);
+            }
         }
 
-        public bool CanExecute(object parameter)
+        private void ClearSudoku()
         {
-            return true;
+            _commandFactory.GetCommand("clear").Execute(null);
         }
 
-        public void Execute(object parameter)
+        private void SolveSudoku()
         {
-            var temp = parameter as string;
-            _commands.GetCommand(temp).Execute("backtracking");
+            _commandFactory.GetCommand("solve").Execute(SolvingStrategy);
         }
-
-        public event EventHandler CanExecuteChanged;
     }
 }
