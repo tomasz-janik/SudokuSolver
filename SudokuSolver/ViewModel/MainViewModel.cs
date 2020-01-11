@@ -1,8 +1,8 @@
 ﻿using System.ComponentModel;
+using System.Windows;
 using SudokuSolver.Model.Sudoku;
 using SudokuSolver.View;
 using SudokuSolver.ViewModel.Command;
-using SudokuSolver.ViewModel.WpfCommand;
 using ICommand = System.Windows.Input.ICommand;
 
 namespace SudokuSolver.ViewModel
@@ -48,7 +48,11 @@ namespace SudokuSolver.ViewModel
 
         private void SolveSudoku()
         {
-            _commandFactory.GetCommand("solve").Execute(SolvingStrategy);
+            if (!_commandFactory.GetCommand("solve").Execute(SolvingStrategy))
+            {
+                //todo - we can localize it e.g. polish, english if there is sth for it in c#
+                new MessageDialog().ExecuteMessageDialog("Sudoku is not solvable");
+            }
         }
     }
 }

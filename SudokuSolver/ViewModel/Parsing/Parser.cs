@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Xaml;
 using SudokuSolver.Model.Sudoku;
 
 namespace SudokuSolver.ViewModel.Parsing

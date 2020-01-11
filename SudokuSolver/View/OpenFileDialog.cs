@@ -1,9 +1,9 @@
 ﻿using System.Windows;
-using SudokuSolver.ViewModel;
+using SudokuSolver.ViewModel.DialogWindow;
 
 namespace SudokuSolver.View
 {
-    public class OpenFileDialog : IDialogWindow
+    public class OpenFileDialog : IFileDialogWindow
     {
         public string ExecuteFileDialog(object owner, string filter, string defaultExt)
         {

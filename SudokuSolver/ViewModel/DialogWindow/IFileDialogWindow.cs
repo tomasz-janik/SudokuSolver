@@ -1,6 +1,6 @@
-﻿namespace SudokuSolver.ViewModel
+﻿namespace SudokuSolver.ViewModel.DialogWindow
 {
-    public interface IDialogWindow
+    public interface IFileDialogWindow
     {
         string ExecuteFileDialog(object owner, string filter, string defaultExt);
     }

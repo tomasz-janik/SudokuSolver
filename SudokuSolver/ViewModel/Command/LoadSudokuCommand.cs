@@ -1,4 +1,5 @@
-﻿using SudokuSolver.Model.Sudoku;
+﻿using System.Linq;
+using SudokuSolver.Model.Sudoku;
 using SudokuSolver.ViewModel.Parsing;
 using SudokuSolver.ViewModel.Reading;
 
@@ -17,9 +18,14 @@ namespace SudokuSolver.ViewModel.Command
             _parser = parser;
         }
 
-        public void Execute(string filename)
+        public bool Execute(string filename)
         {
-            _sudokuBoard.Cells = _parser.Parse(_reader.Read(filename));
+            var result = _parser.Parse(_reader.Read(filename));
+            if (!result.Any()) return false;
+            
+            _sudokuBoard.Cells = result;
+            return true;
+
         }
     }
 }

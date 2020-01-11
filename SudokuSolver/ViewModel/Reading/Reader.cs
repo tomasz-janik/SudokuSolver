@@ -13,7 +13,7 @@
             }
             
             //todo - logger.log
-            return default(T);
+            return default;
         }
     }
 }

@@ -2,11 +2,14 @@
 
 ## Todo
 
-#### WPF application
 #### Add undo implementation - there is memento already just have to use it
 #### Add database connection (to show we know how) - e.g. solving best time or sth like that
 #### Unit/Integration tests
 #### Reading and parsing image
+
+## Todo (c#, not design patterns)
+#### Add string localization
+#### Make it async
 
 ## Used design patterns
 ![Used design patterns](SudokuSolver.png "Patterns")

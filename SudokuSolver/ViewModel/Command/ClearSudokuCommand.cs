@@ -12,12 +12,14 @@ namespace SudokuSolver.ViewModel.Command
             _sudokuBoard = sudokuBoard;
         }
         
-        public void Execute(string _)
+        public bool Execute(string _)
         {
             foreach (var cell in _sudokuBoard.Cells.SelectMany(row => row))
             {
                 cell.Unset();
             }
+
+            return true;
         }
     }
 }

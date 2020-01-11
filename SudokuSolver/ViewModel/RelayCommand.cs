@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Windows.Input;
 
-namespace SudokuSolver.ViewModel.WpfCommand
+namespace SudokuSolver.ViewModel
 {
     public class RelayCommand : ICommand
     {

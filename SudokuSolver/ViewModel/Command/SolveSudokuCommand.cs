@@ -14,9 +14,9 @@ namespace SudokuSolver.ViewModel.Command
             _solvingStrategyFactory = solvingStrategyFactory;
         }
         
-        public void Execute(string strategy)
+        public bool Execute(string strategy)
         {
-            _solvingStrategyFactory.GetSolvingStrategy(strategy).Solve(_sudokuBoard.Cells);
+            return _solvingStrategyFactory.GetSolvingStrategy(strategy).Solve(_sudokuBoard.Cells);
         }
     }
 }

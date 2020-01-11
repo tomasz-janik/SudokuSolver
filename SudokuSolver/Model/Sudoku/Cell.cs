@@ -15,7 +15,7 @@ namespace SudokuSolver.Model.Sudoku
             set
             {
                 _value = value;
-                State = State.UserSet;
+                State = value == null ? State.Unset : State.UserSet;
                 IndicateChange();
             }
         }
