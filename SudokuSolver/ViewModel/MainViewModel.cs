@@ -35,10 +35,10 @@ namespace SudokuSolver.ViewModel
         private void LoadFile()
         {
             var fileNames = new OpenFileDialog().ExecuteFileDialog(this, "PNG Files (*.png)|*.png|JPG Files (*.jpg)|*.jpg|Text Files (*.txt)|*.txt", "*.png");
-            if (fileNames != null)
-            {
-                _commandFactory.GetCommand("load").Execute(fileNames);
-            }
+            if (fileNames == null) return;
+            
+            _commandFactory.GetCommand("clear").Execute(null);
+            _commandFactory.GetCommand("load").Execute(fileNames);
         }
 
         private void ClearSudoku()

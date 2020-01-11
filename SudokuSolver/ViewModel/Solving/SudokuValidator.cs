@@ -40,16 +40,91 @@ namespace SudokuSolver.ViewModel.Solving
             return !IsInRow(cells, value, row) && !IsInCol(cells, value, column) && 
                    !IsInBox(cells, value, row, column);
         }
+        
+        private static bool IsRowValid(IReadOnlyList<List<Cell>> cells, int row)
+        {
+            var usedNumbers = new bool[10];
+            for (var i = 0; i < cells[row].Count; i++)
+            {
+                if (cells[row][i].State == State.Unset) continue;
+                if (usedNumbers[cells[row][i].Value ?? default])
+                {
+                    return false;
+                }
 
-        //todo fix it cus it doesnt work xD
+                usedNumbers[cells[row][i].Value ?? default] = true;
+            }
+
+            return true;
+        }
+
+        private static bool IsColValid(IReadOnlyList<List<Cell>> cells, int column)
+        {
+            var usedNumbers = new bool[10];
+            for (var i = 0; i < cells[0].Count; i++)
+            {
+                if (cells[i][column].State == State.Unset) continue;
+                if (usedNumbers[cells[i][column].Value ?? default])
+                {
+                    return false;
+                }
+
+                usedNumbers[cells[i][column].Value ?? default] = true;
+            }
+
+            return true;
+        }
+
+        
+        private static bool IsBoxValid(IReadOnlyList<List<Cell>> cells, int row, int column)
+        {
+            var boxRow = row - row % 3;
+            var boxColumn = column - column % 3;
+
+            var usedNumbers = new bool[10];
+            for (var i = boxRow; i < boxRow + 3; i++)
+            {
+                for (var j = boxColumn; j < boxColumn + 3; j++)
+                {
+                    if (cells[i][j].State == State.Unset) continue;
+                    if (usedNumbers[cells[i][j].Value ?? default])
+                    {
+                        return false;
+                    }
+
+                    usedNumbers[cells[i][j].Value ?? default] = true;
+                }
+            }
+
+            return true;
+        }
+        
         public static bool IsValid(List<List<Cell>> cells)
         {
             for (var i = 0; i < cells.Count; i++)
             {
-                for (var j = 0; j < cells[i].Count; j++)
+                if (!IsRowValid(cells, i))
                 {
-                    if (cells[i][j].State == State.Unset) continue;
-                    if (!IsValid(cells, cells[i][j].Value, i, j)) return false;
+                    return false;
+                }
+            }
+
+            for (var j = 0; j < cells[0].Count; j++)
+            {
+                if (!IsColValid(cells, j))
+                {
+                    return false;
+                }
+            }
+
+            for (var i = 0; i < cells.Count; i += 3)
+            {
+                for (var j = 0; j < cells[0].Count; j += 3)
+                {
+                    if (!IsBoxValid(cells, i, j))
+                    {
+                        return false;
+                    }
                 }
             }
 
