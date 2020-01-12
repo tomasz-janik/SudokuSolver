@@ -28,9 +28,8 @@ namespace SudokuSolver.ViewModel.Command
 
             _sudokuBoard.LoadSudoku(result);
             LoggingFacade.Error("Loaded new sudoku");
-            
-            return true;
 
+            return true;
         }
     }
 }

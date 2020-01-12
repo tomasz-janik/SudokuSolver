@@ -13,7 +13,7 @@ namespace SudokuSolver.ViewModel.Reading
             _validator = validator;
             _reader = reader;
         }
-        
+
         protected override bool ValidateFile(string filename)
         {
             return _validator.Validate(filename);

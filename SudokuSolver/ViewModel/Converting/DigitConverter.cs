@@ -16,7 +16,5 @@ namespace SudokuSolver.ViewModel.Converting
             if (int.TryParse(value as string, out var result)) return result;
             return null;
         }
-
-
     }
 }

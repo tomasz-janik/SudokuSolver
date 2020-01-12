@@ -26,8 +26,8 @@ namespace SudokuSolver.Model.Sudoku
             }
         }
 
-        public State State { get ; set; }
-        
+        public State State { get; set; }
+
         public Cell()
         {
             State = State.Unset;

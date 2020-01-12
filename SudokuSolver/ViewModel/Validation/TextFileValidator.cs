@@ -11,7 +11,7 @@ namespace SudokuSolver.ViewModel.Validation
                 LoggingFacade.Error($"Filename {filename} doesn't end with .txt");
                 return false;
             }
-            
+
             LoggingFacade.Info($"Filename {filename} is valid");
             return true;
         }

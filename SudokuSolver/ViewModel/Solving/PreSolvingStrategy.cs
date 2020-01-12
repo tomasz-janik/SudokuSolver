@@ -10,7 +10,7 @@ namespace SudokuSolver.ViewModel.Solving
         public bool Solve(List<List<Cell>> cells)
         {
             if (!SudokuValidator.IsValid(cells)) return false;
-            
+
             var possibilities = new List<int>[cells.Count, cells[0].Count];
 
             return PreSolve(cells, possibilities) && Resolve(cells, possibilities);

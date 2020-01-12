@@ -13,12 +13,12 @@ namespace SudokuSolver.Model.Sudoku
             _undoStack.Push(memento);
             LoggingFacade.Info($"History size: {_undoStack.Count}");
         }
-        
+
         public Memento GetUndoMemento()
         {
             return _undoStack.Pop();
         }
-        
+
         public bool IsUndoPossible()
         {
             return _undoStack.Count > 0;

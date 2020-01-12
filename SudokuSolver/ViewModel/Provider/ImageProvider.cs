@@ -24,7 +24,7 @@ namespace SudokuSolver.ViewModel.Provider
         {
             return _sudokuGrabber.Grab(path)
                 .ToListOfList()
-                .Select(x => 
+                .Select(x =>
                     x.Select(y => y.ToCell())
                         .ToList()
                 ).ToList();

@@ -9,13 +9,13 @@ namespace SudokuSolver.ViewModel.Provider
     {
         private readonly Reader<string> _reader;
         private readonly Parser<string> _parser;
-        
+
         public TextProvider(Reader<string> reader, Parser<string> parser)
         {
             _reader = reader;
             _parser = parser;
         }
-        
+
         public string GetExtension()
         {
             return ".txt";

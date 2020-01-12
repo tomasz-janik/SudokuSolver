@@ -16,7 +16,7 @@ namespace SudokuSolver.ViewModel.Parsing
             {
                 return ParseContent(content);
             }
-            
+
             LoggingFacade.Error($"Couldn't parse given input = {content}");
             return default;
         }

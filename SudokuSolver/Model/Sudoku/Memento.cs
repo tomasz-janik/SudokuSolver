@@ -5,7 +5,7 @@ namespace SudokuSolver.Model.Sudoku
     public class Memento
     {
         private readonly Cell _state;
-        
+
         private readonly int? _cellValue;
 
         public Memento(Cell state)

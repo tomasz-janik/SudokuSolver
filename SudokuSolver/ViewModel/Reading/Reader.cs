@@ -14,7 +14,7 @@ namespace SudokuSolver.ViewModel.Reading
             {
                 return ReadFile(filename);
             }
-            
+
             LoggingFacade.Error($"Failed to read from file = {filename}");
             return default;
         }

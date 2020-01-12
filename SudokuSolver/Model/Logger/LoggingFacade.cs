@@ -15,7 +15,7 @@ namespace SudokuSolver.Model.Logger
         }
 
         private void Init()
-        { 
+        {
             _logger = Logger.Instance;
             foreach (LoggerFactoryType loggerFactoryType in Enum.GetValues(typeof(LoggerFactoryType)))
             {
@@ -28,7 +28,7 @@ namespace SudokuSolver.Model.Logger
         {
             _logger.Message(message.ToString(), LogLevel.Info);
         }
-        
+
         public static void Debug<T>(T message)
         {
             _logger.Message(message.ToString(), LogLevel.Debug);
@@ -38,12 +38,12 @@ namespace SudokuSolver.Model.Logger
         {
             _logger.Message(message.ToString(), LogLevel.Warning);
         }
-        
+
         public static void Error<T>(T message)
         {
             _logger.Message(message.ToString(), LogLevel.Error);
         }
-        
+
         //todo - check if this will change filepath xD (it will, i'm just not thinking anymore, so not sure)
         public void SetLogFile(string filename)
         {

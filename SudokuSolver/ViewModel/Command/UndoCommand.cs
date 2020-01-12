@@ -20,11 +20,10 @@ namespace SudokuSolver.ViewModel.Command
                 LoggingFacade.Error("Couldn't undo move");
                 return false;
             }
-            
+
             LoggingFacade.Info("Undone move");
             _history.GetUndoMemento().Restore();
             return true;
-
         }
     }
 }

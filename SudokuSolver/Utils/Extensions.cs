@@ -13,7 +13,7 @@ namespace SudokuSolver.Utils
             list.RemoveAt(0);
             return r;
         }
-        
+
         public static IEnumerable<IEnumerable<T>> ToGroup<T>(this IEnumerable<T> array, int length)
         {
             return array.Select((cell, index) => new {cell, index})
@@ -25,13 +25,13 @@ namespace SudokuSolver.Utils
         {
             return arrays.Select(array => array.ToList()).ToList();
         }
-        
+
         //todo - this can be iterator just in case
         public static IEnumerable<T> Iterate<T>(this IEnumerable<List<T>> lists)
         {
             return lists.SelectMany(list => list);
         }
-        
+
         public static Cell ToCell(this int value)
         {
             return value == 0 ? new Cell() : new Cell(value, State.InitialSet);

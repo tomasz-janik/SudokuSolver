@@ -6,6 +6,7 @@ namespace SudokuSolver.Model.Logger
     internal class FileLogger : AbstractLogger
     {
         public string Filepath;
+
         public FileLogger(LogLevel mask, string filepath = "logs.txt") : base(mask)
         {
             Filepath = filepath;
