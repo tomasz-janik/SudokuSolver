@@ -6,12 +6,9 @@ using Ninject.Parameters;
 using SudokuGrabber;
 using SudokuGrabber.Builders;
 using SudokuGrabber.Filters;
-using SudokuGrabber.Grabber.Digit;
 using SudokuGrabber.Grabber.Digit.Strategies;
-using SudokuGrabber.Grabber.Sudoku;
 using SudokuGrabber.OpenCV;
 using SudokuGrabber.OpenCV.Interfaces;
-using SudokuGrabber.Recognizer;
 using SudokuGrabber.Recognizer.Strategies;
 using SudokuSolver.Model.Logger;
 using SudokuSolver.Model.Logger.Factory;
@@ -30,7 +27,6 @@ namespace SudokuSolver
 {
     public partial class App
     {
-        
         private IKernel _container;
 
         protected override void OnStartup(StartupEventArgs e)
@@ -45,19 +41,17 @@ namespace SudokuSolver
 
         private void ConfigureContainer()
         {
-           
-            //_container.Bind<DigitFactory>().ToSelf().InSingletonScope();
             _container.Bind<SudokuBoard>().ToSelf().InSingletonScope();
             _container.Bind<History>().ToSelf().InSingletonScope();
 
             _container.Bind<IValidator>().To<TextFileValidator>().InSingletonScope().Named("text_file_validator");
             _container.Bind<IReader<string>>().To<TextFileReader>().InSingletonScope();
             _container.Bind<Reader<string>>().To<TextReader>().InSingletonScope();
-            
+
             _container.Bind<IValidator>().To<StringValidator>().InSingletonScope().Named("string_validator");
             _container.Bind<IParser<string>>().To<TextFileParser>().InSingletonScope();
             _container.Bind<Parser<string>>().To<TextParser>().InSingletonScope();
-            
+
             _container.Bind<LoggerFactoryProvider>().ToSelf().InSingletonScope();
             _container.Bind<LoggingFacade>().ToSelf().InSingletonScope();
 
@@ -65,7 +59,7 @@ namespace SudokuSolver
             _container.Bind<ISolvingStrategy>().To<PreSolvingStrategy>().InSingletonScope().Named("pre_solving");
 
             _container.Bind<ISolvingStrategyFactory>().To<SolvingStrategyFactory>().InSingletonScope();
-            
+
             _container.Bind<ICommand>().To<ClearSudokuCommand>().InSingletonScope().Named("clear");
             _container.Bind<ICommand>().To<LoadSudokuCommand>().InSingletonScope().Named("load");
             _container.Bind<ICommand>().To<SolveSudokuCommand>().InSingletonScope().Named("solve");
@@ -84,7 +78,6 @@ namespace SudokuSolver
 
         private void AddSudokuGrabber()
         {
-
             _container.Bind<ICalcContours>().To<GetContours>().InSingletonScope();
             _container.Bind<ICalcHull>().To<GetHull>().InSingletonScope();
             _container.Bind<ICalcCorners>().To<GetCorners>().InSingletonScope();
@@ -115,13 +108,13 @@ namespace SudokuSolver
                 .GetDigitRecognizer();
 
             var digitGrabber = Builders.NewStaticSizeDigitGrabber()
-                    .SetDigitCleanStrategy(_container.Get<IDigitCleanStrategy>())
-                    .SetDigitGrabStrategy(new GrabBySize())
-                    .SetPreDigitGrabFilters(new List<IFilter>()
-                    {
-                        new CLeanLineImage(new GrayFilter() ,new MedianBlurFilter(3))
-                    })
-                    .GetGrabber();
+                .SetDigitCleanStrategy(_container.Get<IDigitCleanStrategy>())
+                .SetDigitGrabStrategy(new GrabBySize())
+                .SetPreDigitGrabFilters(new List<IFilter>()
+                {
+                    new CLeanLineImage(new GrayFilter(), new MedianBlurFilter(3))
+                })
+                .GetGrabber();
 
 
             _container.Bind<ISudokuGrabber>()
@@ -130,7 +123,6 @@ namespace SudokuSolver
                 .WithParameter(new ConstructorArgument("sudokuGrabber", sudokuPositionGrabber))
                 .WithParameter(new ConstructorArgument("digitGrabber", digitGrabber))
                 .WithParameter(new ConstructorArgument("digitRecognizer", digitRecognizer));
-            
         }
 
 

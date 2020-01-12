@@ -8,6 +8,7 @@ namespace Tests
     public class BacktrackingStrategyTest
     {
         private BacktrackingStrategy _backtrackingStrategy;
+        
         [SetUp]
         public void Setup()
         {
