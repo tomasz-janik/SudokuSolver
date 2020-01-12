@@ -1,8 +1,6 @@
-﻿using Emgu.CV;
-using Emgu.CV.Util;
-using Solver.Models;
+﻿using Emgu.CV.Util;
 
-namespace Solver.Modifiers.Interfaces
+namespace Solver.OpenCV.Interfaces
 {
     public  interface ICalcHull
     {

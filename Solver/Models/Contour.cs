@@ -8,6 +8,7 @@ namespace Solver.Models
 {
     public class Contour
     {
+        public VectorOfVectorOfPoint Data => _contours;
         private readonly VectorOfVectorOfPoint _contours;
 
         public Contour(VectorOfVectorOfPoint contours)

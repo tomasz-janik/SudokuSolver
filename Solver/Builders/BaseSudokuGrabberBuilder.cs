@@ -5,24 +5,24 @@ using Solver.Filters;
 using Solver.Grabber;
 using Solver.Grabber.Sudoku;
 using Solver.Grabber.Sudoku.PreGrab;
-using Solver.Modifiers.Interfaces;
+using Solver.OpenCV.Interfaces;
 
 namespace Solver.Builders
 {
     public class BaseSudokuGrabberBuilder
     {
         private IEnumerable<IFilter> _preSudokuGrabFilters;
-        private  ICalcContours _calcContours;
-        private  ICalcHull _calcHull;
-        private  ICalcCorners _calcCorners;
-        private  IPerspectiveWrap _perspectiveWrap;
+        private ICalcContours _calcContours;
+        private ICalcHull _calcHull;
+        private ICalcCorners _calcCorners;
+        private IPerspectiveWrap _perspectiveWrap;
 
         public BaseSudokuGrabberBuilder SetPreSudokuGrabFilters(IEnumerable<IFilter> filters)
         {
             _preSudokuGrabFilters = filters;
             return this;
         }
-        public BaseSudokuGrabberBuilder SetCalcContours(ICalcCorners calcCorners)
+        public BaseSudokuGrabberBuilder SetCalcCorners(ICalcCorners calcCorners)
         {
             _calcCorners = calcCorners;
             return this;

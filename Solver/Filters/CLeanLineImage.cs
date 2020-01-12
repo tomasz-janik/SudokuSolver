@@ -38,7 +38,6 @@ namespace Solver.Filters
             {
                 CvInvoke.Line(image, line.P1, line.P2, new MCvScalar(0.0, 0, 0.0), 3);
             }
-            image.ShowImage();
         }
     }
 }

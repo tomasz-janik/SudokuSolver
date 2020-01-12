@@ -5,16 +5,24 @@ using System.Text;
 using Emgu.CV;
 using Emgu.CV.CvEnum;
 using Emgu.CV.Util;
+using Solver.OpenCV.Interfaces;
 
 namespace Solver.Grabber.Digit.Strategies
 {
     public class CleanByContours : IDigitCleanStrategy
     {
+        private readonly ICalcContours _calcContours;
+        
+        public CleanByContours(ICalcContours calcContours)
+        {
+            _calcContours = calcContours;
+      
+        }
+
         public Mat Clean(Mat digit)
         {
-            var cont = new VectorOfVectorOfPoint();
-            CvInvoke.FindContours(digit, cont, null, RetrType.External, ChainApproxMethod.ChainApproxSimple);
-
+            var cont = _calcContours.Get(digit).Data;
+           
             var points = new List<Point>();
             for (int i = 0; i < cont.Size; i++)
             {

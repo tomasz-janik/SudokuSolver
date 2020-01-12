@@ -2,7 +2,7 @@
 using Emgu.CV;
 using Solver.Filters;
 using Solver.Grabber.Sudoku.PreGrab;
-using Solver.Modifiers.Interfaces;
+using Solver.OpenCV.Interfaces;
 
 namespace Solver.Grabber.Sudoku
 {

@@ -29,5 +29,22 @@ namespace Solver.Extensions
             }
             return result;
         }
+
+        public static float[] ToData(this Mat mat)
+        {
+            var result = new float[mat.Rows*mat.Cols];
+
+            for (int row = 0; row < mat.Rows; row++)
+            {
+                for (int col = 0; col < mat.Cols; col++)
+                {
+                    int index = mat.Cols * row + col;
+
+                    result[index] = (byte)mat.GetData().GetValue(row, col);
+
+                }
+            }
+            return result;
+        }
     }
 }

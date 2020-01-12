@@ -1,7 +1,7 @@
 ﻿using Emgu.CV;
 using Solver.Models;
 
-namespace Solver.Modifiers.Interfaces
+namespace Solver.OpenCV.Interfaces
 {
     public interface ICalcContours
     {

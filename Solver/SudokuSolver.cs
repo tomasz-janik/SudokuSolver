@@ -2,6 +2,7 @@
 using System.Buffers;
 using System.Collections.Generic;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Numerics;
 using Emgu.CV;
@@ -9,6 +10,10 @@ using Emgu.CV.CvEnum;
 using Emgu.CV.ML;
 using Emgu.CV.Structure;
 using Emgu.CV.Util;
+using Microsoft.ML;
+using Microsoft.ML.Data;
+using Microsoft.ML.Trainers;
+using Microsoft.ML.Transforms;
 using Microsoft.VisualBasic.CompilerServices;
 using Solver.Extensions;
 using Solver.Filters;
@@ -17,12 +22,12 @@ using Solver.Grabber.Digit;
 using Solver.Grabber.Sudoku;
 using Solver.Models;
 using Solver.Recognizer;
+using Solver.Recognizer.Strategies;
 
 namespace Solver
 {
     public class SudokuSolver : ISudokuSolver
     {
-     
         private readonly ISudokuGrabber _sudokuGrabber;
         private readonly IDigitGrabber _digitGrabber; 
         private readonly IDigitRecognizer _digitRecognizer;
@@ -38,9 +43,9 @@ namespace Solver
 
         }
 
-        public Sudoku<int> Solve(Mat image)
+        public Sudoku<int> Solve(string pathImage)
         {
-            using var imageCopy = image.Clone();
+            using var image = CvInvoke.Imread(pathImage, ImreadModes.AnyColor);
 
             var result = new Sudoku<int>();
             var grid = _sudokuGrabber.Grab(image);
@@ -66,7 +71,6 @@ namespace Solver
             Console.WriteLine( result.ToString());
             return result;
         }
-
-     
     }
 }
+

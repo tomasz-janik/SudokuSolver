@@ -8,6 +8,7 @@ namespace Solver
 {
     public interface ISudokuSolver
     {
-        Sudoku<int> Solve(Mat image);
+        Sudoku<int> Solve(string pathImage);
+    
     }
 }

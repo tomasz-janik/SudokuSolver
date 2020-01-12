@@ -1,11 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using Emgu.CV;
+﻿using Emgu.CV;
 using Emgu.CV.Util;
-using Solver.Modifiers.Interfaces;
+using Solver.OpenCV.Interfaces;
 
-namespace Solver.Modifiers
+namespace Solver.OpenCV
 {
     public class GetCorners : ICalcCorners
     {
