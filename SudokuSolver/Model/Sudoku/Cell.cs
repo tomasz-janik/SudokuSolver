@@ -19,10 +19,7 @@ namespace SudokuSolver.Model.Sudoku
                 }
                 else
                 {
-                    if (State != State.Restored)
-                    {
-                        PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("history"));
-                    }
+                    PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("history"));
                     UserSet(value);
                 }
             }
@@ -66,11 +63,6 @@ namespace SudokuSolver.Model.Sudoku
         public Memento CreateMemento()
         {
             return new Memento(this);
-        }
-
-        public void SetMemento(Memento memento)
-        {
-            memento.Restore();
         }
 
         private void IndicateChange()

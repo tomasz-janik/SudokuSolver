@@ -34,6 +34,7 @@ namespace SudokuSolver.Model.Sudoku
         {
             var child = sender as Cell;
             if (arguments.PropertyName != "history") return;
+            if (child?.State == State.Restored) return;
 
             _history.AddUndoMemento(child?.CreateMemento());
         }
