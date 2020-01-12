@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using Emgu.CV;
+using SudokuGrabber.Extensions;
 using SudokuGrabber.Filters;
 using SudokuGrabber.Grabber.Digit.Strategies;
 using SudokuGrabber.Models;
@@ -25,13 +26,17 @@ namespace SudokuGrabber.Grabber.Digit
                preDigitGrabFilter.Apply(image);
            }
 
-           var sudoku = _digitGrabStrategy.Grab(image);
+           image.ShowImage();
+
+            var sudoku = _digitGrabStrategy.Grab(image);
            
            for (var i = 0; i < 9; i++)
            {
                for (var j = 0; j < 9; j++)
                {
                    sudoku.Digits[i, j] = _digitCleanStrategy.Clean(sudoku.Digits[i, j]);
+                   //if(!sudoku.Digits[i,j].IsEmpty)
+                   //    sudoku.Digits[i,j].ShowImage();
                }
            }
 

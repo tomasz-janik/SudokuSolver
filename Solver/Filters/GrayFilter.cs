@@ -8,7 +8,8 @@ namespace SudokuGrabber.Filters
     {
         public void Apply(Mat image)
         {
-            CvInvoke.CvtColor(image, image, ColorConversion.Bgr2Gray);
+            if (image.NumberOfChannels != 1) 
+             CvInvoke.CvtColor(image, image, ColorConversion.Bgr2Gray);
         }
     }
 }

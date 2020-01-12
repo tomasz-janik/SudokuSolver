@@ -1,15 +1,21 @@
-﻿using System.Collections.Generic;
+﻿using System.Collections;
+using System.Collections.Generic;
 using System.Text;
 
 namespace SudokuGrabber.Models
 {
-    public class Sudoku<T>
+    public class Sudoku<T> : IEnumerable<T>
     {
         public T[,] Digits { set; get; }
 
         public Sudoku()
         {
             Digits = new T[9,9];
+        }
+
+        public IEnumerator<T> GetEnumerator()
+        {
+          return new SudokuEnumerator<T>(Digits);
         }
 
         public override string ToString()
@@ -27,6 +33,12 @@ namespace SudokuGrabber.Models
            }
            return result.ToString();
         }
+
+        IEnumerator IEnumerable.GetEnumerator()
+        {
+            return GetEnumerator();
+        }
+
 
         public List<List<T>> ToListOfList()
         {

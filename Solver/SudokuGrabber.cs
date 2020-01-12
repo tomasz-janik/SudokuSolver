@@ -1,6 +1,8 @@
 ﻿using System;
+using System.Drawing;
 using Emgu.CV;
 using Emgu.CV.CvEnum;
+using SudokuGrabber.Extensions;
 using SudokuGrabber.Grabber.Digit;
 using SudokuGrabber.Grabber.Sudoku;
 using SudokuGrabber.Models;
@@ -31,6 +33,7 @@ namespace SudokuGrabber
 
             var result = new Sudoku<int>();
             var grid = _sudokuGrabber.Grab(image);
+            grid.ShowImage();
             var sudoku = _digitGrabber.GetDigits(grid);
 
             for (var i = 0; i < 9; i++)
@@ -50,7 +53,7 @@ namespace SudokuGrabber
                 }
             }
 
-            Console.WriteLine( result.ToString());
+          
             return result;
         }
     }
