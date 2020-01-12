@@ -1,9 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using Emgu.CV;
+﻿using Emgu.CV;
 
-namespace Solver.Extensions
+namespace SudokuGrabber.Extensions
 {
    static class MatExtension
     {

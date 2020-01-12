@@ -1,13 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using Emgu.CV;
 using Microsoft.ML;
 using Microsoft.ML.Data;
-using Solver.Extensions;
+using SudokuGrabber.Extensions;
 
-namespace Solver.Recognizer.Strategies
+namespace SudokuGrabber.Recognizer.Strategies
 {
 
 

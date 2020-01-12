@@ -1,13 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using Solver.Filters;
-using Solver.Grabber;
-using Solver.Grabber.Sudoku;
-using Solver.Grabber.Sudoku.PreGrab;
-using Solver.OpenCV.Interfaces;
+﻿using System.Collections.Generic;
+using SudokuGrabber.Filters;
+using SudokuGrabber.Grabber.Sudoku;
+using SudokuGrabber.OpenCV.Interfaces;
 
-namespace Solver.Builders
+namespace SudokuGrabber.Builders
 {
     public class BaseSudokuGrabberBuilder
     {
@@ -49,7 +45,7 @@ namespace Solver.Builders
 
         }
 
-        public ISudokuGrabber GetGrabber()
+        public ISudokuPositionGrabber GetGrabber()
         {
             return new BaseSudokuSudokuGrabber(_preSudokuGrabFilters,_calcContours, _calcHull,_calcCorners,_perspectiveWrap);
         }

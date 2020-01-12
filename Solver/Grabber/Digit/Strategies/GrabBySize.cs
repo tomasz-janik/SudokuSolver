@@ -1,12 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Drawing;
-using System.Text;
+﻿using System.Drawing;
 using Emgu.CV;
 using Emgu.CV.Util;
-using Solver.Models;
+using SudokuGrabber.Models;
 
-namespace Solver.Grabber.Digit.Strategies
+namespace SudokuGrabber.Grabber.Digit.Strategies
 {
    public  class GrabBySize : IDigitGrabStrategy
     {

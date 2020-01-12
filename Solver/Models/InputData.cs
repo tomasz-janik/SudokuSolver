@@ -1,6 +1,6 @@
 ﻿using Microsoft.ML.Data;
 
-namespace Solver.Models
+namespace SudokuGrabber.Models
 {
    public class InputData
     {

@@ -1,11 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Drawing;
-using System.Text;
+﻿using System.Drawing;
 using Emgu.CV;
 using Emgu.CV.CvEnum;
 
-namespace Solver.Filters
+namespace SudokuGrabber.Filters
 {
     public class DeskewImage : IFilter
     {

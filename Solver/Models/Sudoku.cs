@@ -1,8 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Text;
 
-namespace Solver.Models
+namespace SudokuGrabber.Models
 {
     public class Sudoku<T>
     {
@@ -27,6 +26,22 @@ namespace Solver.Models
                result.Append('\n');
            }
            return result.ToString();
+        }
+
+        public List<List<T>> ToListOfList()
+        {
+            var result = new List<List<T>>();
+            for (int i = 0; i < 9; i++)
+            {
+                var nextList = new List<T>();
+                result.Add(nextList);
+                for (int j = 0; j < 9; j++)
+                {
+                    nextList.Add(Digits[i,j]);
+                }
+            }
+
+            return result;
         }
     }
 }

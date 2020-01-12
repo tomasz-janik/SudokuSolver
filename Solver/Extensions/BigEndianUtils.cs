@@ -1,9 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Text;
 
-namespace Solver.Extensions
+namespace SudokuGrabber.Extensions
 {
     public static class BigEndianUtils
     {

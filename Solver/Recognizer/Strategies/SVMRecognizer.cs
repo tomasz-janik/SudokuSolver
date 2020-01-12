@@ -1,13 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Reflection;
-using System.Text;
+﻿using System.IO;
 using Emgu.CV;
 using Emgu.CV.ML;
-using Solver.Extensions;
+using SudokuGrabber.Extensions;
 
-namespace Solver.Recognizer.Strategies
+namespace SudokuGrabber.Recognizer.Strategies
 {
     public interface ISVMRecognizer: IRecognizer { }
     public class SVMRecognizer: ISVMRecognizer

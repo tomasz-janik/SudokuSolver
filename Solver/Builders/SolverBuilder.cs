@@ -1,17 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using Solver.Filters;
-using Solver.Grabber;
-using Solver.Grabber.Digit;
-using Solver.Grabber.Sudoku;
-using Solver.Recognizer;
+﻿using SudokuGrabber.Grabber.Digit;
+using SudokuGrabber.Grabber.Sudoku;
+using SudokuGrabber.Recognizer;
 
-namespace Solver.Builders
+namespace SudokuGrabber.Builders
 {
     public class SolverBuilder 
     {
     
-        private  ISudokuGrabber _sudokuGrabber;
+        private  ISudokuPositionGrabber _sudokuGrabber;
        
         private  IDigitGrabber _digitGrabber;
        
@@ -27,7 +23,7 @@ namespace Solver.Builders
             return this;
         }
 
-        public SolverBuilder SetSudokuGrabber(ISudokuGrabber sudokuGrabber)
+        public SolverBuilder SetSudokuGrabber(ISudokuPositionGrabber sudokuGrabber)
         {
             _sudokuGrabber = sudokuGrabber;
             return this;
@@ -41,9 +37,9 @@ namespace Solver.Builders
 
         
 
-        public ISudokuSolver GetSolver()
+        public ISudokuGrabber GetSolver()
         {
-            return  new SudokuSolver(
+            return  new SudokuGrabber(
                 _sudokuGrabber,
                 _digitGrabber,
                 _digitRecognizer);

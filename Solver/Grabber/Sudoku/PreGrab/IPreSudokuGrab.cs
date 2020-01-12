@@ -1,6 +1,6 @@
 ﻿using Emgu.CV;
 
-namespace Solver.Grabber.Sudoku.PreGrab
+namespace SudokuGrabber.Grabber.Sudoku.PreGrab
 {
     public interface IPreSudokuGrab
     {

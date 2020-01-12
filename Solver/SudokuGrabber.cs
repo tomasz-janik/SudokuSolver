@@ -1,39 +1,21 @@
 ﻿using System;
-using System.Buffers;
-using System.Collections.Generic;
-using System.Drawing;
-using System.IO;
-using System.Linq;
-using System.Numerics;
 using Emgu.CV;
 using Emgu.CV.CvEnum;
-using Emgu.CV.ML;
-using Emgu.CV.Structure;
-using Emgu.CV.Util;
-using Microsoft.ML;
-using Microsoft.ML.Data;
-using Microsoft.ML.Trainers;
-using Microsoft.ML.Transforms;
-using Microsoft.VisualBasic.CompilerServices;
-using Solver.Extensions;
-using Solver.Filters;
-using Solver.Grabber;
-using Solver.Grabber.Digit;
-using Solver.Grabber.Sudoku;
-using Solver.Models;
-using Solver.Recognizer;
-using Solver.Recognizer.Strategies;
+using SudokuGrabber.Grabber.Digit;
+using SudokuGrabber.Grabber.Sudoku;
+using SudokuGrabber.Models;
+using SudokuGrabber.Recognizer;
 
-namespace Solver
+namespace SudokuGrabber
 {
-    public class SudokuSolver : ISudokuSolver
+    public class SudokuGrabber : ISudokuGrabber
     {
-        private readonly ISudokuGrabber _sudokuGrabber;
+        private readonly ISudokuPositionGrabber _sudokuGrabber;
         private readonly IDigitGrabber _digitGrabber; 
         private readonly IDigitRecognizer _digitRecognizer;
 
-        public SudokuSolver( 
-            ISudokuGrabber sudokuGrabber,
+        public SudokuGrabber( 
+            ISudokuPositionGrabber sudokuGrabber,
             IDigitGrabber digitGrabber,
             IDigitRecognizer digitRecognizer)
         {
@@ -43,7 +25,7 @@ namespace Solver
 
         }
 
-        public Sudoku<int> Solve(string pathImage)
+        public Sudoku<int> Grab(string pathImage)
         {
             using var image = CvInvoke.Imread(pathImage, ImreadModes.AnyColor);
 

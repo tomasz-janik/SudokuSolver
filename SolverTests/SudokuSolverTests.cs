@@ -14,12 +14,12 @@ namespace SolverTests
         public void SolveTest()
         {
           // Arrange
-          var sudokuGrabberMock = new Mock<ISudokuGrabber>();
+          var sudokuGrabberMock = new Mock<ISudokuPositionGrabber>();
           var digitGrabberMock = new Mock<IDigitGrabber>();
           var digitRecognizerMock = new Mock<IDigitRecognizer>();
 
           var sudokuSolver =
-              new SudokuSolver(sudokuGrabberMock.Object, digitGrabberMock.Object, digitRecognizerMock.Object);
+              new SudokuGrabber(sudokuGrabberMock.Object, digitGrabberMock.Object, digitRecognizerMock.Object);
 
           // Act
           

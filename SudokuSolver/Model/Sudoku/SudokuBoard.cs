@@ -29,6 +29,12 @@ namespace SudokuSolver.Model.Sudoku
             }
         }
 
+        public void ChangeCells(List<List<Cell>> newCells)
+        {
+            Cells = newCells;
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("SudokuBoard.Cells"));
+        }
+
         public Memento CreateMemento(int row, int column)
         {
             return null; //new Memento(Cells[row][column], row, column);

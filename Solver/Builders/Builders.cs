@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using Solver.Grabber.Digit;
-
-namespace Solver.Builders
+﻿namespace SudokuGrabber.Builders
 {
     public static class  Builders
     {

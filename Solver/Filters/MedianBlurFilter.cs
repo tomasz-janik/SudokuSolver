@@ -1,9 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using Emgu.CV;
+﻿using Emgu.CV;
 
-namespace Solver.Filters
+namespace SudokuGrabber.Filters
 {
     public  interface  IMedianBlurFilter : IFilter { }
     public class MedianBlurFilter  : IMedianBlurFilter

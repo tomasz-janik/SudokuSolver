@@ -1,13 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Drawing;
-using System.Text;
 using Emgu.CV;
-using Emgu.CV.CvEnum;
 using Emgu.CV.Util;
-using Solver.OpenCV.Interfaces;
+using SudokuGrabber.OpenCV.Interfaces;
 
-namespace Solver.Grabber.Digit.Strategies
+namespace SudokuGrabber.Grabber.Digit.Strategies
 {
     public class CleanByContours : IDigitCleanStrategy
     {

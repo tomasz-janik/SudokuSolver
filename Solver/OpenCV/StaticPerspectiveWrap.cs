@@ -2,9 +2,9 @@
 using System.Linq;
 using Emgu.CV;
 using Emgu.CV.Util;
-using Solver.OpenCV.Interfaces;
+using SudokuGrabber.OpenCV.Interfaces;
 
-namespace Solver.OpenCV
+namespace SudokuGrabber.OpenCV
 {
    public class StaticPerspectiveWrap : IPerspectiveWrap
    {

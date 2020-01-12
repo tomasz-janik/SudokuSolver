@@ -1,7 +1,7 @@
 ﻿using Emgu.CV;
-using Solver.Models;
+using SudokuGrabber.Models;
 
-namespace Solver.OpenCV.Interfaces
+namespace SudokuGrabber.OpenCV.Interfaces
 {
     public interface ICalcContours
     {

@@ -1,12 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using Solver.Filters;
-using Solver.Grabber.Digit;
-using Solver.Grabber.Digit.Strategies;
-using Solver.Grabber.Sudoku;
+﻿using System.Collections.Generic;
+using SudokuGrabber.Filters;
+using SudokuGrabber.Grabber.Digit;
+using SudokuGrabber.Grabber.Digit.Strategies;
 
-namespace Solver.Builders
+namespace SudokuGrabber.Builders
 {
     public class StaticSizeDigitGrabberBuilder
     {

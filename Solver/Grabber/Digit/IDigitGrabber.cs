@@ -1,10 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using Emgu.CV;
-using Solver.Models;
+﻿using Emgu.CV;
+using SudokuGrabber.Models;
 
-namespace Solver.Grabber.Digit
+namespace SudokuGrabber.Grabber.Digit
 {
     public interface IDigitGrabber
     {

@@ -1,12 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 using Emgu.CV;
 using Emgu.CV.CvEnum;
 using Emgu.CV.Structure;
-using Solver.Extensions;
 
-namespace Solver.Filters
+namespace SudokuGrabber.Filters
 {
     public class CLeanLineImage : IFilter
     {

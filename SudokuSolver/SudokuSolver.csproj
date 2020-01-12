@@ -15,8 +15,12 @@
     </ItemGroup>
 
     <ItemGroup>
-      <Reference Include="SudokuSolver, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null">
-        <HintPath>..\Tests\bin\Debug\netcoreapp3.1\SudokuSolver.dll</HintPath>
+      <ProjectReference Include="..\Solver\SudokuGrabber.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Reference Include="Emgu.CV.World">
+        <HintPath>D:\SyfPulpit\Emgu\bin\Emgu.CV.World.dll</HintPath>
       </Reference>
     </ItemGroup>
 

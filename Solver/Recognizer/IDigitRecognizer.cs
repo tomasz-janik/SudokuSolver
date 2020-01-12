@@ -1,9 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using Emgu.CV;
+﻿using Emgu.CV;
 
-namespace Solver.Recognizer
+namespace SudokuGrabber.Recognizer
 {
     public interface IDigitRecognizer
     {

@@ -1,11 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System.Collections.Generic;
 using Emgu.CV;
-using Solver.Filters;
-using Solver.Recognizer.Strategies;
+using SudokuGrabber.Filters;
+using SudokuGrabber.Recognizer.Strategies;
 
-namespace Solver.Recognizer
+namespace SudokuGrabber.Recognizer
 {
     public class BaseDigitRecognizer : IDigitRecognizer
     {

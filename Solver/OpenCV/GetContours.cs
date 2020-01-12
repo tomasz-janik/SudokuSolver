@@ -1,10 +1,10 @@
 ﻿using Emgu.CV;
 using Emgu.CV.CvEnum;
 using Emgu.CV.Util;
-using Solver.Models;
-using Solver.OpenCV.Interfaces;
+using SudokuGrabber.Models;
+using SudokuGrabber.OpenCV.Interfaces;
 
-namespace Solver.OpenCV
+namespace SudokuGrabber.OpenCV
 { 
     public class GetContours : ICalcContours
     {

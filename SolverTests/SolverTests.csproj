@@ -20,7 +20,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Solver\Solver.csproj" />
+    <ProjectReference Include="..\Solver\SudokuGrabber.csproj" />
   </ItemGroup>
 
 </Project>

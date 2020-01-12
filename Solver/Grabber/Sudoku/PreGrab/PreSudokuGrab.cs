@@ -1,8 +1,8 @@
 ﻿using System.Collections.Generic;
 using Emgu.CV;
-using Solver.Filters;
+using SudokuGrabber.Filters;
 
-namespace Solver.Grabber.Sudoku.PreGrab
+namespace SudokuGrabber.Grabber.Sudoku.PreGrab
 {
     public class PreSudokuGrab : IPreSudokuGrab
     {

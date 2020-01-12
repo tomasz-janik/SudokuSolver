@@ -1,12 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Drawing;
-using System.Text;
+﻿using System.Drawing;
 using Emgu.CV;
 using Emgu.CV.CvEnum;
-using Emgu.CV.ML;
 
-namespace Solver.Filters
+namespace SudokuGrabber.Filters
 {
     public class ErosionFilter : IFilter
     {

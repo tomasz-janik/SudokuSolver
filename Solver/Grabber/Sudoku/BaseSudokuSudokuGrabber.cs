@@ -1,12 +1,11 @@
 ﻿using System.Collections.Generic;
 using Emgu.CV;
-using Solver.Filters;
-using Solver.Grabber.Sudoku.PreGrab;
-using Solver.OpenCV.Interfaces;
+using SudokuGrabber.Filters;
+using SudokuGrabber.OpenCV.Interfaces;
 
-namespace Solver.Grabber.Sudoku
+namespace SudokuGrabber.Grabber.Sudoku
 {
-    public  class  BaseSudokuSudokuGrabber : ISudokuGrabber
+    public  class  BaseSudokuSudokuGrabber : ISudokuPositionGrabber
     {
         private readonly IEnumerable<IFilter> _preSudokuGrabFilters;
         private readonly ICalcContours _calcContours;

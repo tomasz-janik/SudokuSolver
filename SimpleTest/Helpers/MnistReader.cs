@@ -4,9 +4,8 @@ using System.IO;
 using System.Text;
 using Newtonsoft.Json.Linq;
 using SimpleTest.Helpers;
-using Solver;
-using Solver.Extensions;
-using Solver.Models;
+using SudokuGrabber.Extensions;
+using SudokuGrabber.Models;
 
 namespace SimpleTest
 {

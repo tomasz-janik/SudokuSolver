@@ -1,7 +1,7 @@
 ﻿using Emgu.CV;
 using Emgu.CV.Util;
 
-namespace Solver.OpenCV.Interfaces
+namespace SudokuGrabber.OpenCV.Interfaces
 {
     public interface IPerspectiveWrap
     {

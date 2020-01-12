@@ -1,12 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System.Collections.Generic;
 using Emgu.CV;
-using Solver.Filters;
-using Solver.Grabber.Digit.Strategies;
-using Solver.Models;
+using SudokuGrabber.Filters;
+using SudokuGrabber.Grabber.Digit.Strategies;
+using SudokuGrabber.Models;
 
-namespace Solver.Grabber.Digit
+namespace SudokuGrabber.Grabber.Digit
 {
    public  class StaticSizeDigitGrabber : IDigitGrabber
    {

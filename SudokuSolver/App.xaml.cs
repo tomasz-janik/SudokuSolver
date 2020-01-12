@@ -1,5 +1,18 @@
-﻿using System.Windows;
+﻿using System.Collections.Generic;
+using System.Windows;
+using Emgu.CV.CvEnum;
 using Ninject;
+using Ninject.Parameters;
+using SudokuGrabber;
+using SudokuGrabber.Builders;
+using SudokuGrabber.Filters;
+using SudokuGrabber.Grabber.Digit;
+using SudokuGrabber.Grabber.Digit.Strategies;
+using SudokuGrabber.Grabber.Sudoku;
+using SudokuGrabber.OpenCV;
+using SudokuGrabber.OpenCV.Interfaces;
+using SudokuGrabber.Recognizer;
+using SudokuGrabber.Recognizer.Strategies;
 using SudokuSolver.Model.Digits;
 using SudokuSolver.Model.Logger;
 using SudokuSolver.Model.Logger.Factory;
@@ -8,6 +21,7 @@ using SudokuSolver.View;
 using SudokuSolver.ViewModel;
 using SudokuSolver.ViewModel.Command;
 using SudokuSolver.ViewModel.Parsing;
+using SudokuSolver.ViewModel.Provider;
 using SudokuSolver.ViewModel.Reading;
 using SudokuSolver.ViewModel.Solving;
 using SudokuSolver.ViewModel.Solving.Factory;
@@ -22,6 +36,8 @@ namespace SudokuSolver
 
         protected override void OnStartup(StartupEventArgs e)
         {
+            _container = new StandardKernel();
+
             base.OnStartup(e);
             ConfigureContainer();
             ComposeObjects();
@@ -30,7 +46,7 @@ namespace SudokuSolver
 
         private void ConfigureContainer()
         {
-            _container = new StandardKernel();
+           
             _container.Bind<DigitFactory>().ToSelf().InSingletonScope();
             _container.Bind<SudokuBoard>().ToSelf().InSingletonScope();
 
@@ -56,9 +72,66 @@ namespace SudokuSolver
 
             _container.Bind<ICommandFactory>().To<CommandFactory>().InSingletonScope();
 
-            
+            _container.Bind<ISpecificProvider>().To<TextProvider>().InSingletonScope();
+            _container.Bind<ISpecificProvider>().To<ImageProvider>().InSingletonScope();
+            _container.Bind<IFileProvider>().To<FileProvider>().InSingletonScope();
+
             _container.Bind<MainViewModel>().ToSelf().InSingletonScope();
+
+            AddSudokuGrabber();
         }
+
+        private void AddSudokuGrabber()
+        {
+
+            _container.Bind<ICalcContours>().To<GetContours>().InSingletonScope();
+            _container.Bind<ICalcHull>().To<GetHull>().InSingletonScope();
+            _container.Bind<ICalcCorners>().To<GetCorners>().InSingletonScope();
+            _container.Bind<IDigitCleanStrategy>().To<CleanByContours>().InSingletonScope();
+
+            var sudokuPositionGrabber = Builders.NewBaseSudokuGrabberBuilder()
+                .SetCalcContours(_container.Get<ICalcContours>())
+                .SetCalcHull(_container.Get<ICalcHull>())
+                .SetCalcCorners(_container.Get<ICalcCorners>())
+                .SetPerspectiveWrap(new StaticPerspectiveWrap(900))
+                .SetPreSudokuGrabFilters(new List<IFilter>
+                {
+                    new GrayFilter(),
+                    new AdaptiveThresholdFilter(255, AdaptiveThresholdType.GaussianC, ThresholdType.BinaryInv, 21,
+                        2),
+                    new FastDeNoisingFilter(100, 5, 5)
+                })
+                .GetGrabber();
+
+
+            var digitRecognizer = Builders.NewBaseDigitRecognizerBuilder().SetPreDigitRecognizeFilters(
+                    new List<IFilter>()
+                    {
+                        new CenterImage(28),
+                        new DeskewImage(28)
+                    })
+                .SetRecognizer(new SVMRecognizer())
+                .GetDigitRecognizer();
+
+            var digitGrabber = Builders.NewStaticSizeDigitGrabber()
+                    .SetDigitCleanStrategy(_container.Get<IDigitCleanStrategy>())
+                    .SetDigitGrabStrategy(new GrabBySize())
+                    .SetPreDigitGrabFilters(new List<IFilter>()
+                    {
+                        new CLeanLineImage(new GrayFilter() ,new MedianBlurFilter(3))
+                    })
+                    .GetGrabber();
+
+
+            _container.Bind<ISudokuGrabber>()
+                .To<SudokuGrabber.SudokuGrabber>()
+                .InSingletonScope()
+                .WithParameter(new ConstructorArgument("sudokuGrabber", sudokuPositionGrabber))
+                .WithParameter(new ConstructorArgument("digitGrabber", digitGrabber))
+                .WithParameter(new ConstructorArgument("digitRecognizer", digitRecognizer));
+            
+        }
+
 
         private void ComposeObjects()
         {
