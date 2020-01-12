@@ -1,4 +1,5 @@
 ﻿using System.Linq;
+using SudokuSolver.Model.Logger;
 using SudokuSolver.Model.Sudoku;
 using SudokuSolver.ViewModel.Provider;
 
@@ -17,10 +18,17 @@ namespace SudokuSolver.ViewModel.Command
 
         public bool Execute(string filename)
         {
+            LoggingFacade.Info($"Loading sudoku from file = {filename}");
             var result = _fileProvider.Provide(filename);
-            if (!result.Any()) return false;
+            if (!result.Any())
+            {
+                LoggingFacade.Error("Failed to load sudoku");
+                return false;
+            }
 
             _sudokuBoard.LoadSudoku(result);
+            LoggingFacade.Error("Loaded new sudoku");
+            
             return true;
 
         }

@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using SudokuSolver.Model.Logger;
 using SudokuSolver.Model.Sudoku;
 
 namespace SudokuSolver.ViewModel.Parsing
@@ -10,12 +11,13 @@ namespace SudokuSolver.ViewModel.Parsing
 
         public List<List<Cell>> Parse(T content)
         {
+            LoggingFacade.Info("Parsing input");
             if (ValidateContent(content))
             {
                 return ParseContent(content);
             }
             
-            //todo - logger.log
+            LoggingFacade.Error($"Couldn't parse given input = {content}");
             return default;
         }
     }

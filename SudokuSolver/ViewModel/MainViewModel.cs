@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel;
+using SudokuSolver.Model.Logger;
 using SudokuSolver.Model.Sudoku;
 using SudokuSolver.View;
 using SudokuSolver.ViewModel.Command;
@@ -18,7 +19,6 @@ namespace SudokuSolver.ViewModel
         public ICommand ClearCommand { get; }
         public ICommand SolveCommand { get; }
         public ICommand UndoCommand { get; }
-
         
         public SudokuBoard SudokuBoard { get; }
 
@@ -52,20 +52,20 @@ namespace SudokuSolver.ViewModel
 
         private void SolveSudoku()
         {
-            if (!_commandFactory.GetCommand("solve").Execute(SolvingStrategy))
-            {
-                //todo - we can localize it e.g. polish, english if there is sth for it in c#
-                new MessageDialog().ExecuteMessageDialog("Sudoku is not solvable");
-            }
+            if (_commandFactory.GetCommand("solve").Execute(SolvingStrategy)) return;
+            
+            //todo - we can localize it e.g. polish, english if there is sth for it in c#
+            LoggingFacade.Error("Couldn't solve sudoku");
+            new MessageDialog().ExecuteMessageDialog("Sudoku is not solvable");
         }
 
         private void UndoSudoku()
         {
-            if (!_commandFactory.GetCommand("undo").Execute(null))
-            {
-                //todo - we can localize it e.g. polish, english if there is sth for it in c#
-                new MessageDialog().ExecuteMessageDialog("Undo impossible");
-            }
+            if (_commandFactory.GetCommand("undo").Execute(null)) return;
+            
+            //todo - we can localize it e.g. polish, english if there is sth for it in c#
+            LoggingFacade.Error("Couldn't undo move");
+            new MessageDialog().ExecuteMessageDialog("Undo impossible");
         }
     }
 }

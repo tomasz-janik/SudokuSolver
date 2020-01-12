@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel;
+using static SudokuSolver.Utils.Extensions;
 
 namespace SudokuSolver.Model.Sudoku
 {
@@ -33,7 +34,7 @@ namespace SudokuSolver.Model.Sudoku
                 PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Cells"));
             }
         }
-        
+
         private void ChildChanged(object sender, PropertyChangedEventArgs arguments)
         {
             var child = sender as Cell;
@@ -42,7 +43,7 @@ namespace SudokuSolver.Model.Sudoku
 
             _history.AddUndoMemento(child?.CreateMemento());
         }
-        
+
         public void ClearHistory()
         {
             _history.Clear();
@@ -50,6 +51,11 @@ namespace SudokuSolver.Model.Sudoku
 
         public void LoadSudoku(List<List<Cell>> result)
         {
+            foreach (var cell in result.Iterate())
+            {
+                cell.PropertyChanged += ChildChanged;
+            }
+
             Cells = result;
             ClearHistory();
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Cells"));

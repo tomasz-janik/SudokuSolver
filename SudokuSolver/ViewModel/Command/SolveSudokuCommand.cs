@@ -1,4 +1,5 @@
-﻿using SudokuSolver.Model.Sudoku;
+﻿using SudokuSolver.Model.Logger;
+using SudokuSolver.Model.Sudoku;
 using SudokuSolver.ViewModel.Solving.Factory;
 
 namespace SudokuSolver.ViewModel.Command
@@ -16,12 +17,16 @@ namespace SudokuSolver.ViewModel.Command
 
         public bool Execute(string strategy)
         {
-            var result = _solvingStrategyFactory.GetSolvingStrategy(strategy).Solve(_sudokuBoard.Cells);
-            if (result)
+            LoggingFacade.Info($"Solving sudoku with strategy = {strategy}");
+            if (_solvingStrategyFactory.GetSolvingStrategy(strategy).Solve(_sudokuBoard.Cells))
             {
                 _sudokuBoard.ClearHistory();
+                LoggingFacade.Info("Solved sudoku");
+                return true;
             }
-            return result;
+
+            LoggingFacade.Error("Couldn't solve sudoku");
+            return false;
         }
     }
 }

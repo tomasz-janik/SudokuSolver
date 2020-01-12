@@ -1,4 +1,6 @@
-﻿namespace SudokuSolver.ViewModel.Reading
+﻿using SudokuSolver.Model.Logger;
+
+namespace SudokuSolver.ViewModel.Reading
 {
     public abstract class Reader<T>
     {
@@ -7,12 +9,13 @@
 
         public T Read(string filename)
         {
+            LoggingFacade.Info("Reading from file");
             if (ValidateFile(filename))
             {
                 return ReadFile(filename);
             }
             
-            //todo - logger.log
+            LoggingFacade.Error($"Failed to read from file = {filename}");
             return default;
         }
     }

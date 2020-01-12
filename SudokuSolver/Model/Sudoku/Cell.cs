@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel;
+using SudokuSolver.Model.Logger;
 
 namespace SudokuSolver.Model.Sudoku
 {
@@ -32,11 +33,12 @@ namespace SudokuSolver.Model.Sudoku
             State = State.Unset;
         }
 
-        public Cell(int value, State state)
+        public Cell(int? value, State state)
         {
             _value = value;
             State = state;
             IndicateChange();
+            LoggingFacade.Info($"Initializing cell with Value = {value}, State = {state}");
         }
 
         private void UserSet(int? value)
@@ -44,6 +46,7 @@ namespace SudokuSolver.Model.Sudoku
             State = State.UserSet;
             _value = value;
             IndicateChange();
+            LoggingFacade.Info($"User changed cell value to {value}");
         }
 
         public void SolverSet(int value)
@@ -51,6 +54,7 @@ namespace SudokuSolver.Model.Sudoku
             _value = value;
             State = State.SolverSet;
             IndicateChange();
+            LoggingFacade.Info($"Solver changed cell value to {value}");
         }
 
         public void Unset()
@@ -58,6 +62,7 @@ namespace SudokuSolver.Model.Sudoku
             _value = null;
             State = State.Unset;
             IndicateChange();
+            LoggingFacade.Info($"Clearing cell");
         }
 
         public Memento CreateMemento()

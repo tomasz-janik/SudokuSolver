@@ -1,10 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using SudokuGrabber;
-using SudokuSolver.Extensions;
 using SudokuSolver.Model.Sudoku;
+using SudokuSolver.Utils;
 
 namespace SudokuSolver.ViewModel.Provider
 {

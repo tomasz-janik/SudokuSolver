@@ -1,5 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using SudokuSolver.Model;
+using SudokuSolver.Model.Sudoku;
 
 namespace SudokuSolver.Utils
 {
@@ -22,6 +24,17 @@ namespace SudokuSolver.Utils
         public static List<List<T>> ToDoubleList<T>(this IEnumerable<IEnumerable<T>> arrays, int length)
         {
             return arrays.Select(array => array.ToList()).ToList();
+        }
+        
+        //todo - this can be iterator just in case
+        public static IEnumerable<T> Iterate<T>(this IEnumerable<List<T>> lists)
+        {
+            return lists.SelectMany(list => list);
+        }
+        
+        public static Cell ToCell(this int value)
+        {
+            return value == 0 ? new Cell() : new Cell(value, State.InitialSet);
         }
     }
 }
