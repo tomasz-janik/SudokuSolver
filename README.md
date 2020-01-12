@@ -2,16 +2,18 @@
 
 ## Todo
 
-#### WPF application
+#### Add undo implementation - there is memento already just have to use it
+#### Unit/Integration tests
 #### Reading and parsing image
-#### Algorithms to solve
-#### Add database connection (to show we know how) - e.g. solving best time or sth like that
+
+## Todo (c#, not design patterns)
+#### Add string localization
+#### Make it async
 
 ## Used design patterns
 ![Used design patterns](SudokuSolver.png "Patterns")
 
 #### Command
-#### Flyweight
 #### Factory
 #### Chain of responsibility
 #### Facade
@@ -21,17 +23,18 @@
 #### Memento
 #### AbstractFactory
 #### Dependency Injection
+#### MVVM
+#### Builder
 
 ## Must have design patterns to use
 
-#### MVVM
-#### Builder
-#### Iterator
+#### Iterator - connection to database ?
+#### State - same as lukasz just need to understand how to use it
 
 ## Possible design patterns that could be used
 
 #### Observer
 #### Composite ?
 #### Prototype ?
-#### State ?
 #### Visitor ?
+#### Flyweight :(

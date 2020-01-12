@@ -6,4 +6,18 @@
         <UseWPF>true</UseWPF>
     </PropertyGroup>
 
+    <ItemGroup>
+      <Folder Include="Model" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <PackageReference Include="Ninject" Version="3.3.4" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Reference Include="SudokuSolver, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null">
+        <HintPath>..\Tests\bin\Debug\netcoreapp3.1\SudokuSolver.dll</HintPath>
+      </Reference>
+    </ItemGroup>
+
 </Project>
