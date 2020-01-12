@@ -14,6 +14,10 @@ namespace SudokuSolver.Model.Sudoku
         public SudokuBoard(History history)
         {
             _history = history;
+        }
+
+        public void CreateDefaultSudoku()
+        {
             Cells = new List<List<Cell>>(9);
             for (var i = 0; i < 9; i++)
             {
@@ -26,10 +30,10 @@ namespace SudokuSolver.Model.Sudoku
                 }
 
                 Cells.Add(row);
-                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("SudokuBoard"));
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Cells"));
             }
         }
-
+        
         private void ChildChanged(object sender, PropertyChangedEventArgs arguments)
         {
             var child = sender as Cell;

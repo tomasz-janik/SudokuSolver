@@ -27,6 +27,7 @@ namespace SudokuSolver.ViewModel
         public MainViewModel(SudokuBoard sudokuBoard, CommandFactory commandFactory)
         {
             SudokuBoard = sudokuBoard;
+            SudokuBoard.CreateDefaultSudoku();
             _commandFactory = commandFactory;
 
             ClearCommand = new RelayCommand(e => ClearSudoku());
