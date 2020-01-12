@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.Xaml;
 using SudokuSolver.Model.Sudoku;
 
 namespace SudokuSolver.ViewModel.Parsing
@@ -17,7 +16,7 @@ namespace SudokuSolver.ViewModel.Parsing
             }
             
             //todo - logger.log
-            return new List<List<Cell>>();
+            return default;
         }
     }
 }

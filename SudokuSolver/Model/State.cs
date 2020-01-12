@@ -1,4 +1,4 @@
-﻿namespace SudokuSolver.Model.Digits
+﻿namespace SudokuSolver.Model
 {
     public enum State
     {
@@ -6,6 +6,6 @@
         InitialSet,
         UserSet,
         SolverSet,
-        Hinted
+        Restored
     }
 }

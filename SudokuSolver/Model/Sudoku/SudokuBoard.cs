@@ -4,45 +4,55 @@ using System.ComponentModel;
 namespace SudokuSolver.Model.Sudoku
 {
     //todo - can this be Originator in Memento pattern? - imo yes
+    //todo - should it be in model or viewmodel?
     public class SudokuBoard : INotifyPropertyChanged
     {
+        private readonly History _history;
         public event PropertyChangedEventHandler PropertyChanged;
-    
-        public List<List<Cell>> Cells {get; set;}
+        public List<List<Cell>> Cells { get; set; }
 
-        public SudokuBoard() : this(9, 9)
+        public SudokuBoard(History history)
         {
+            _history = history;
         }
 
-        private SudokuBoard(int width, int height)
+        public void CreateDefaultSudoku()
         {
-            Cells = new List<List<Cell>>(width);
-            for (var i = 0; i < width; i++)
+            Cells = new List<List<Cell>>(9);
+            for (var i = 0; i < 9; i++)
             {
-                var row = new List<Cell>(height);
-                for (var j = 0; j < height; j++)
+                var row = new List<Cell>(9);
+                for (var j = 0; j < 9; j++)
                 {
-                    row.Add(new Cell());
+                    var cell = new Cell();
+                    cell.PropertyChanged += ChildChanged;
+                    row.Add(cell);
                 }
+
                 Cells.Add(row);
-                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("SudokuBoard"));
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Cells"));
             }
         }
-
-        public void ChangeCells(List<List<Cell>> newCells)
+        
+        private void ChildChanged(object sender, PropertyChangedEventArgs arguments)
         {
-            Cells = newCells;
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("SudokuBoard.Cells"));
+            var child = sender as Cell;
+            if (arguments.PropertyName != "history") return;
+            if (child?.State == State.Restored) return;
+
+            _history.AddUndoMemento(child?.CreateMemento());
+        }
+        
+        public void ClearHistory()
+        {
+            _history.Clear();
         }
 
-        public Memento CreateMemento(int row, int column)
+        public void LoadSudoku(List<List<Cell>> result)
         {
-            return null; //new Memento(Cells[row][column], row, column);
-        }
-
-        public void SetMemento(Memento memento)
-        {
-            //Cells[memento.Row][memento.Column] = memento.State;
+            Cells = result;
+            ClearHistory();
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Cells"));
         }
     }
 }

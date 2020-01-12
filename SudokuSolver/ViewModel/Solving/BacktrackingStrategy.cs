@@ -1,5 +1,5 @@
 ﻿using System.Collections.Generic;
-using SudokuSolver.Model.Digits;
+using SudokuSolver.Model;
 using SudokuSolver.Model.Sudoku;
 
 namespace SudokuSolver.ViewModel.Solving

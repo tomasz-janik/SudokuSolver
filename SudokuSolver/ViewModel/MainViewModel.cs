@@ -1,5 +1,4 @@
 ﻿using System.ComponentModel;
-using System.Windows;
 using SudokuSolver.Model.Sudoku;
 using SudokuSolver.View;
 using SudokuSolver.ViewModel.Command;
@@ -7,6 +6,7 @@ using ICommand = System.Windows.Input.ICommand;
 
 namespace SudokuSolver.ViewModel
 {
+    //todo - should this class be refactored?
     public class MainViewModel : INotifyPropertyChanged
     {
         public event PropertyChangedEventHandler PropertyChanged;
@@ -17,7 +17,9 @@ namespace SudokuSolver.ViewModel
         public ICommand LoadCommand { get; }
         public ICommand ClearCommand { get; }
         public ICommand SolveCommand { get; }
+        public ICommand UndoCommand { get; }
 
+        
         public SudokuBoard SudokuBoard { get; }
 
         private readonly CommandFactory _commandFactory;
@@ -25,11 +27,13 @@ namespace SudokuSolver.ViewModel
         public MainViewModel(SudokuBoard sudokuBoard, CommandFactory commandFactory)
         {
             SudokuBoard = sudokuBoard;
+            SudokuBoard.CreateDefaultSudoku();
             _commandFactory = commandFactory;
-            
+
             ClearCommand = new RelayCommand(e => ClearSudoku());
             LoadCommand = new RelayCommand(e => LoadFile());
             SolveCommand = new RelayCommand(e => SolveSudoku());
+            UndoCommand = new RelayCommand(e => UndoSudoku());
         }
 
         private void LoadFile()
@@ -52,6 +56,15 @@ namespace SudokuSolver.ViewModel
             {
                 //todo - we can localize it e.g. polish, english if there is sth for it in c#
                 new MessageDialog().ExecuteMessageDialog("Sudoku is not solvable");
+            }
+        }
+
+        private void UndoSudoku()
+        {
+            if (!_commandFactory.GetCommand("undo").Execute(null))
+            {
+                //todo - we can localize it e.g. polish, english if there is sth for it in c#
+                new MessageDialog().ExecuteMessageDialog("Undo impossible");
             }
         }
     }
