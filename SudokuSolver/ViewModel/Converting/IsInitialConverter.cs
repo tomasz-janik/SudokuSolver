@@ -1,8 +1,7 @@
 ﻿using System;
 using System.Globalization;
 using System.Windows.Data;
-using SudokuSolver.Model.Digits;
-using SudokuSolver.Model.Sudoku;
+using SudokuSolver.Model;
 
 namespace SudokuSolver.ViewModel.Converting
 {

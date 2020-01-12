@@ -10,8 +10,8 @@ namespace SudokuSolver.ViewModel.Command
         private readonly SudokuBoard _sudokuBoard;
         private readonly Reader<string> _reader;
         private readonly Parser<string> _parser;
-        
-        public LoadSudokuCommand(SudokuBoard sudokuBoard, Reader<string> reader, Parser<string> parser)
+
+        public LoadSudokuCommand(SudokuBoard sudokuBoard, Reader<string> reader, Parser<string> parser, History history)
         {
             _sudokuBoard = sudokuBoard;
             _reader = reader;
@@ -24,8 +24,8 @@ namespace SudokuSolver.ViewModel.Command
             if (!result.Any()) return false;
             
             _sudokuBoard.Cells = result;
+            _sudokuBoard.ClearHistory();
             return true;
-
         }
     }
 }

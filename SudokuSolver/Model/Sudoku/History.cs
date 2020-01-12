@@ -17,9 +17,14 @@ namespace SudokuSolver.Model.Sudoku
             return _undoStack.Pop();
         }
         
-        private bool IsUndoPossible()
+        public bool IsUndoPossible()
         {
             return _undoStack.Count > 0;
+        }
+
+        public void Clear()
+        {
+            _undoStack.Clear();
         }
     }
 }

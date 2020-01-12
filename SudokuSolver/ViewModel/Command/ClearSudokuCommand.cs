@@ -19,6 +19,7 @@ namespace SudokuSolver.ViewModel.Command
                 cell.Unset();
             }
 
+            _sudokuBoard.ClearHistory();
             return true;
         }
     }

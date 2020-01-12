@@ -1,5 +1,4 @@
 ﻿using System.ComponentModel;
-using SudokuSolver.Model.Digits;
 
 namespace SudokuSolver.Model.Sudoku
 {
@@ -14,45 +13,64 @@ namespace SudokuSolver.Model.Sudoku
             get => _value;
             set
             {
-                _value = value;
-                State = value == null ? State.Unset : State.UserSet;
-                IndicateChange();
+                if (value == null)
+                {
+                    Unset();
+                }
+                else
+                {
+                    if (State != State.Restored)
+                    {
+                        PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("history"));
+                    }
+                    UserSet(value);
+                }
             }
         }
 
-        public State State { get ; private set; }
+        public State State { get ; set; }
         
         public Cell()
         {
             State = State.Unset;
         }
-        
+
         public Cell(int value, State state)
         {
-            Value = value;
+            _value = value;
             State = state;
             IndicateChange();
         }
 
-        public void UserSet(int value)
+        private void UserSet(int? value)
         {
-            Value = value;
-            State = State.UserSet; 
+            State = State.UserSet;
+            _value = value;
             IndicateChange();
         }
 
         public void SolverSet(int value)
         {
-            Value = value;
+            _value = value;
             State = State.SolverSet;
             IndicateChange();
         }
 
         public void Unset()
         {
-            Value = null;
+            _value = null;
             State = State.Unset;
             IndicateChange();
+        }
+
+        public Memento CreateMemento()
+        {
+            return new Memento(this);
+        }
+
+        public void SetMemento(Memento memento)
+        {
+            memento.Restore();
         }
 
         private void IndicateChange()
@@ -60,6 +78,5 @@ namespace SudokuSolver.Model.Sudoku
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("State"));
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Value"));
         }
-        
     }
 }

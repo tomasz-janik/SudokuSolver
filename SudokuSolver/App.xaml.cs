@@ -1,6 +1,5 @@
 ﻿using System.Windows;
 using Ninject;
-using SudokuSolver.Model.Digits;
 using SudokuSolver.Model.Logger;
 using SudokuSolver.Model.Logger.Factory;
 using SudokuSolver.Model.Sudoku;
@@ -31,8 +30,8 @@ namespace SudokuSolver
         private void ConfigureContainer()
         {
             _container = new StandardKernel();
-            _container.Bind<DigitFactory>().ToSelf().InSingletonScope();
             _container.Bind<SudokuBoard>().ToSelf().InSingletonScope();
+            _container.Bind<History>().ToSelf().InSingletonScope();
 
             _container.Bind<IValidator>().To<TextFileValidator>().InSingletonScope().Named("text_file_validator");
             _container.Bind<IReader<string>>().To<TextFileReader>().InSingletonScope();
@@ -53,6 +52,7 @@ namespace SudokuSolver
             _container.Bind<ICommand>().To<ClearSudokuCommand>().InSingletonScope().Named("clear");
             _container.Bind<ICommand>().To<LoadSudokuCommand>().InSingletonScope().Named("load");
             _container.Bind<ICommand>().To<SolveSudokuCommand>().InSingletonScope().Named("solve");
+            _container.Bind<ICommand>().To<UndoCommand>().InSingletonScope().Named("undo");
 
             _container.Bind<ICommandFactory>().To<CommandFactory>().InSingletonScope();
 

@@ -2,15 +2,20 @@
 {
     public class Memento
     {
-        public Cell State { get; }
-        public int Row { get; }
-        public int Column { get; }
+        private readonly Cell _state;
+        
+        private readonly int? _cellValue;
 
-        public Memento(Cell state, int row, int column)
+        public Memento(Cell state)
         {
-            State = state;
-            Row = row;
-            Column = column;
+            _state = state;
+            _cellValue = state.Value;
+        }
+
+        public void Restore()
+        {
+            _state.State = State.Restored;
+            _state.Value = _cellValue;
         }
     }
 }

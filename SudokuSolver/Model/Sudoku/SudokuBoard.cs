@@ -4,39 +4,43 @@ using System.ComponentModel;
 namespace SudokuSolver.Model.Sudoku
 {
     //todo - can this be Originator in Memento pattern? - imo yes
+    //todo - should it be in model or viewmodel?
     public class SudokuBoard : INotifyPropertyChanged
     {
+        private readonly History _history;
         public event PropertyChangedEventHandler PropertyChanged;
-    
-        public List<List<Cell>> Cells {get; set;}
+        public List<List<Cell>> Cells { get; set; }
 
-        public SudokuBoard() : this(9, 9)
+        public SudokuBoard(History history)
         {
-        }
-
-        private SudokuBoard(int width, int height)
-        {
-            Cells = new List<List<Cell>>(width);
-            for (var i = 0; i < width; i++)
+            _history = history;
+            Cells = new List<List<Cell>>(9);
+            for (var i = 0; i < 9; i++)
             {
-                var row = new List<Cell>(height);
-                for (var j = 0; j < height; j++)
+                var row = new List<Cell>(9);
+                for (var j = 0; j < 9; j++)
                 {
-                    row.Add(new Cell());
+                    var cell = new Cell();
+                    cell.PropertyChanged += ChildChanged;
+                    row.Add(cell);
                 }
+
                 Cells.Add(row);
                 PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("SudokuBoard"));
             }
         }
 
-        public Memento CreateMemento(int row, int column)
+        private void ChildChanged(object sender, PropertyChangedEventArgs arguments)
         {
-            return null; //new Memento(Cells[row][column], row, column);
-        }
+            var child = sender as Cell;
+            if (arguments.PropertyName != "history") return;
 
-        public void SetMemento(Memento memento)
+            _history.AddUndoMemento(child?.CreateMemento());
+        }
+        
+        public void ClearHistory()
         {
-            //Cells[memento.Row][memento.Column] = memento.State;
+            _history.Clear();
         }
     }
 }

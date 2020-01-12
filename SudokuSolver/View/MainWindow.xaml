@@ -4,6 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:converting="clr-namespace:SudokuSolver.ViewModel.Converting"
+        xmlns:view="clr-namespace:SudokuSolver.View"
         mc:Ignorable="d"
         Title="Sudoku Solver"
         WindowStartupLocation="CenterScreen"
@@ -16,23 +17,21 @@
         <converting:DigitConverter x:Key="DigitConverter" />
 
         <DataTemplate x:Key="TextBoxTemplate">
-            <TextBox Background="Purple"
-                     Width="25" Height="25"
-                     VerticalContentAlignment="Center"
-                     IsReadOnly="{Binding State, Converter={StaticResource IsInitialConverter}}"
-                     FontWeight="Bold"
-                     MaxLength="1"
-                     PreviewTextInput="Cell_OnPreviewTextInput"
-                     PreviewKeyDown="Cell_OnKeyDown"
-                     TextAlignment="Center" d:DataContext="{d:DesignInstance}">
+            <view:SudokuTextBox Background="Purple"
+                                Width="25" Height="25"
+                                VerticalContentAlignment="Center"
+                                IsReadOnly="{Binding State, Converter={StaticResource IsInitialConverter}}"
+                                FontWeight="Bold"
+                                MaxLength="1"
+                                TextAlignment="Center" d:DataContext="{d:DesignInstance}">
                 <Validation.ErrorTemplate>
                     <ControlTemplate />
                 </Validation.ErrorTemplate>
-                <TextBox.Text>
+                <view:SudokuTextBox.Text>
                     <Binding Path="Value" Mode="TwoWay" UpdateSourceTrigger="PropertyChanged"
                              Converter="{StaticResource DigitConverter}" />
-                </TextBox.Text>
-            </TextBox>
+                </view:SudokuTextBox.Text>
+            </view:SudokuTextBox>
         </DataTemplate>
 
         <DataTemplate x:Key="GridTemplate">
@@ -88,6 +87,13 @@
                         HorizontalAlignment="Center"
                         Content="Solve"
                         Command="{Binding SolveCommand}"
+                        d:DataContext="{d:DesignInstance }" />
+                    <Button
+                        Margin="5"
+                        Padding="10,5,10,5"
+                        HorizontalAlignment="Center"
+                        Content="Undo"
+                        Command="{Binding UndoCommand}"
                         d:DataContext="{d:DesignInstance }" />
                     <ComboBox
                         Width="120"
