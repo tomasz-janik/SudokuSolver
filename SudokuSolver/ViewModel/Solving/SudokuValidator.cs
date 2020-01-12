@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using SudokuSolver.Model;
+using SudokuSolver.Model.Logger;
 using SudokuSolver.Model.Sudoku;
 
 namespace SudokuSolver.ViewModel.Solving
@@ -16,9 +17,10 @@ namespace SudokuSolver.ViewModel.Solving
         {
             return cells.Any(row => row[column].Value == value);
         }
-        
-        
-        private static bool IsInBox(IReadOnlyList<List<Cell>> cells, int? value, int row, int column) {
+
+
+        private static bool IsInBox(IReadOnlyList<List<Cell>> cells, int? value, int row, int column)
+        {
             var boxRow = row - row % 3;
             var boxColumn = column - column % 3;
 
@@ -32,15 +34,16 @@ namespace SudokuSolver.ViewModel.Solving
                     }
                 }
             }
-            
+
             return false;
         }
 
-        public static bool IsValid(List<List<Cell>> cells, int? value, int row, int column) {
-            return !IsInRow(cells, value, row) && !IsInCol(cells, value, column) && 
+        public static bool IsValid(List<List<Cell>> cells, int? value, int row, int column)
+        {
+            return !IsInRow(cells, value, row) && !IsInCol(cells, value, column) &&
                    !IsInBox(cells, value, row, column);
         }
-        
+
         private static bool IsRowValid(IReadOnlyList<List<Cell>> cells, int row)
         {
             var usedNumbers = new bool[10];
@@ -75,7 +78,7 @@ namespace SudokuSolver.ViewModel.Solving
             return true;
         }
 
-        
+
         private static bool IsBoxValid(IReadOnlyList<List<Cell>> cells, int row, int column)
         {
             var boxRow = row - row % 3;
@@ -98,36 +101,39 @@ namespace SudokuSolver.ViewModel.Solving
 
             return true;
         }
-        
+
         public static bool IsValid(List<List<Cell>> cells)
         {
+            LoggingFacade.Info("Validating sudoku");
+
             for (var i = 0; i < cells.Count; i++)
             {
-                if (!IsRowValid(cells, i))
-                {
-                    return false;
-                }
+                if (IsRowValid(cells, i)) continue;
+
+                LoggingFacade.Error("Sudoku is not valid");
+                return false;
             }
 
             for (var j = 0; j < cells[0].Count; j++)
             {
-                if (!IsColValid(cells, j))
-                {
-                    return false;
-                }
+                if (IsColValid(cells, j)) continue;
+
+                LoggingFacade.Error("Sudoku is not valid");
+                return false;
             }
 
             for (var i = 0; i < cells.Count; i += 3)
             {
                 for (var j = 0; j < cells[0].Count; j += 3)
                 {
-                    if (!IsBoxValid(cells, i, j))
-                    {
-                        return false;
-                    }
+                    if (IsBoxValid(cells, i, j)) continue;
+
+                    LoggingFacade.Error("Sudoku is not valid");
+                    return false;
                 }
             }
 
+            LoggingFacade.Info("Sudoku is valid");
             return true;
         }
     }

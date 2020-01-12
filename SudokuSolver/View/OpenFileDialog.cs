@@ -12,7 +12,7 @@ namespace SudokuSolver.View
                 Filter = filter,
                 DefaultExt = defaultExt
             };
-            
+
             return fileDialog.ShowDialog(owner as Window) == true ? fileDialog.FileName : null;
         }
     }

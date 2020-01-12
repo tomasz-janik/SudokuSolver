@@ -1,6 +1,4 @@
-﻿using System.Windows;
-
-namespace SudokuSolver.ViewModel.DialogWindow
+﻿namespace SudokuSolver.ViewModel.DialogWindow
 {
     public interface IMessageDialogWindow
     {

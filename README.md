@@ -2,9 +2,12 @@
 
 ## Todo
 
-#### Add undo implementation - there is memento already just have to use it
 #### Unit/Integration tests
-#### Reading and parsing image
+#### Add save command
+#### Create some sort of documentation
+
+*   Design Patterns - List all of used patterns and write something about them
+*   C# - List of all C# features we used 
 
 ## Todo (c#, not design patterns)
 #### Add string localization

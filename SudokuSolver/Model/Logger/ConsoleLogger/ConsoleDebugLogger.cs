@@ -7,7 +7,7 @@ namespace SudokuSolver.Model.Logger.ConsoleLogger
         public ConsoleDebugLogger(LogLevel mask) : base(mask)
         {
         }
-        
+
         protected override void WriteMessage(string msg)
         {
             Console.ForegroundColor = ConsoleColor.Yellow;

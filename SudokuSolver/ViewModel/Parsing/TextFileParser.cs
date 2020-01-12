@@ -12,7 +12,7 @@ namespace SudokuSolver.ViewModel.Parsing
         {
             return content.Select(letter => int.TryParse(letter.ToString(), out var value)
                     ? new Cell(value, State.InitialSet)
-                    : new Cell(value, State.Unset))
+                    : new Cell(null, State.Unset))
                 .ToGroup(9)
                 .ToDoubleList(9);
         }

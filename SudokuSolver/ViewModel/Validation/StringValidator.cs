@@ -1,4 +1,5 @@
 ﻿using System.Linq;
+using SudokuSolver.Model.Logger;
 
 namespace SudokuSolver.ViewModel.Validation
 {
@@ -6,19 +7,34 @@ namespace SudokuSolver.ViewModel.Validation
     {
         private const string Allowed = "123456789. ";
 
-        public bool Validate(string filename)
+        public bool Validate(string content)
         {
-            return ValidateLength(filename) && ValidateCharacters(filename);
+            LoggingFacade.Info($"Validating content = {content}");
+            return ValidateLength(content) && ValidateCharacters(content);
         }
 
-        private static bool ValidateLength(string filename)
+        private static bool ValidateLength(string content)
         {
-            return filename.Length == 81;
+            if (content.Length == 81)
+            {
+                LoggingFacade.Info("Input length is valid");
+                return true;
+            }
+
+            LoggingFacade.Error($"Input length isn't valid = {content.Length}");
+            return false;
         }
 
-        private static bool ValidateCharacters(string filename)
+        private static bool ValidateCharacters(string content)
         {
-            return filename.All(letter => Allowed.Contains(letter));
+            if (content.All(letter => Allowed.Contains(letter)))
+            {
+                LoggingFacade.Info("Input contains only valid characters");
+                return true;
+            }
+
+            LoggingFacade.Error("Input contains illegal characters");
+            return false;
         }
     }
 }

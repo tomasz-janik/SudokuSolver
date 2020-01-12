@@ -1,4 +1,5 @@
-﻿using SudokuSolver.Model.Sudoku;
+﻿using SudokuSolver.Model.Logger;
+using SudokuSolver.Model.Sudoku;
 
 namespace SudokuSolver.ViewModel.Command
 {
@@ -13,11 +14,16 @@ namespace SudokuSolver.ViewModel.Command
 
         public bool Execute(string _)
         {
-            if (!_history.IsUndoPossible()) return false;
-            
+            LoggingFacade.Info("Undoing previous move");
+            if (!_history.IsUndoPossible())
+            {
+                LoggingFacade.Error("Couldn't undo move");
+                return false;
+            }
+
+            LoggingFacade.Info("Undone move");
             _history.GetUndoMemento().Restore();
             return true;
-
         }
     }
 }

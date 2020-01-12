@@ -1,13 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using System.Collections.Generic;
 using SudokuSolver.Model.Sudoku;
-using SudokuSolver.Utils;
 
 namespace SudokuSolver.ViewModel.Provider
 {
-    class FileProvider : IFileProvider
+    internal class FileProvider : IFileProvider
     {
         private readonly IEnumerable<ISpecificProvider> _providers;
 
@@ -29,7 +25,7 @@ namespace SudokuSolver.ViewModel.Provider
                 }
             }
 
-            return null;
+            return default;
         }
     }
 }

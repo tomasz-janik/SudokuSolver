@@ -5,16 +5,17 @@ namespace SudokuSolver.Model.Logger
 {
     public class LoggingFacade
     {
-        private Logger _logger;
+        private static Logger _logger = Logger.Instance;
         private readonly LoggerFactoryProvider _loggerFactoryProvider;
 
         public LoggingFacade(LoggerFactoryProvider loggerFactoryProvider)
         {
             _loggerFactoryProvider = loggerFactoryProvider;
+            Init();
         }
 
-        public void Init()
-        { 
+        private void Init()
+        {
             _logger = Logger.Instance;
             foreach (LoggerFactoryType loggerFactoryType in Enum.GetValues(typeof(LoggerFactoryType)))
             {
@@ -23,26 +24,26 @@ namespace SudokuSolver.Model.Logger
             }
         }
 
-        public void Info<T>(T message)
+        public static void Info<T>(T message)
         {
             _logger.Message(message.ToString(), LogLevel.Info);
         }
-        
-        public void Debug<T>(T message)
+
+        public static void Debug<T>(T message)
         {
             _logger.Message(message.ToString(), LogLevel.Debug);
         }
 
-        public void Warning<T>(T message)
+        public static void Warning<T>(T message)
         {
             _logger.Message(message.ToString(), LogLevel.Warning);
         }
-        
-        public void Error<T>(T message)
+
+        public static void Error<T>(T message)
         {
             _logger.Message(message.ToString(), LogLevel.Error);
         }
-        
+
         //todo - check if this will change filepath xD (it will, i'm just not thinking anymore, so not sure)
         public void SetLogFile(string filename)
         {

@@ -1,10 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using SudokuGrabber;
-using SudokuSolver.Extensions;
 using SudokuSolver.Model.Sudoku;
+using SudokuSolver.Utils;
 
 namespace SudokuSolver.ViewModel.Provider
 {
@@ -26,7 +24,7 @@ namespace SudokuSolver.ViewModel.Provider
         {
             return _sudokuGrabber.Grab(path)
                 .ToListOfList()
-                .Select(x => 
+                .Select(x =>
                     x.Select(y => y.ToCell())
                         .ToList()
                 ).ToList();

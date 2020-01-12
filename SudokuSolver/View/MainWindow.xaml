@@ -56,52 +56,49 @@
                           ItemsSource="{Binding SudokuBoard.Cells}"
                           ItemTemplate="{DynamicResource GridTemplate}"
                           d:DataContext="{d:DesignInstance }" />
-
-            <StackPanel HorizontalAlignment="Right"
+            
+            <StackPanel HorizontalAlignment="Center"
                         Margin="20"
-                        Grid.Column="1"
-                        Orientation="Vertical">
+                        Grid.Column="1">
                 <TextBlock Margin="15,5,15,0" Padding="5" HorizontalAlignment="Center" TextAlignment="Center">
                     Sudoku Solver :3
                 </TextBlock>
-                <StackPanel HorizontalAlignment="Center">
-                    <Button
-                        Margin="5"
-                        Padding="10,5,10,5"
-                        HorizontalAlignment="Center"
-                        Content="Clear"
-                        Command="{Binding ClearCommand}"
-                        d:DataContext="{d:DesignInstance }" />
-                    <Button
-                        Margin="5"
-                        Padding="10,5,10,5"
-                        HorizontalAlignment="Center"
-                        Content="Load"
-                        Command="{Binding LoadCommand}"
-                        d:DataContext="{d:DesignInstance }" />
-                    <Button
-                        Margin="5"
-                        Padding="10,5,10,5"
-                        HorizontalAlignment="Center"
-                        Content="Solve"
-                        Command="{Binding SolveCommand}"
-                        d:DataContext="{d:DesignInstance }" />
-                    <Button
-                        Margin="5"
-                        Padding="10,5,10,5"
-                        HorizontalAlignment="Center"
-                        Content="Undo"
-                        Command="{Binding UndoCommand}"
-                        d:DataContext="{d:DesignInstance }" />
-                    <ComboBox
-                        Width="120"
-                        Margin="5"
-                        Padding="10,5,10,5"
-                        ItemsSource="{Binding Path=SolvingStrategies}"
-                        SelectedItem="{Binding Path=SolvingStrategy}"
-                        Text="{Binding Path=SolvingStrategy, Mode=OneWay}"
-                        d:DataContext="{d:DesignInstance }" />
-                </StackPanel>
+                <Button
+                    Margin="5"
+                    Padding="10,5,10,5"
+                    HorizontalAlignment="Center"
+                    Content="Clear"
+                    Command="{Binding ClearCommand}"
+                    d:DataContext="{d:DesignInstance }" />
+                <Button
+                    Margin="5"
+                    Padding="10,5,10,5"
+                    HorizontalAlignment="Center"
+                    Content="Load"
+                    Command="{Binding LoadCommand}"
+                    d:DataContext="{d:DesignInstance }" />
+                <Button
+                    Margin="5"
+                    Padding="10,5,10,5"
+                    HorizontalAlignment="Center"
+                    Content="Solve"
+                    Command="{Binding SolveCommand}"
+                    d:DataContext="{d:DesignInstance }" />
+                <Button
+                    Margin="5"
+                    Padding="10,5,10,5"
+                    HorizontalAlignment="Center"
+                    Content="Undo"
+                    Command="{Binding UndoCommand}"
+                    d:DataContext="{d:DesignInstance }" />
+                <ComboBox
+                    Width="120"
+                    Margin="5"
+                    Padding="10,5,10,5"
+                    ItemsSource="{Binding Path=SolvingStrategies}"
+                    SelectedItem="{Binding Path=SolvingStrategy}"
+                    Text="{Binding Path=SolvingStrategy, Mode=OneWay}"
+                    d:DataContext="{d:DesignInstance }" />
             </StackPanel>
         </Grid>
     </Viewbox>

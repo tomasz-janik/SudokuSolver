@@ -23,18 +23,19 @@ namespace SudokuSolver.ViewModel.Solving
                         if (!SudokuValidator.IsValid(cells, number, row, col)) continue;
 
                         cells[row][col].SolverSet(number);
-          
-                        if (Resolve(cells)) {
+
+                        if (Resolve(cells))
+                        {
                             return true;
                         }
 
                         cells[row][col].Unset();
                     }
-                    
+
                     return false;
                 }
             }
-            
+
             return true;
         }
     }

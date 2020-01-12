@@ -2,10 +2,10 @@
 
 namespace SudokuSolver.Model.Logger.Factory
 {
-    public abstract class LoggerFactoryProvider
+    public class LoggerFactoryProvider
     {
         private readonly Dictionary<LoggerFactoryType, ILoggerFactory> _factories =
-            new Dictionary<LoggerFactoryType, ILoggerFactory>()
+            new Dictionary<LoggerFactoryType, ILoggerFactory>
             {
                 {LoggerFactoryType.Console, new ConsoleLoggerFactory()},
                 {LoggerFactoryType.File, new FileLoggerFactory()}

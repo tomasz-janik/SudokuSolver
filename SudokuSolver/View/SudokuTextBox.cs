@@ -9,14 +9,14 @@ namespace SudokuSolver.View
         {
             var valid = int.TryParse(arguments.Text, out var result) && result >= 1 && result <= 9;
             arguments.Handled = !valid;
-            
+
             base.OnPreviewTextInput(arguments);
         }
-        
+
         protected override void OnKeyDown(KeyEventArgs e)
         {
             e.Handled = (e.Key == Key.Space);
-            
+
             base.OnKeyDown(e);
         }
     }

@@ -29,6 +29,5 @@ namespace SudokuSolver.ViewModel
         {
             _execute(parameter);
         }
-
     }
 }

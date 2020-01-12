@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using SudokuSolver.Model.Logger;
 
 namespace SudokuSolver.Model.Sudoku
 {
@@ -10,13 +11,14 @@ namespace SudokuSolver.Model.Sudoku
         public void AddUndoMemento(Memento memento)
         {
             _undoStack.Push(memento);
+            LoggingFacade.Info($"History size: {_undoStack.Count}");
         }
-        
+
         public Memento GetUndoMemento()
         {
             return _undoStack.Pop();
         }
-        
+
         public bool IsUndoPossible()
         {
             return _undoStack.Count > 0;
@@ -25,6 +27,7 @@ namespace SudokuSolver.Model.Sudoku
         public void Clear()
         {
             _undoStack.Clear();
+            LoggingFacade.Info("Clearing history");
         }
     }
 }
