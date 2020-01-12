@@ -7,17 +7,20 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <PackageReference Include="Ninject" Version="3.3.4" />
+        <PackageReference Include="Ninject" Version="3.3.4" />
     </ItemGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\Solver\SudokuGrabber.csproj" />
+        <ProjectReference Include="..\Solver\SudokuGrabber.csproj" />
     </ItemGroup>
 
     <ItemGroup>
-      <Reference Include="Emgu.CV.World">
-        <HintPath>D:\SyfPulpit\Emgu\bin\Emgu.CV.World.dll</HintPath>
-      </Reference>
+        <Reference Include="Emgu.CV.World">
+            <HintPath>D:\SyfPulpit\Emgu\bin\Emgu.CV.World.dll</HintPath>
+        </Reference>
+        <Reference Include="Emgu.CV.World, Version=4.1.1.3497, Culture=neutral, PublicKeyToken=7281126722ab4438">
+            <HintPath>..\..\..\..\..\Emgu\emgucv-windesktop 4.1.1.3497\bin\Emgu.CV.World.dll</HintPath>
+        </Reference>
     </ItemGroup>
 
 </Project>

@@ -14,7 +14,7 @@ using SudokuGrabber.Recognizer.Strategies;
 
 namespace IntegrationTests
 {
-    public class Tests
+    public class SudokuGrabberTest
     {
       
         [Test]
