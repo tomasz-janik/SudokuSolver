@@ -6,9 +6,9 @@ namespace SudokuGrabber.Extensions
     {
         public static void ShowImage(this Mat mat, string title = "Test")
         {
-            CvInvoke.Imshow(title, mat); //Show the image
-            CvInvoke.WaitKey(0);  //Wait for the key pressing event
-            CvInvoke.DestroyWindow(title); //Destroy the window if key is pressed
+            //CvInvoke.Imshow(title, mat); //Show the image
+            //CvInvoke.WaitKey(0);  //Wait for the key pressing event
+            //CvInvoke.DestroyWindow(title); //Destroy the window if key is pressed
         }
         public static Matrix<float> ToVector(this Mat mat)
         {

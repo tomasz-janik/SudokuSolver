@@ -83,16 +83,16 @@ namespace SudokuSolver
             _container.Bind<IDigitCleanStrategy>().To<CleanByContours>().InSingletonScope();
 
             var sudokuPositionGrabber = Builders.NewBaseSudokuGrabberBuilder()
-                .SetCalcContours(_container.Get<ICalcContours>())
-                .SetCalcHull(_container.Get<ICalcHull>())
-                .SetCalcCorners(_container.Get<ICalcCorners>())
-                .SetPerspectiveWrap(new StaticPerspectiveWrap(900))
+                .SetCalcContours(new GetContours())
+                .SetCalcHull(new GetHull())
+                .SetCalcCorners(new GetCorners())
+                .SetPerspectiveWrap(new StaticPerspectiveWrap(600))
                 .SetPreSudokuGrabFilters(new List<IFilter>
                 {
                     new GrayFilter(),
-                    new AdaptiveThresholdFilter(255, AdaptiveThresholdType.GaussianC, ThresholdType.BinaryInv, 21,
-                        2),
-                    new FastDeNoisingFilter(100, 5, 5)
+                    new FastDeNoisingFilter(100, 5, 5),
+                    new AdaptiveThresholdFilter(),
+
                 })
                 .GetGrabber();
 
@@ -107,11 +107,11 @@ namespace SudokuSolver
                 .GetDigitRecognizer();
 
             var digitGrabber = Builders.NewStaticSizeDigitGrabber()
-                .SetDigitCleanStrategy(_container.Get<IDigitCleanStrategy>())
+                .SetDigitCleanStrategy(new CleanByContours(new GetContours()))
                 .SetDigitGrabStrategy(new GrabBySize())
                 .SetPreDigitGrabFilters(new List<IFilter>()
                 {
-                    new CLeanLineImage(new GrayFilter(), new MedianBlurFilter(3))
+                    new CLeanLineImage(new GrayFilter() ,new MedianBlurFilter(3))
                 })
                 .GetGrabber();
 

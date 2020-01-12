@@ -29,7 +29,7 @@ namespace SudokuGrabber.Filters
                 lines = CvInvoke.HoughLinesP(lineFinder, 1, Math.PI / 180, 50, 65, 5);
             }
             
-            CvInvoke.AdaptiveThreshold(image, image, 255, AdaptiveThresholdType.GaussianC, ThresholdType.BinaryInv, 7, 2);
+            CvInvoke.AdaptiveThreshold(image, image, 255, AdaptiveThresholdType.GaussianC, ThresholdType.BinaryInv, 31, 15);
 
             foreach (var line in lines)
             {

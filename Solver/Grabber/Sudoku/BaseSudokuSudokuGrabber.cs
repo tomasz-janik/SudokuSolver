@@ -1,5 +1,7 @@
 ﻿using System.Collections.Generic;
 using Emgu.CV;
+using Emgu.CV.Structure;
+using SudokuGrabber.Extensions;
 using SudokuGrabber.Filters;
 using SudokuGrabber.OpenCV.Interfaces;
 
@@ -36,6 +38,7 @@ namespace SudokuGrabber.Grabber.Sudoku
 
             var contours = _calcContours.Get(cutted);
             var maxContour = contours.GetBiggest();
+
 
             var hull = _calcHull.Get(maxContour);
             var corners = _calcCorners.Get(hull);

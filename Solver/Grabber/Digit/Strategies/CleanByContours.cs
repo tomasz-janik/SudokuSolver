@@ -28,7 +28,7 @@ namespace SudokuGrabber.Grabber.Digit.Strategies
                 double aspect = (double)rect.Height / (double)rect.Width;
                 double area = rect.Height * rect.Width;
 
-                if (aspect > 0.3 && aspect < 4 && area > 50)
+                if (aspect > 0.3 && aspect < 4 && area > 100)
                 {
                     points.AddRange(cont[i].ToArray());
                 }
