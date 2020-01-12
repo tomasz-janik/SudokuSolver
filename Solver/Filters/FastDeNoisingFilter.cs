@@ -1,0 +1,33 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Text;
+using Emgu.CV;
+
+namespace Solver.Filters
+{
+    public class FastDeNoisingFilter:IFilter
+    {
+        private readonly int _h;
+        private readonly int _templateWindowSize;
+        private readonly int _searchWindowSize;
+
+        public FastDeNoisingFilter()
+        {
+            _h = 100;
+            _templateWindowSize = 5;
+            _searchWindowSize = 5;
+        }
+
+        public FastDeNoisingFilter(int h, int templateWindowSize, int searchWindowSize)
+        {
+            _h = h;
+            _templateWindowSize = templateWindowSize;
+            _searchWindowSize = searchWindowSize;
+        }
+
+        public void Apply(Mat image)
+        {
+            CvInvoke.FastNlMeansDenoising(image, image, _h, _templateWindowSize, _searchWindowSize);
+        }
+    }
+}
