@@ -4,6 +4,10 @@
 
 #### Unit/Integration tests
 #### Add save command
+#### Create some sort of documentation
+
+*   Design Patterns - List all of used patterns and write something about them
+*   C# - List of all C# features we used 
 
 ## Todo (c#, not design patterns)
 #### Add string localization
