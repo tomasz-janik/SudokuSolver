@@ -5,7 +5,7 @@ namespace SudokuSolver.Model.Logger
 {
     public class LoggingFacade
     {
-        private static Logger _logger;
+        private static Logger _logger = Logger.Instance;
         private readonly LoggerFactoryProvider _loggerFactoryProvider;
 
         public LoggingFacade(LoggerFactoryProvider loggerFactoryProvider)

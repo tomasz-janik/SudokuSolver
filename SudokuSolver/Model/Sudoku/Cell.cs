@@ -38,7 +38,7 @@ namespace SudokuSolver.Model.Sudoku
             _value = value;
             State = state;
             IndicateChange();
-            LoggingFacade.Info($"Initializing cell with Value = {value}, State = {state}");
+            LoggingFacade.Debug($"Initializing cell with Value = {value}, State = {state}");
         }
 
         private void UserSet(int? value)
@@ -46,7 +46,7 @@ namespace SudokuSolver.Model.Sudoku
             State = State.UserSet;
             _value = value;
             IndicateChange();
-            LoggingFacade.Info($"User changed cell value to {value}");
+            LoggingFacade.Debug($"User changed cell value to {value}");
         }
 
         public void SolverSet(int value)
@@ -54,7 +54,7 @@ namespace SudokuSolver.Model.Sudoku
             _value = value;
             State = State.SolverSet;
             IndicateChange();
-            LoggingFacade.Info($"Solver changed cell value to {value}");
+            LoggingFacade.Debug($"Solver changed cell value to {value}");
         }
 
         public void Unset()
@@ -62,7 +62,7 @@ namespace SudokuSolver.Model.Sudoku
             _value = null;
             State = State.Unset;
             IndicateChange();
-            LoggingFacade.Info($"Clearing cell");
+            LoggingFacade.Debug("Clearing cell");
         }
 
         public Memento CreateMemento()

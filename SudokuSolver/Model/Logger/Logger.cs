@@ -14,10 +14,10 @@ namespace SudokuSolver.Model.Logger
 
         public void AddLoggers(List<AbstractLogger> loggers)
         {
+            if (loggers.Count == 0) return;
             if (_logger == null)
             {
                 _logger = loggers.Pop();
-                return;
             }
 
             foreach (var logger in loggers)

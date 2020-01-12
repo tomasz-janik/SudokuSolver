@@ -3,6 +3,7 @@ using System.Windows;
 using Emgu.CV.CvEnum;
 using Ninject;
 using Ninject.Parameters;
+using Ninject.Syntax;
 using SudokuGrabber;
 using SudokuGrabber.Builders;
 using SudokuGrabber.Filters;
@@ -52,8 +53,10 @@ namespace SudokuSolver
             _container.Bind<IParser<string>>().To<TextFileParser>().InSingletonScope();
             _container.Bind<Parser<string>>().To<TextParser>().InSingletonScope();
 
-            _container.Bind<LoggerFactoryProvider>().ToSelf().InSingletonScope();
+            _container.Bind<LoggerFactoryProvider>().ToMethod(context => new LoggerFactoryProvider())
+                .InSingletonScope();
             _container.Bind<LoggingFacade>().ToSelf().InSingletonScope();
+            _container.Get<LoggingFacade>();
 
             _container.Bind<ISolvingStrategy>().To<BacktrackingStrategy>().InSingletonScope().Named("backtracking");
             _container.Bind<ISolvingStrategy>().To<PreSolvingStrategy>().InSingletonScope().Named("pre_solving");

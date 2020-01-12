@@ -7,7 +7,7 @@ namespace SudokuSolver.Model.Logger
     {
         public string Filepath;
 
-        public FileLogger(LogLevel mask, string filepath = "logs.txt") : base(mask)
+        public FileLogger(LogLevel mask, string filepath = "D:\\logs.txt") : base(mask)
         {
             Filepath = filepath;
         }
