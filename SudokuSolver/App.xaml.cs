@@ -13,7 +13,6 @@ using SudokuGrabber.OpenCV;
 using SudokuGrabber.OpenCV.Interfaces;
 using SudokuGrabber.Recognizer;
 using SudokuGrabber.Recognizer.Strategies;
-using SudokuSolver.Model.Digits;
 using SudokuSolver.Model.Logger;
 using SudokuSolver.Model.Logger.Factory;
 using SudokuSolver.Model.Sudoku;
@@ -47,7 +46,7 @@ namespace SudokuSolver
         private void ConfigureContainer()
         {
            
-            _container.Bind<DigitFactory>().ToSelf().InSingletonScope();
+            //_container.Bind<DigitFactory>().ToSelf().InSingletonScope();
             _container.Bind<SudokuBoard>().ToSelf().InSingletonScope();
             _container.Bind<History>().ToSelf().InSingletonScope();
 

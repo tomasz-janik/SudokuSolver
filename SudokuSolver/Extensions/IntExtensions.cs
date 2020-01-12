@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
-using SudokuSolver.Model.Digits;
+using SudokuSolver.Model;
 using SudokuSolver.Model.Sudoku;
 
 namespace SudokuSolver.Extensions
@@ -10,8 +10,7 @@ namespace SudokuSolver.Extensions
     {
         public static Cell ToCell(this int value)
         {
-            return new Cell(value,State.InitialSet);
-            
+            return value == 0 ? new Cell() : new Cell(value, State.InitialSet);
         }
     }
 }

@@ -26,7 +26,7 @@ namespace SudokuSolver.ViewModel.Command
             var result = _fileProvider.Provide(filename);
             if (!result.Any()) return false;
 
-            _sudokuBoard.ChangeCells(result);
+            _sudokuBoard.LoadSudoku(result);
             return true;
 
         }

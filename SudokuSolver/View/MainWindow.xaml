@@ -62,7 +62,7 @@
                         Grid.Column="1"
                         Orientation="Vertical">
                 <TextBlock Margin="15,5,15,0" Padding="5" HorizontalAlignment="Center" TextAlignment="Center">
-                    Sudoku Grabr
+                    Sudoku Solver :3
                 </TextBlock>
                 <StackPanel HorizontalAlignment="Center">
                     <Button
@@ -83,7 +83,7 @@
                         Margin="5"
                         Padding="10,5,10,5"
                         HorizontalAlignment="Center"
-                        Content="Grab"
+                        Content="Solve"
                         Command="{Binding SolveCommand}"
                         d:DataContext="{d:DesignInstance }" />
                     <Button
