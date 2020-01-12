@@ -16,7 +16,7 @@ namespace SudokuSolver.ViewModel.Parsing
             }
             
             //todo - logger.log
-            return new List<List<Cell>>();
+            return default;
         }
     }
 }

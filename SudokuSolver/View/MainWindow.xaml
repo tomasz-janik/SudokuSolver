@@ -13,14 +13,12 @@
         Height="400" Width="800"
         MaxHeight="800" MaxWidth="1600">
     <Window.Resources>
-        <converting:IsInitialConverter x:Key="IsInitialConverter" />
         <converting:DigitConverter x:Key="DigitConverter" />
 
         <DataTemplate x:Key="TextBoxTemplate">
             <view:SudokuTextBox Background="Purple"
                                 Width="25" Height="25"
                                 VerticalContentAlignment="Center"
-                                IsReadOnly="{Binding State, Converter={StaticResource IsInitialConverter}}"
                                 FontWeight="Bold"
                                 MaxLength="1"
                                 TextAlignment="Center" d:DataContext="{d:DesignInstance}">

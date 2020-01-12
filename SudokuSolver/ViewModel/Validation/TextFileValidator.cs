@@ -9,11 +9,6 @@
                 //log
                 return false;
             }
-            if (!filename.EndsWith(".json"))
-            {
-                //log
-                return false;
-            }
             return true;
         }
     }

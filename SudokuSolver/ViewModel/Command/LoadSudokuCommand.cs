@@ -11,7 +11,7 @@ namespace SudokuSolver.ViewModel.Command
         private readonly Reader<string> _reader;
         private readonly Parser<string> _parser;
 
-        public LoadSudokuCommand(SudokuBoard sudokuBoard, Reader<string> reader, Parser<string> parser, History history)
+        public LoadSudokuCommand(SudokuBoard sudokuBoard, Reader<string> reader, Parser<string> parser)
         {
             _sudokuBoard = sudokuBoard;
             _reader = reader;
@@ -20,11 +20,14 @@ namespace SudokuSolver.ViewModel.Command
 
         public bool Execute(string filename)
         {
-            var result = _parser.Parse(_reader.Read(filename));
-            if (!result.Any()) return false;
+            var readingResult = _reader.Read(filename);
+            if (string.IsNullOrEmpty(readingResult)) return false;
             
-            _sudokuBoard.Cells = result;
-            _sudokuBoard.ClearHistory();
+            var parsingResult = _parser.Parse(readingResult);
+            if (!parsingResult.Any()) return false;
+            
+            _sudokuBoard.LoadSudoku(parsingResult);
+            
             return true;
         }
     }

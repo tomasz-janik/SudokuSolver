@@ -42,5 +42,12 @@ namespace SudokuSolver.Model.Sudoku
         {
             _history.Clear();
         }
+
+        public void LoadSudoku(List<List<Cell>> result)
+        {
+            Cells = result;
+            ClearHistory();
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Cells"));
+        }
     }
 }
