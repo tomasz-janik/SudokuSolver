@@ -26,7 +26,6 @@ namespace SudokuSolver.Utils
             return arrays.Select(array => array.ToList()).ToList();
         }
 
-        //todo - this can be iterator just in case
         public static IEnumerable<T> Iterate<T>(this IEnumerable<List<T>> lists)
         {
             return lists.SelectMany(list => list);

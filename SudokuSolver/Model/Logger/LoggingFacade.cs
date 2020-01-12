@@ -3,51 +3,50 @@ using SudokuSolver.Model.Logger.Factory;
 
 namespace SudokuSolver.Model.Logger
 {
-    public class LoggingFacade
+    public static class LoggingFacade
     {
-        private static Logger _logger = Logger.Instance;
-        private readonly LoggerFactoryProvider _loggerFactoryProvider;
+        //todo - any way to make it prettier?
+        private static readonly Logger Logger = Logger.Instance;
+        private static readonly LoggerFactoryProvider LoggerFactoryProvider = new LoggerFactoryProvider();
 
-        public LoggingFacade(LoggerFactoryProvider loggerFactoryProvider)
+        static LoggingFacade()
         {
-            _loggerFactoryProvider = loggerFactoryProvider;
             Init();
         }
 
-        private void Init()
+        private static void Init()
         {
-            _logger = Logger.Instance;
             foreach (LoggerFactoryType loggerFactoryType in Enum.GetValues(typeof(LoggerFactoryType)))
             {
-                var loggingFactory = _loggerFactoryProvider.GetFactory(loggerFactoryType);
-                _logger.AddLoggers(loggingFactory.GetLoggers());
+                var loggingFactory = LoggerFactoryProvider.GetFactory(loggerFactoryType);
+                Logger.AddLoggers(loggingFactory.GetLoggers());
             }
         }
 
         public static void Info<T>(T message)
         {
-            _logger.Message(message.ToString(), LogLevel.Info);
+            Logger.Message(message.ToString(), LogLevel.Info);
         }
 
         public static void Debug<T>(T message)
         {
-            _logger.Message(message.ToString(), LogLevel.Debug);
+            Logger.Message(message.ToString(), LogLevel.Debug);
         }
 
         public static void Warning<T>(T message)
         {
-            _logger.Message(message.ToString(), LogLevel.Warning);
+            Logger.Message(message.ToString(), LogLevel.Warning);
         }
 
         public static void Error<T>(T message)
         {
-            _logger.Message(message.ToString(), LogLevel.Error);
+            Logger.Message(message.ToString(), LogLevel.Error);
         }
 
         //todo - check if this will change filepath xD (it will, i'm just not thinking anymore, so not sure)
-        public void SetLogFile(string filename)
+        public static void SetLogFile(string filename)
         {
-            var logger = (FileLogger) _loggerFactoryProvider.GetFactory(LoggerFactoryType.File)
+            var logger = (FileLogger) LoggerFactoryProvider.GetFactory(LoggerFactoryType.File)
                 .GetLogger(LoggerType.File);
             logger.Filepath = filename;
         }

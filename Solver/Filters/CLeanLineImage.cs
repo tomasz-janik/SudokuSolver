@@ -22,7 +22,7 @@ namespace SudokuGrabber.Filters
             _grayFilter.Apply(image);
             _medianBlurFilter.Apply(image);
 
-            LineSegment2D[] lines = null;
+            LineSegment2D[] lines;
             using (var lineFinder = image.Clone())
             {
                 CvInvoke.AdaptiveThreshold(lineFinder, lineFinder, 255, AdaptiveThresholdType.GaussianC, ThresholdType.BinaryInv, 31, 15);

@@ -3,7 +3,6 @@ using System.Windows;
 using Emgu.CV.CvEnum;
 using Ninject;
 using Ninject.Parameters;
-using Ninject.Syntax;
 using SudokuGrabber;
 using SudokuGrabber.Builders;
 using SudokuGrabber.Filters;
@@ -11,7 +10,6 @@ using SudokuGrabber.Grabber.Digit.Strategies;
 using SudokuGrabber.OpenCV;
 using SudokuGrabber.OpenCV.Interfaces;
 using SudokuGrabber.Recognizer.Strategies;
-using SudokuSolver.Model.Logger;
 using SudokuSolver.Model.Logger.Factory;
 using SudokuSolver.Model.Sudoku;
 using SudokuSolver.View;
@@ -55,9 +53,7 @@ namespace SudokuSolver
 
             _container.Bind<LoggerFactoryProvider>().ToMethod(context => new LoggerFactoryProvider())
                 .InSingletonScope();
-            _container.Bind<LoggingFacade>().ToSelf().InSingletonScope();
-            _container.Get<LoggingFacade>();
-
+            
             _container.Bind<ISolvingStrategy>().To<BacktrackingStrategy>().InSingletonScope().Named("backtracking");
             _container.Bind<ISolvingStrategy>().To<PreSolvingStrategy>().InSingletonScope().Named("pre_solving");
 

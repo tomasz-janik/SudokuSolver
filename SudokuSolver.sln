@@ -11,6 +11,10 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SudokuGrabber", "Solver\Sud
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tests", "Tests\Tests.csproj", "{27D870B7-65B5-4533-B038-75D00E7623B1}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnitTests", "UnitTests\UnitTests.csproj", "{3B15D17E-0500-43F9-A9E6-49830D5FF225}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IntegrationTests", "IntegrationTests\IntegrationTests.csproj", "{AAC2F23C-23AA-4D9D-AB34-994F9D5CCD17}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +37,14 @@ Global
 		{27D870B7-65B5-4533-B038-75D00E7623B1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{27D870B7-65B5-4533-B038-75D00E7623B1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{27D870B7-65B5-4533-B038-75D00E7623B1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3B15D17E-0500-43F9-A9E6-49830D5FF225}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3B15D17E-0500-43F9-A9E6-49830D5FF225}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3B15D17E-0500-43F9-A9E6-49830D5FF225}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3B15D17E-0500-43F9-A9E6-49830D5FF225}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AAC2F23C-23AA-4D9D-AB34-994F9D5CCD17}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AAC2F23C-23AA-4D9D-AB34-994F9D5CCD17}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AAC2F23C-23AA-4D9D-AB34-994F9D5CCD17}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AAC2F23C-23AA-4D9D-AB34-994F9D5CCD17}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

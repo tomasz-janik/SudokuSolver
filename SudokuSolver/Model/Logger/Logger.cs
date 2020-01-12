@@ -10,8 +10,7 @@ namespace SudokuSolver.Model.Logger
         private Logger()
         {
         }
-
-
+        
         public void AddLoggers(List<AbstractLogger> loggers)
         {
             if (loggers.Count == 0) return;
@@ -31,7 +30,6 @@ namespace SudokuSolver.Model.Logger
             _logger.Message(message, severity);
         }
 
-        //todo - ask if this does what i think it does? (is this singleton?) xD
         public static Logger Instance { get; } = new Logger();
     }
 }
