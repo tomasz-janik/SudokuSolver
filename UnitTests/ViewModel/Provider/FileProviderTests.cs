@@ -1,18 +1,16 @@
-﻿using NUnit.Framework;
-using SudokuSolver.ViewModel.Provider;
-using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System.Collections.Generic;
 using Moq;
+using NUnit.Framework;
 using SudokuSolver.Model.Sudoku;
+using SudokuSolver.ViewModel.Provider;
 
-namespace SudokuSolver.ViewModel.Provider.Tests
+namespace UnitTests.ViewModel.Provider
 {
-    [TestFixture()]
+    [TestFixture]
     public class FileProviderTests
     {
       
-        [Test()]
+        [Test]
         public void TestExtension()
         {
           
@@ -40,7 +38,7 @@ namespace SudokuSolver.ViewModel.Provider.Tests
             Assert.AreSame(provider.Provide("test.img"), twoExtOut);
         }
 
-        [Test()]
+        [Test]
         public void TestNull()
         {
             var oneExtProvider = new Mock<ISpecificProvider>();

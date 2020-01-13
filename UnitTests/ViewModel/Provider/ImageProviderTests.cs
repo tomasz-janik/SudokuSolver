@@ -1,18 +1,16 @@
-﻿using NUnit.Framework;
-using SudokuSolver.ViewModel.Provider;
-using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System.Linq;
 using Moq;
+using NUnit.Framework;
 using SudokuGrabber;
 using SudokuGrabber.Models;
+using SudokuSolver.ViewModel.Provider;
 
-namespace SudokuSolver.ViewModel.Provider.Tests
+namespace UnitTests.ViewModel.Provider
 {
-    [TestFixture()]
+    [TestFixture]
     public class ImageProviderTests
     {
-        [Test()]
+        [Test]
         public void ProvideTest()
         {
             var sudokuGrabber = new Mock<ISudokuGrabber>();
@@ -20,7 +18,7 @@ namespace SudokuSolver.ViewModel.Provider.Tests
 
             var enumerator = (SudokuEnumerator<int>)sudoku.GetEnumerator();
 
-            int i = 1;
+            var i = 1;
             do
             {
                 enumerator.SetValue(i++);
@@ -32,13 +30,10 @@ namespace SudokuSolver.ViewModel.Provider.Tests
             var result = imageProvider.Provide("test");
 
 
-            int expected = 1;
-            foreach (var row in result)
+            var expected = 1;
+            foreach (var cell in result.SelectMany(row => row))
             {
-                foreach (var cell in row)
-                {
-                    Assert.AreEqual(expected++,cell.Value);
-                }
+                Assert.AreEqual(expected++,cell.Value);
             }
 
         }

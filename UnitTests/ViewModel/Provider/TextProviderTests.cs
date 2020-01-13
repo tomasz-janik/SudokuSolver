@@ -1,20 +1,18 @@
-﻿using NUnit.Framework;
-using SudokuSolver.ViewModel.Provider;
-using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System.Collections.Generic;
 using Moq;
+using NUnit.Framework;
 using SudokuSolver.Model.Sudoku;
 using SudokuSolver.ViewModel.Parsing;
+using SudokuSolver.ViewModel.Provider;
 using SudokuSolver.ViewModel.Reading;
 using SudokuSolver.ViewModel.Validation;
 
-namespace SudokuSolver.ViewModel.Provider.Tests
+namespace UnitTests.ViewModel.Provider
 {
-    [TestFixture()]
+    [TestFixture]
     public class TextProviderTests
     {
-        [Test()]
+        [Test]
         public void ProvideValidatedTest()
         {
             var expectedResult = new List<List<Cell>>();
@@ -36,7 +34,7 @@ namespace SudokuSolver.ViewModel.Provider.Tests
 
         }
 
-        [Test()]
+        [Test]
         public void ProvideInValidatedTest()
         {
             var expectedResult = new List<List<Cell>>();

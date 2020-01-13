@@ -1,21 +1,19 @@
-﻿using NUnit.Framework;
-using SudokuSolver.ViewModel.Solving;
-using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
+using NUnit.Framework;
 using SudokuSolver.Model;
 using SudokuSolver.Model.Sudoku;
+using SudokuSolver.ViewModel.Solving;
 
-namespace SudokuSolver.ViewModel.Solving.Tests
+namespace UnitTests.ViewModel.Solving
 {
     [TestFixture()]
     public class SolvingStrategyTests
     {
-        private static readonly object[] _sudokuList = {
+        private static readonly object[] SudokuList = {
             new object[]
             {
-              new int[9,9]{
+              new[,]{
                   {0,0,0,0,0,0,0,0,0},
                   {0,0,0,0,0,0,0,0,0},
                   {0,0,0,0,0,0,0,0,0},
@@ -29,7 +27,7 @@ namespace SudokuSolver.ViewModel.Solving.Tests
             },
             new object[]
             {
-                new int[9,9]{
+                new[,]{
                     {1,0,0,0,0,0,0,0,0},
                     {0,2,0,0,0,0,0,0,0},
                     {0,0,3,0,0,0,0,0,0},
@@ -43,7 +41,7 @@ namespace SudokuSolver.ViewModel.Solving.Tests
             },
             new object[]
             {
-                new int[9,9]{
+                new[,]{
                     {0,0,0,5,0,0,2,0,0},
                     {0,0,1,2,0,0,0,9,0},
                     {6,0,8,0,0,0,1,0,0},
@@ -58,7 +56,7 @@ namespace SudokuSolver.ViewModel.Solving.Tests
             ,
             new object[]
             {
-                new int[9,9]{
+                new[,]{
                     {9,3,6,0,0,0,2,0,0},
                     {0,0,0,0,9,3,7,4,0},
                     {0,4,0,8,2,1,0,0,9},
@@ -72,10 +70,10 @@ namespace SudokuSolver.ViewModel.Solving.Tests
             }
         };
 
-        private static readonly object[] _invalidSudokuList = {
+        private static readonly object[] InvalidSudokuList = {
             new object[]
             {
-                new int[9,9]{
+                new[,]{
                     {3,4,0,0,0,8,0,0,0},
                     {0,0,7,0,0,1,8,0,0},
                     {0,8,9,5,0,0,4,2,0},
@@ -89,18 +87,18 @@ namespace SudokuSolver.ViewModel.Solving.Tests
             }
         };
 
-        [Test()]
-        [TestCaseSource("_sudokuList")]
+        [Test]
+        [TestCaseSource(nameof(SudokuList))]
         public void BacktrackingStrategyTests(int[,] data)
         {
             var sudoku = new List<List<Cell>>();
-            for (int i = 0; i < 9; i++)
+            for (var i = 0; i < 9; i++)
             {
                 var nextList = new List<Cell>();
                 sudoku.Add(nextList);
-                for (int j = 0; j < 9; j++)
+                for (var j = 0; j < 9; j++)
                 {
-                    int value = data[i, j];
+                    var value = data[i, j];
                     nextList.Add(new Cell(value, value == 0 ? State.Unset : State.InitialSet));
                 }
             }
@@ -113,18 +111,18 @@ namespace SudokuSolver.ViewModel.Solving.Tests
             Assert.IsTrue(SudokuValidator.IsValid(sudoku),"Valid: ");
         }
 
-        [Test()]
-        [TestCaseSource("_sudokuList")]
+        [Test]
+        [TestCaseSource(nameof(SudokuList))]
         public void PreSolvingStrategyTest(int[,] data)
         {
             var sudoku = new List<List<Cell>>();
-            for (int i = 0; i < 9; i++)
+            for (var i = 0; i < 9; i++)
             {
                 var nextList = new List<Cell>();
                 sudoku.Add(nextList);
-                for (int j = 0; j < 9; j++)
+                for (var j = 0; j < 9; j++)
                 {
-                    int value = data[i, j];
+                    var value = data[i, j];
                     nextList.Add(new Cell(value, value == 0 ? State.Unset : State.InitialSet));
                 }
             }
@@ -137,18 +135,18 @@ namespace SudokuSolver.ViewModel.Solving.Tests
             Assert.IsTrue(SudokuValidator.IsValid(sudoku), "Valid: ");
         }
 
-        [Test()]
-        [TestCaseSource("_invalidSudokuList")]
+        [Test]
+        [TestCaseSource(nameof(InvalidSudokuList))]
         public void BacktrackingStrategyInValidTests(int[,] data)
         {
             var sudoku = new List<List<Cell>>();
-            for (int i = 0; i < 9; i++)
+            for (var i = 0; i < 9; i++)
             {
                 var nextList = new List<Cell>();
                 sudoku.Add(nextList);
-                for (int j = 0; j < 9; j++)
+                for (var j = 0; j < 9; j++)
                 {
-                    int value = data[i, j];
+                    var value = data[i, j];
                     nextList.Add(new Cell(value, value == 0 ? State.Unset : State.InitialSet));
                 }
             }
@@ -159,18 +157,18 @@ namespace SudokuSolver.ViewModel.Solving.Tests
             Assert.IsFalse(result, "Result:");
         }
 
-        [Test()]
-        [TestCaseSource("_invalidSudokuList")]
+        [Test]
+        [TestCaseSource(nameof(InvalidSudokuList))]
         public void PreSolvingStrategyInValidTest(int[,] data)
         {
             var sudoku = new List<List<Cell>>();
-            for (int i = 0; i < 9; i++)
+            for (var i = 0; i < 9; i++)
             {
                 var nextList = new List<Cell>();
                 sudoku.Add(nextList);
-                for (int j = 0; j < 9; j++)
+                for (var j = 0; j < 9; j++)
                 {
-                    int value = data[i, j];
+                    var value = data[i, j];
                     nextList.Add(new Cell(value, value == 0 ? State.Unset : State.InitialSet));
                 }
             }
