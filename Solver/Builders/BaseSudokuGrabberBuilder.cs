@@ -7,17 +7,24 @@ namespace SudokuGrabber.Builders
 {
     public class BaseSudokuGrabberBuilder
     {
-        private IEnumerable<IFilter> _preSudokuGrabFilters;
+        private List<IFilter> _preSudokuGrabFilters = new List<IFilter>();
         private ICalcContours _calcContours;
         private ICalcHull _calcHull;
         private ICalcCorners _calcCorners;
         private IPerspectiveWrap _perspectiveWrap;
 
-        public BaseSudokuGrabberBuilder SetPreSudokuGrabFilters(IEnumerable<IFilter> filters)
+        public BaseSudokuGrabberBuilder SetPreSudokuGrabFilters(List<IFilter> filters)
         {
             _preSudokuGrabFilters = filters;
             return this;
         }
+
+        public BaseSudokuGrabberBuilder AddPreSudokuGrabFilters(IFilter filter)
+        {
+            _preSudokuGrabFilters.Add(filter);
+            return this;
+        }
+
         public BaseSudokuGrabberBuilder SetCalcCorners(ICalcCorners calcCorners)
         {
             _calcCorners = calcCorners;

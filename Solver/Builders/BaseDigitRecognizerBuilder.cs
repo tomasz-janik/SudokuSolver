@@ -7,12 +7,18 @@ namespace SudokuGrabber.Builders
 {
     public  class BaseDigitRecognizerBuilder
     {
-        private  IEnumerable<IFilter> _preDigitRecognizeFilters;
+        private List<IFilter> _preDigitRecognizeFilters = new List<IFilter>();
         private  IRecognizer _recognizer;
 
-        public BaseDigitRecognizerBuilder SetPreDigitRecognizeFilters(IEnumerable<IFilter> filters)
+        public BaseDigitRecognizerBuilder SetPreDigitRecognizeFilters(List<IFilter> filters)
         {
             _preDigitRecognizeFilters = filters;
+            return this;
+        }
+
+        public BaseDigitRecognizerBuilder AddPreDigitRecognizeFilters(IFilter filter)
+        {
+            _preDigitRecognizeFilters.Add(filter);
             return this;
         }
 
