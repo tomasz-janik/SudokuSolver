@@ -6,7 +6,7 @@ using SudokuSolver.Utils;
 
 namespace SudokuSolver.ViewModel.Provider
 {
-    class ImageProvider : ISpecificProvider
+    public class ImageProvider : ISpecificProvider
     {
         private readonly ISudokuGrabber _sudokuGrabber;
 
