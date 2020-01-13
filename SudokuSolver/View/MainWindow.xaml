@@ -6,7 +6,7 @@
         xmlns:converting="clr-namespace:SudokuSolver.ViewModel.Converting"
         xmlns:view="clr-namespace:SudokuSolver.View"
         mc:Ignorable="d"
-        Title="Sudoku Grabr"
+        Title="Sudoku Solver"
         WindowStartupLocation="CenterScreen"
         SizeToContent="WidthAndHeight"
         MinHeight="400" MinWidth="800"
@@ -61,7 +61,7 @@
                         Margin="20"
                         Grid.Column="1">
                 <TextBlock Margin="15,5,15,0" Padding="5" HorizontalAlignment="Center" TextAlignment="Center">
-                    Sudoku Solver :3
+                    Sudoku Solver
                 </TextBlock>
                 <Button
                     Margin="5"

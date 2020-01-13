@@ -1,42 +1,27 @@
 # SudokuSolver
 
-## Todo
+![](SudokuSolver.png "Patterns")
 
-#### Unit/Integration tests
-#### Add save command
-#### Create some sort of documentation
+## Overview
+Application created by **Daniel Dobrowolski** And **Tomasz Janik** using C#.
 
-*   Design Patterns - List all of used patterns and write something about them
-*   C# - List of all C# features we used 
+User interface was created using WPF.
 
-## Todo (c#, not design patterns)
-#### Add string localization
-#### Make it async
+Image processing and digit recognition was created using EmguCV.
+ 
+This application allows to input sudoku from either .txt file or image and display it on UI, after that it allows user to edit the sudoku and then solve it using two different techniques.   
 
 ## Used design patterns
-![Used design patterns](SudokuSolver.png "Patterns")
-
-#### Command
-#### Factory
-#### Chain of responsibility
-#### Facade
-#### Singleton
-#### TemplateMethod
-#### Strategy
-#### Memento
-#### AbstractFactory
-#### Dependency Injection
-#### MVVM
-#### Builder
-#### Observer - kinda used in memento, just not implemented by us
-
-## Must have design patterns to use
-
-#### Iterator - connection to database ?
-
-## Possible design patterns that could be used
-
-#### Composite ?
-#### Prototype ?
-#### Visitor ?
-#### Flyweight :(
+* Command
+* Factory
+* Chain of Responsibility
+* Face
+* Singleton
+* Template Method
+* Strategy
+* Memento
+* Abstract Factory
+* Dependency Injection
+* MVVM
+* Builder
+* Observer - maybe?
