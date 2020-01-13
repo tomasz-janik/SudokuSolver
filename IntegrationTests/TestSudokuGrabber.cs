@@ -45,7 +45,7 @@ namespace IntegrationTests
                         new CenterImage(28),
                         new DeskewImage(28)
                     })
-                .SetRecognizer(new MulticlassClassification())
+                .SetRecognizer(new SVMRecognizer())
                 .GetDigitRecognizer();
 
             var digitGrabber = Builders.NewStaticSizeDigitGrabber()
@@ -65,9 +65,13 @@ namespace IntegrationTests
                 .GetSolver();
 
             var basePath = Path.Combine(System.IO.Path.GetFullPath(@"..\..\..\"), "Resources", "TestImages");
+
+
+            double correctness = 0.0f;
+            int greaterThan90 = 0;
+            int full = 0;
            
-           
-            for (int i = 0; i < 156; i++)
+            for (int i = 0; i < 81; i++)
             {
                 // act
                 var filePath = Path.Combine(basePath, i + ".jpg");
@@ -110,25 +114,23 @@ namespace IntegrationTests
                 } while (resultEnumerator.MoveNext());
 
 
-                if(correct == 81)
-                    Console.WriteLine(i);
-                //Console.WriteLine($"==== {i} ====");
-                //Console.WriteLine($"correct: {correct}");
-                //Console.WriteLine($"correctWithoutEmpty: {correctWithoutEmpty}");
-                //Console.WriteLine($"expectedWithoutEmpty: {expectedWithoutEmpty}");
-                //Console.WriteLine($"%: {correct / 81.0}\n");
+                var result = correct / 81.0;
+                if (correct == 81)
+                {
+                    full++;
+                }
 
-                //Console.WriteLine(sudokuResult.ToString());
+                if (result >=0.9)
+                {
+                    greaterThan90++;
+                }
 
-                //Console.WriteLine($"====================");
-                //Console.WriteLine(sudokuExpected.ToString()+"\n");
-                //Assert.IsTrue(true);
-
-
+                correctness += result;
             }
 
-          
-
+            Assert.GreaterOrEqual(greaterThan90 / 81.0,  0.9,  "The minimum  90 % efficiency of correct sudoku recognition  is 90%");
+            Assert.GreaterOrEqual(full / 81.0, 0.5, "The minimum of fully correct sudoku recognition  is 50%");
+            Assert.GreaterOrEqual(correctness / 81.0, 0.9, "The minimum average result is 90%");
         }
 
         private Sudoku<int> GetFromData(string path)

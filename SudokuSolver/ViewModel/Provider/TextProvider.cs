@@ -5,7 +5,7 @@ using SudokuSolver.ViewModel.Reading;
 
 namespace SudokuSolver.ViewModel.Provider
 {
-    internal class TextProvider : ISpecificProvider
+    public class TextProvider : ISpecificProvider
     {
         private readonly Reader<string> _reader;
         private readonly Parser<string> _parser;

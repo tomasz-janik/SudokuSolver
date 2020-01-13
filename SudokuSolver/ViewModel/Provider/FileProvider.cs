@@ -3,7 +3,7 @@ using SudokuSolver.Model.Sudoku;
 
 namespace SudokuSolver.ViewModel.Provider
 {
-    internal class FileProvider : IFileProvider
+    public class FileProvider : IFileProvider
     {
         private readonly IEnumerable<ISpecificProvider> _providers;
 
@@ -19,7 +19,7 @@ namespace SudokuSolver.ViewModel.Provider
 
             foreach (var specificProvider in _providers)
             {
-                if (specificProvider.GetExtension().Contains(pathExt))
+                if (specificProvider.GetExtension().Contains(pathExt.ToLower()))
                 {
                     return specificProvider.Provide(path);
                 }
