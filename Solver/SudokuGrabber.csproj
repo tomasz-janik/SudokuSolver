@@ -25,9 +25,6 @@
     <Reference Include="Emgu.CV.World">
       <HintPath>D:\SyfPulpit\Emgu\bin\Emgu.CV.World.dll</HintPath>
     </Reference>
-    <Reference Include="Emgu.CV.World, Version=4.1.1.3497, Culture=neutral, PublicKeyToken=7281126722ab4438">
-      <HintPath>..\..\..\..\..\Emgu\emgucv-windesktop 4.1.1.3497\bin\Emgu.CV.World.dll</HintPath>
-    </Reference>
   </ItemGroup>
 
 </Project>
