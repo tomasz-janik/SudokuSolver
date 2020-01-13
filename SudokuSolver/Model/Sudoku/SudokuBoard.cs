@@ -4,8 +4,6 @@ using static SudokuSolver.Utils.Extensions;
 
 namespace SudokuSolver.Model.Sudoku
 {
-    //todo - can this be Originator in Memento pattern? - imo yes
-    //todo - should it be in model or viewmodel?
     public class SudokuBoard : INotifyPropertyChanged
     {
         private readonly History _history;
