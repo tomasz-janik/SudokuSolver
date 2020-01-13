@@ -4,7 +4,7 @@ using SudokuGrabber.Recognizer;
 
 namespace SudokuGrabber.Builders
 {
-    public class SolverBuilder 
+    public class GrabberBuilder 
     {
     
         private  ISudokuPositionGrabber _sudokuGrabber;
@@ -14,22 +14,19 @@ namespace SudokuGrabber.Builders
         private  IDigitRecognizer _digitRecognizer;
 
 
-       
-   
-
-        public SolverBuilder SetDigitGrabber(IDigitGrabber digitGrabber)
+        public GrabberBuilder SetDigitGrabber(IDigitGrabber digitGrabber)
         {
             _digitGrabber = digitGrabber;
             return this;
         }
 
-        public SolverBuilder SetSudokuGrabber(ISudokuPositionGrabber sudokuGrabber)
+        public GrabberBuilder SetSudokuGrabber(ISudokuPositionGrabber sudokuGrabber)
         {
             _sudokuGrabber = sudokuGrabber;
             return this;
         }
 
-        public SolverBuilder SetDigitRecognizer(IDigitRecognizer digitRecognizer)
+        public GrabberBuilder SetDigitRecognizer(IDigitRecognizer digitRecognizer)
         {
             _digitRecognizer = digitRecognizer;
             return this;

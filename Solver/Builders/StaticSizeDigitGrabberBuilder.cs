@@ -7,13 +7,19 @@ namespace SudokuGrabber.Builders
 {
     public class StaticSizeDigitGrabberBuilder
     {
-        private  IEnumerable<IFilter> _preDigitGrabFilters;
+        private List<IFilter> _preDigitGrabFilters = new List<IFilter>();
         private  IDigitGrabStrategy _digitGrabStrategy;
         private  IDigitCleanStrategy _digitCleanStrategy;
 
-        public StaticSizeDigitGrabberBuilder SetPreDigitGrabFilters(IEnumerable<IFilter> preDigitGrabFilters)
+        public StaticSizeDigitGrabberBuilder SetPreDigitGrabFilters(List<IFilter> preDigitGrabFilters)
         {
             _preDigitGrabFilters = preDigitGrabFilters;
+            return this;
+        }
+
+        public StaticSizeDigitGrabberBuilder AddPreDigitGrabFilters(IFilter filer)
+        {
+            _preDigitGrabFilters.Add(filer);
             return this;
         }
 

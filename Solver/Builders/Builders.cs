@@ -2,9 +2,9 @@
 {
     public static class  Builders
     {
-       public static SolverBuilder NewSolverBuilder()
+       public static GrabberBuilder NewGrabberBuilder()
         {
-            return new SolverBuilder();
+            return new GrabberBuilder();
         }
 
        public static BaseSudokuGrabberBuilder NewBaseSudokuGrabberBuilder()

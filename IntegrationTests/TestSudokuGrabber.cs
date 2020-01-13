@@ -18,7 +18,7 @@ namespace IntegrationTests
     {
       
         [Test]
-        public void Test1()
+        public void TestAll()
         {
 
             // arrange
@@ -58,7 +58,7 @@ namespace IntegrationTests
                 .GetGrabber();
 
 
-            var sudokuGrabber = Builders.NewSolverBuilder()
+            var sudokuGrabber = Builders.NewGrabberBuilder()
                 .SetSudokuGrabber(sudokuPositionGrabber)
                 .SetDigitGrabber(digitGrabber)
                 .SetDigitRecognizer(digitRecognizer)
