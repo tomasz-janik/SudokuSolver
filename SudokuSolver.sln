@@ -5,8 +5,6 @@ VisualStudioVersion = 16.0.29519.181
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SudokuSolver", "SudokuSolver\SudokuSolver.csproj", "{199A1747-CD35-4071-8613-52C005310390}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SimpleTest", "SimpleTest\SimpleTest.csproj", "{0A0252BF-E949-42B7-A83A-92A34E60DD93}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SudokuGrabber", "Solver\SudokuGrabber.csproj", "{AC90C18C-97CA-436F-B129-6561CACE4ECB}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UnitTests", "UnitTests\UnitTests.csproj", "{3B15D17E-0500-43F9-A9E6-49830D5FF225}"
@@ -23,10 +21,6 @@ Global
 		{199A1747-CD35-4071-8613-52C005310390}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{199A1747-CD35-4071-8613-52C005310390}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{199A1747-CD35-4071-8613-52C005310390}.Release|Any CPU.Build.0 = Release|Any CPU
-		{0A0252BF-E949-42B7-A83A-92A34E60DD93}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{0A0252BF-E949-42B7-A83A-92A34E60DD93}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{0A0252BF-E949-42B7-A83A-92A34E60DD93}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{0A0252BF-E949-42B7-A83A-92A34E60DD93}.Release|Any CPU.Build.0 = Release|Any CPU
 		{AC90C18C-97CA-436F-B129-6561CACE4ECB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{AC90C18C-97CA-436F-B129-6561CACE4ECB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{AC90C18C-97CA-436F-B129-6561CACE4ECB}.Release|Any CPU.ActiveCfg = Release|Any CPU
