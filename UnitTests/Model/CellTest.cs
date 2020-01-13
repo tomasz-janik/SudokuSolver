@@ -2,7 +2,7 @@
 using SudokuSolver.Model;
 using SudokuSolver.Model.Sudoku;
 
-namespace UnitTests
+namespace UnitTests.Model
 {
     [TestFixture]
     public class CellTest

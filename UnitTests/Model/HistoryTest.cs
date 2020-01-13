@@ -2,7 +2,7 @@
 using NUnit.Framework;
 using SudokuSolver.Model.Sudoku;
 
-namespace UnitTests
+namespace UnitTests.Model
 {
     [TestFixture]
     public class HistoryTest

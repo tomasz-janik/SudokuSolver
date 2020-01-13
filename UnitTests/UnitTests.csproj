@@ -17,4 +17,8 @@
       <ProjectReference Include="..\SudokuSolver\SudokuSolver.csproj" />
     </ItemGroup>
 
+    <ItemGroup>
+      <Folder Include="ViewModel" />
+    </ItemGroup>
+
 </Project>
