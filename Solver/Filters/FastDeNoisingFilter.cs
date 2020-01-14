@@ -8,13 +8,6 @@ namespace SudokuGrabber.Filters
         private readonly int _templateWindowSize;
         private readonly int _searchWindowSize;
 
-        public FastDeNoisingFilter()
-        {
-            _h = 100;
-            _templateWindowSize = 5;
-            _searchWindowSize = 5;
-        }
-
         public FastDeNoisingFilter(int h, int templateWindowSize, int searchWindowSize)
         {
             _h = h;

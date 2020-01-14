@@ -9,10 +9,6 @@ namespace SudokuGrabber.Filters
     {
         private readonly int _size;
 
-        public CenterImage()
-        {
-            _size = 28;
-        }
         public CenterImage(int size)
         {
             _size = size;

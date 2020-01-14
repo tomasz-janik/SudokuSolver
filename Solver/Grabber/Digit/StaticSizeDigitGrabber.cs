@@ -35,8 +35,6 @@ namespace SudokuGrabber.Grabber.Digit
                for (var j = 0; j < 9; j++)
                {
                    sudoku.Digits[i, j] = _digitCleanStrategy.Clean(sudoku.Digits[i, j]);
-                   //if(!sudoku.Digits[i,j].IsEmpty)
-                   //    sudoku.Digits[i,j].ShowImage();
                }
            }
 

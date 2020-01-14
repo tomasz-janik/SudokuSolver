@@ -17,12 +17,6 @@ namespace SudokuGrabber.Builders
             return this;
         }
 
-        public StaticSizeDigitGrabberBuilder AddPreDigitGrabFilters(IFilter filer)
-        {
-            _preDigitGrabFilters.Add(filer);
-            return this;
-        }
-
         public StaticSizeDigitGrabberBuilder SetDigitCleanStrategy(IDigitCleanStrategy digitCleanStrategy)
         {
             _digitCleanStrategy = digitCleanStrategy;

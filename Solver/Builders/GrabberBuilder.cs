@@ -6,13 +6,11 @@ namespace SudokuGrabber.Builders
 {
     public class GrabberBuilder 
     {
-    
         private  ISudokuPositionGrabber _sudokuGrabber;
        
         private  IDigitGrabber _digitGrabber;
        
         private  IDigitRecognizer _digitRecognizer;
-
 
         public GrabberBuilder SetDigitGrabber(IDigitGrabber digitGrabber)
         {
@@ -31,8 +29,6 @@ namespace SudokuGrabber.Builders
             _digitRecognizer = digitRecognizer;
             return this;
         }
-
-        
 
         public ISudokuGrabber GetSolver()
         {

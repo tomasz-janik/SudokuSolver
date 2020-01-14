@@ -1,7 +1,5 @@
 ﻿using System.Collections.Generic;
 using Emgu.CV;
-using Emgu.CV.Structure;
-using SudokuGrabber.Extensions;
 using SudokuGrabber.Filters;
 using SudokuGrabber.OpenCV.Interfaces;
 

@@ -10,13 +10,13 @@ namespace SudokuGrabber.Grabber.Digit.Strategies
         public Sudoku<Mat> Grab(Mat image)
         {
             var result = new Sudoku<Mat>();
-            int height = image.Size.Height / 9;
-            int width = image.Size.Width / 9;
-            for (int i = 0; i < 9; i++)
+            var height = image.Size.Height / 9;
+            var width = image.Size.Width / 9;
+            for (var i = 0; i < 9; i++)
             {
-                for (int j = 0; j < 9; j++)
+                for (var j = 0; j < 9; j++)
                 {
-                    var points = new Point[]
+                    var points = new[]
                     {
 
                         new Point(j * width, i * height),

@@ -21,11 +21,11 @@ namespace SudokuGrabber.Grabber.Digit.Strategies
             var cont = _calcContours.Get(digit).Data;
            
             var points = new List<Point>();
-            for (int i = 0; i < cont.Size; i++)
+            for (var i = 0; i < cont.Size; i++)
             {
                 var rect = CvInvoke.BoundingRectangle(cont[i]);
 
-                double aspect = (double)rect.Height / (double)rect.Width;
+                var aspect = (double)rect.Height / (double)rect.Width;
                 double area = rect.Height * rect.Width;
 
                 if (aspect > 0.3 && aspect < 4 && area > 100)

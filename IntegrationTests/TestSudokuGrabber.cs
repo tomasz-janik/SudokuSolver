@@ -1,29 +1,22 @@
 using System;
 using System.Collections.Generic;
-using System.Data;
 using System.IO;
 using NUnit.Framework;
-using SudokuGrabber;
 using SudokuGrabber.Builders;
 using SudokuGrabber.Filters;
 using SudokuGrabber.Grabber.Digit.Strategies;
 using SudokuGrabber.Models;
 using SudokuGrabber.OpenCV;
-using SudokuGrabber.OpenCV.Interfaces;
 using SudokuGrabber.Recognizer.Strategies;
 
 namespace IntegrationTests
 {
     public class SudokuGrabberTest
     {
-      
         [Test]
         public void TestAll()
         {
-
             // arrange
-
-            
             var sudokuPositionGrabber = Builders.NewBaseSudokuGrabberBuilder()
                 .SetCalcContours(new GetContours())
                 .SetCalcHull(new GetHull())
@@ -34,7 +27,6 @@ namespace IntegrationTests
                     new GrayFilter(),
                     new FastDeNoisingFilter(100, 5, 5),
                     new AdaptiveThresholdFilter(),
-                    
                 })
                 .GetGrabber();
 
@@ -53,7 +45,7 @@ namespace IntegrationTests
                 .SetDigitGrabStrategy(new GrabBySize())
                 .SetPreDigitGrabFilters(new List<IFilter>()
                 {
-                    new CLeanLineImage(new GrayFilter() ,new MedianBlurFilter(3))
+                    new CLeanLineImage(new GrayFilter(), new MedianBlurFilter(3))
                 })
                 .GetGrabber();
 
@@ -64,14 +56,14 @@ namespace IntegrationTests
                 .SetDigitRecognizer(digitRecognizer)
                 .GetSolver();
 
-            var basePath = Path.Combine(System.IO.Path.GetFullPath(@"..\..\..\"), "Resources", "TestImages");
+            var basePath = Path.Combine(Path.GetFullPath(@"..\..\..\"), "Resources", "TestImages");
 
 
             double correctness = 0.0f;
-            int greaterThan90 = 0;
-            int full = 0;
-           
-            for (int i = 0; i < 81; i++)
+            var greaterThan90 = 0;
+            var full = 0;
+
+            for (var i = 0; i < 81; i++)
             {
                 // act
                 var filePath = Path.Combine(basePath, i + ".jpg");
@@ -88,9 +80,9 @@ namespace IntegrationTests
                 // assert
                 using var resultEnumerator = sudokuResult.GetEnumerator();
                 using var expectedEnumerator = sudokuExpected.GetEnumerator();
-                int correct = 0;
-                int correctWithoutEmpty = 0;
-                int expectedWithoutEmpty = 0;
+                var correct = 0;
+                var correctWithoutEmpty = 0;
+                var expectedWithoutEmpty = 0;
 
                 do
                 {
@@ -109,7 +101,7 @@ namespace IntegrationTests
                             correctWithoutEmpty++;
                         }
                     }
-                    
+
                     expectedEnumerator.MoveNext();
                 } while (resultEnumerator.MoveNext());
 
@@ -120,7 +112,7 @@ namespace IntegrationTests
                     full++;
                 }
 
-                if (result >=0.9)
+                if (result >= 0.9)
                 {
                     greaterThan90++;
                 }
@@ -128,21 +120,22 @@ namespace IntegrationTests
                 correctness += result;
             }
 
-            Assert.GreaterOrEqual(greaterThan90 / 81.0,  0.9,  "The minimum  90 % efficiency of correct sudoku recognition  is 90%");
+            Assert.GreaterOrEqual(greaterThan90 / 81.0, 0.9,
+                "The minimum  90 % efficiency of correct sudoku recognition  is 90%");
             Assert.GreaterOrEqual(full / 81.0, 0.5, "The minimum of fully correct sudoku recognition  is 50%");
             Assert.GreaterOrEqual(correctness / 81.0, 0.9, "The minimum average result is 90%");
         }
 
-        private Sudoku<int> GetFromData(string path)
+        private static IEnumerable<int> GetFromData(string path)
         {
             var result = new Sudoku<int>();
-            var enumerator = (SudokuEnumerator<int>)result.GetEnumerator();
+            var enumerator = (SudokuEnumerator<int>) result.GetEnumerator();
 
             using (var stream = new StreamReader(path))
             {
                 while (!stream.EndOfStream)
                 {
-                    var sign = (char)stream.Read();
+                    var sign = (char) stream.Read();
                     if (sign == '.')
                     {
                         enumerator.SetValue(0);
@@ -154,7 +147,6 @@ namespace IntegrationTests
                         enumerator.MoveNext();
                     }
                 }
-             
             }
 
             return result;

@@ -8,10 +8,6 @@ namespace SudokuGrabber.Filters
     {
         private readonly int _size;
 
-        public DeskewImage()
-        {
-            _size = 28;
-        }
         public DeskewImage(int size)
         {
             _size = size;

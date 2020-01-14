@@ -16,12 +16,6 @@ namespace SudokuGrabber.Builders
             return this;
         }
 
-        public BaseDigitRecognizerBuilder AddPreDigitRecognizeFilters(IFilter filter)
-        {
-            _preDigitRecognizeFilters.Add(filter);
-            return this;
-        }
-
         public BaseDigitRecognizerBuilder SetRecognizer(IRecognizer recognizer)
         {
             _recognizer = recognizer;

@@ -19,12 +19,6 @@ namespace SudokuGrabber.Builders
             return this;
         }
 
-        public BaseSudokuGrabberBuilder AddPreSudokuGrabFilters(IFilter filter)
-        {
-            _preSudokuGrabFilters.Add(filter);
-            return this;
-        }
-
         public BaseSudokuGrabberBuilder SetCalcCorners(ICalcCorners calcCorners)
         {
             _calcCorners = calcCorners;

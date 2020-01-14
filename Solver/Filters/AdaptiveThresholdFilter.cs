@@ -20,15 +20,6 @@ namespace SudokuGrabber.Filters
             _c = 2;
         }
 
-        public AdaptiveThresholdFilter(int maxValue, AdaptiveThresholdType adaptiveThresholdType, ThresholdType thresholdType, int blockSize, int c)
-        {
-            _maxValue = maxValue;
-            _adaptiveThresholdType = adaptiveThresholdType;
-            _thresholdType = thresholdType;
-            _blockSize = blockSize;
-            _c = c;
-        }
-
         public void Apply(Mat image)
         {
             CvInvoke.AdaptiveThreshold(image, image, _maxValue, _adaptiveThresholdType, _thresholdType, _blockSize, _c);

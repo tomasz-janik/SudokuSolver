@@ -7,10 +7,6 @@ namespace SudokuGrabber.Filters
     {
         private readonly int _size;
 
-        public MedianBlurFilter()
-        {
-            _size = 3;
-        }
         public MedianBlurFilter(int size)
         {
             _size = size;
