@@ -25,7 +25,7 @@ This application allows to input sudoku from either .txt file or image and displ
 * MVVM
 * Builder
 * Iterator
-* Observer - maybe?
+* Observer
 
 ### Command
 Used in ViewModel of MVVM as a way to create responsive design - when user clicks on button corresponding action is executed.
@@ -103,3 +103,5 @@ We also use builders to build whole Sudoku Graber with initial parameters.
 ### Iterator
  We use iterator to iterate through sudoku which is 2d array, so iterator makes our code more readable and clean.
  
+ ### Observer
+ User can update each cell individually by inputting some value and whole board needs to know about it in order to create Memento that can later be used to undo move. 
