@@ -101,5 +101,5 @@ In image recognition there are a lot of parameters that can be changed to make i
 We also use builders to build whole Sudoku Graber with initial parameters.
 
 ### Iterator
- We use iterator to iterate through sudoku which is list of list, so iterator makes our code more rateable.
+ We use iterator to iterate through sudoku which is 2d array, so iterator makes our code more readable and clean.
  
