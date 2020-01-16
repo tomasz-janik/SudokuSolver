@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel;
+using System.Threading.Tasks;
 using SudokuSolver.Model.Logger;
 using SudokuSolver.Model.Sudoku;
 using SudokuSolver.View;
@@ -46,27 +47,36 @@ namespace SudokuSolver.ViewModel
             _commandFactory.GetCommand("load").Execute(fileNames);
         }
 
-        private void ClearSudoku()
+        private async void ClearSudoku()
         {
-            _commandFactory.GetCommand("clear").Execute(null);
+            await Task.Run(() =>
+            {
+                _commandFactory.GetCommand("clear").Execute(null);
+            });
         }
 
-        private void SolveSudoku()
+        private async void SolveSudoku()
         {
-            if (_commandFactory.GetCommand("solve").Execute(SolvingStrategy)) return;
+            await Task.Run(() =>
+            {
+                if (_commandFactory.GetCommand("solve").Execute(SolvingStrategy)) return;
 
-            //todo - we can localize it e.g. polish, english if there is sth for it in c#
-            LoggingFacade.Error("Couldn't solve sudoku");
-            new MessageDialog().ExecuteMessageDialog("Sudoku is not solvable");
+                //todo - we can localize it e.g. polish, english if there is sth for it in c#
+                LoggingFacade.Error("Couldn't solve sudoku");
+                new MessageDialog().ExecuteMessageDialog("Sudoku is not solvable");
+            });
         }
 
-        private void UndoSudoku()
+        private async void UndoSudoku()
         {
-            if (_commandFactory.GetCommand("undo").Execute(null)) return;
+            await Task.Run(() =>
+            {
+                if (_commandFactory.GetCommand("undo").Execute(null)) return;
 
-            //todo - we can localize it e.g. polish, english if there is sth for it in c#
-            LoggingFacade.Error("Couldn't undo move");
-            new MessageDialog().ExecuteMessageDialog("Undo impossible");
+                //todo - we can localize it e.g. polish, english if there is sth for it in c#
+                LoggingFacade.Error("Couldn't undo move");
+                new MessageDialog().ExecuteMessageDialog("Undo impossible"); 
+            });
         }
     }
 }
