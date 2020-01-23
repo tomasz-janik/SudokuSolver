@@ -103,7 +103,7 @@ namespace SudokuSolver
                         new CenterImage(28),
                         new DeskewImage(28)
                     })
-                .SetRecognizer(new SVMRecognizer())
+                .SetRecognizer(new MulticlassClassification())
                 .GetDigitRecognizer();
 
             var digitGrabber = Builders.NewStaticSizeDigitGrabber()
