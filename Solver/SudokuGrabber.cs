@@ -33,7 +33,7 @@ namespace SudokuGrabber
 
             var result = new Sudoku<int>();
             var grid = _sudokuGrabber.Grab(image);
-            grid.ShowImage();
+      
             var sudoku = _digitGrabber.GetDigits(grid);
 
             for (var i = 0; i < 9; i++)

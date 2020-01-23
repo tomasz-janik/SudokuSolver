@@ -4,7 +4,7 @@ namespace SudokuGrabber.Models
 {
    public class InputData
     {
-        [ColumnName("Data")]
+        [ColumnName("PixelValues")]
         [VectorType(28*28)]
         public float[] PixelValues;
 

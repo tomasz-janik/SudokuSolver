@@ -45,7 +45,7 @@ namespace IntegrationTests
                         new CenterImage(28),
                         new DeskewImage(28)
                     })
-                .SetRecognizer(new SVMRecognizer())
+                .SetRecognizer(new MulticlassClassification())
                 .GetDigitRecognizer();
 
             var digitGrabber = Builders.NewStaticSizeDigitGrabber()
@@ -71,7 +71,7 @@ namespace IntegrationTests
             int greaterThan90 = 0;
             int full = 0;
            
-            for (int i = 0; i < 81; i++)
+            for (int i = 0; i < 156; i++)
             {
                 // act
                 var filePath = Path.Combine(basePath, i + ".jpg");
@@ -128,9 +128,12 @@ namespace IntegrationTests
                 correctness += result;
             }
 
-            Assert.GreaterOrEqual(greaterThan90 / 81.0,  0.9,  "The minimum  90 % efficiency of correct sudoku recognition  is 90%");
-            Assert.GreaterOrEqual(full / 81.0, 0.5, "The minimum of fully correct sudoku recognition  is 50%");
-            Assert.GreaterOrEqual(correctness / 81.0, 0.9, "The minimum average result is 90%");
+            Console.WriteLine($"greaterThan90: {greaterThan90}");
+            Console.WriteLine($"full: {full}");
+            Console.WriteLine($"correctness: {correctness}");
+            Assert.GreaterOrEqual(greaterThan90 / 156.0,  0.9,  "The minimum  90 % efficiency of correct sudoku recognition  is 90%");
+            Assert.GreaterOrEqual(full / 156.0, 0.5, "The minimum of fully correct sudoku recognition  is 50%");
+            Assert.GreaterOrEqual(correctness / 156.0, 0.9, "The minimum average result is 90%");
         }
 
         private Sudoku<int> GetFromData(string path)

@@ -26,8 +26,6 @@ namespace SudokuGrabber.Grabber.Digit
                preDigitGrabFilter.Apply(image);
            }
 
-           image.ShowImage();
-
             var sudoku = _digitGrabStrategy.Grab(image);
            
            for (var i = 0; i < 9; i++)

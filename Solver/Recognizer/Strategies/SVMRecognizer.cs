@@ -22,8 +22,7 @@ namespace SudokuGrabber.Recognizer.Strategies
             _svm.Load(path);
         }
         public int Recognize(Mat image)
-        { 
-            image.ShowImage(_svm.Predict(image.ToVector()).ToString());
+        {
             return (int)_svm.Predict(image.ToVector());
         }
     }

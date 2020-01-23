@@ -1,27 +1,14 @@
 ﻿using System;
+using System.IO;
 using Emgu.CV;
 using Microsoft.ML;
 using Microsoft.ML.Data;
 using SudokuGrabber.Extensions;
+using SudokuGrabber.Models;
 
 namespace SudokuGrabber.Recognizer.Strategies
 {
 
-
-    class InputData
-    {
-        [ColumnName("Data")]
-        [VectorType(28*28)]
-        public float[] PixelValues;
-
-        public float Number;
-    }
-
-    class OutPutData
-    {
-        [ColumnName("Score")]
-        public float[] Score;
-    }
 
     public class MulticlassClassification : IRecognizer
     {
@@ -30,7 +17,7 @@ namespace SudokuGrabber.Recognizer.Strategies
         public MulticlassClassification()
         {
             var mlContext = new MLContext();
-            var trainedModel= mlContext.Model.Load("C:\\Users\\Daniel\\Desktop\\Data\\Model.zip", out var schema);
+            var trainedModel= mlContext.Model.Load(Path.Combine(System.IO.Path.GetFullPath(@"..\..\..\..\"), "Solver", "Resources", "Model.zip"), out var schema);
 
             _pred = mlContext.Model.CreatePredictionEngine<InputData, OutPutData>(trainedModel);
         }
